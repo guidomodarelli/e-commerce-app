@@ -31,6 +31,12 @@ module.exports = {
       ],
       plugins: ["react-refresh", "unicorn"],
       rules: {
+        "no-empty-pattern": [
+          "off",
+          {
+            allowObjectPatternsAsParameters: true,
+          },
+        ],
         "@typescript-eslint/no-empty-interface": "off",
         "react/prop-types": "off",
         "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
@@ -58,9 +64,7 @@ module.exports = {
           "error",
           {
             case: "pascalCase",
-            ignore: [
-              "main"
-            ]
+            ignore: ["main"],
           },
         ],
       },
@@ -74,7 +78,7 @@ module.exports = {
             case: "kebabCase",
           },
         ],
-      }
+      },
     },
     {
       files: ["src/**/hooks/**/*.{ts,tsx}"],
