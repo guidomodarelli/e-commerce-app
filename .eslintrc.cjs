@@ -70,7 +70,7 @@ module.exports = {
       },
     },
     {
-      files: ["src/**/utils/**/*.{ts,tsx}", "src/**/types/**/*.{ts,tsx}"],
+      files: ["src/**/*.ts"],
       rules: {
         "unicorn/filename-case": [
           "error",
