@@ -1,9 +1,12 @@
-import Categories from "./components/Categories/Categories.component";
-// Supports weights 300-800
-import "@fontsource-variable/open-sans/wdth-italic.css";
+import Home from "./pages/Home.page";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  return <Categories />;
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
+  );
 }
 
 export default App;
