@@ -17,8 +17,8 @@ function Navigation({}: NavigationProps) {
           </Link>
         </li>
         <li>
-          <Link className={styles["nav-link"]} to={"/cart"}>
-            CART
+          <Link className={styles["nav-link"]} to={"/signIn"}>
+            SIGN IN
           </Link>
         </li>
       </ul>
