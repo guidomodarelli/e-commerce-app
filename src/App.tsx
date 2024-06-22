@@ -1,5 +1,7 @@
+import Categories from "./components/Categories/Categories.component";
+
 function App() {
-  return <></>;
+  return <Categories />;
 }
 
 export default App;
