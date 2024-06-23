@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Navigation.module.css";
-import Logo from "../../../assets/Logo.tsx";
+import Logo from "@assets/Logo.tsx";
 
 interface NavigationProps {}
 
