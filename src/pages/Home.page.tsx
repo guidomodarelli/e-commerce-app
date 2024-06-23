@@ -1,4 +1,4 @@
-import Categories from "../components/Categories/Categories.component";
+import Categories from "@components/Categories/Categories.component";
 
 function Home() {
   return <Categories />;
