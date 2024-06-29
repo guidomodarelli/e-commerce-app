@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, type User as UserAuth } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  type User as UserAuth,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -52,4 +58,8 @@ export const createUserDocumentFromAuth = async (
   }
 
   return userDocumentReference;
+};
+
+export const createAuthUserWithEmailAndPassword = (email: string, password: string) => {
+  return createUserWithEmailAndPassword(auth, email, password);
 };
