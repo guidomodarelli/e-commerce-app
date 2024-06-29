@@ -31,6 +31,7 @@ module.exports = {
       ],
       plugins: ["react-refresh", "unicorn"],
       rules: {
+        "@typescript-eslint/no-unnecessary-condition": "off",
         "@typescript-eslint/no-misused-promises": "off",
         "no-empty-pattern": [
           "off",
