@@ -1,6 +1,7 @@
 // import { signInWithGooglePopup, createUserDocumentFromAuth } from "@utils/firebase/firebase.utils";
 import Button from "@/components/Button/Button.component";
 import FormInput from "@/components/Form/FormInput.component";
+import Layout from "@/layouts/Layout";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
 // const logGoogleUser = async () => {
@@ -17,7 +18,7 @@ function SignUp() {
   };
 
   return (
-    <main>
+    <Layout>
       <h1 className="text-4xl">I do not have an account</h1>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -27,7 +28,7 @@ function SignUp() {
         <FormInput label="Confirm Password" register={register("confirm-password")} />
         <Button type="submit">Sign Up</Button>
       </form>
-    </main>
+    </Layout>
   );
 }
 
