@@ -1,4 +1,5 @@
 // import { signInWithGooglePopup, createUserDocumentFromAuth } from "@utils/firebase/firebase.utils";
+import Button from "@/components/Button/Button.component";
 import FormInput from "@/components/Form/FormInput.component";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
@@ -24,6 +25,7 @@ function SignUp() {
         <FormInput label="Email" register={register("email")} />
         <FormInput label="Password" register={register("password")} />
         <FormInput label="Confirm Password" register={register("confirm-password")} />
+        <Button type="submit">Sign Up</Button>
       </form>
     </main>
   );
