@@ -12,12 +12,12 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@fontsource-variable/open-sans": "^5.0.29",
-    "firebase": "^10.12.2",
+    "@fontsource-variable/open-sans": "5.0.29",
+    "firebase": "10.12.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-router-dom": "^6.23.1",
-    "vite-tsconfig-paths": "^4.3.2"
+    "react-hook-form": "7.52.0",
+    "react-router-dom": "6.23.1"
   },
   "devDependencies": {
     "@types/react": "18.3.3",
@@ -36,11 +36,13 @@
     "eslint-plugin-react-refresh": "0.4.7",
     "eslint-plugin-unicorn": "53.0.0",
     "postcss": "8.4.38",
+    "postcss-mixins": "10.0.1",
     "prettier": "3.3.1",
     "tailwind-merge": "2.3.0",
     "tailwindcss": "3.4.4",
     "typescript": "5.4.5",
     "vite": "5.2.13",
+    "vite-tsconfig-paths": "4.3.2",
     "vitest": "1.6.0"
   }
 }
