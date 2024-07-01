@@ -14,11 +14,12 @@ import { z } from "zod";
 import { FirebaseError } from "firebase/app";
 import FormError from "@/components/Form/FormError/FormError.components";
 import {
-  INVALID_EMAIL,
-  INVALID_LOGIN_CREDENTIALS,
-  INVALID_PASSWORD,
+  FIREBASE_INVALID_EMAIL,
+  FIREBASE_INVALID_LOGIN_CREDENTIALS,
+  FIREBASE_INVALID_PASSWORD,
 } from "@/utils/firebase/auth-error-codes.constants";
 import { Link } from "react-router-dom";
+import { FIREBASE_MESSAGE_INVALID_LOGIN_CREDENTIALS } from "@/utils/firebase/auth-error-messages.constants";
 
 const schema = z.object({
   email: z.string().email().default(""),
@@ -53,20 +54,20 @@ function SignIn() {
     } catch (error) {
       if (error instanceof FirebaseError) {
         switch (error.code) {
-          case INVALID_PASSWORD:
-          case INVALID_EMAIL:
-          case INVALID_LOGIN_CREDENTIALS: {
+          case FIREBASE_INVALID_PASSWORD:
+          case FIREBASE_INVALID_EMAIL:
+          case FIREBASE_INVALID_LOGIN_CREDENTIALS: {
             setError("root", {
-              message: "Incorrect email or password. Please try again with different credentials.",
+              message: FIREBASE_MESSAGE_INVALID_LOGIN_CREDENTIALS,
             });
             break;
           }
           default: {
-            console.log("FirebaseError:", error);
+            console.error("FirebaseError:", error);
           }
         }
       } else {
-        console.log(error);
+        console.error(error);
       }
     }
   };
