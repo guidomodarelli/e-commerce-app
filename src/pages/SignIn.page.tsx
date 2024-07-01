@@ -3,17 +3,34 @@ import FormInput from "@/components/Form/FormInput.component";
 import H1 from "@/components/Heading/H1.component";
 import H2 from "@/components/Heading/H2.component";
 import Layout from "@/layouts/Layout";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-// import { signInWithGooglePopup, createUserDocumentFromAuth } from "@utils/firebase/firebase.utils";
+import { FieldValues, GlobalError, SubmitHandler, useForm } from "react-hook-form";
+import { signInWithGooglePopup, createUserDocumentFromAuth } from "@utils/firebase/firebase.utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
-// const logGoogleUser = async () => {
-//   const { user } = await signInWithGooglePopup();
-//   const userDocumentReference = await createUserDocumentFromAuth(user);
-//   console.log(userDocumentReference);
-// };
+const schema = z.object({
+  email: z.string().email().default(""),
+  password: z.string().min(8).default(""),
+});
+
+type SignInFormFields = z.infer<typeof schema>;
 
 function SignIn() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    reset,
+  } = useForm<SignInFormFields>({
+    resolver: zodResolver(schema),
+  });
+
+  const signInWithGoogle = async () => {
+    const { user } = await signInWithGooglePopup();
+    await createUserDocumentFromAuth(user);
+    reset();
+  };
 
   const onSubmit: SubmitHandler<FieldValues> = (data: FieldValues) => {
     console.log(data);
@@ -26,11 +43,27 @@ function SignIn() {
         <H2 className="text-3xl">Already have an account?</H2>
         <span>Sign in with your email and password</span>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput label="Email" register={register("email")} />
-          <FormInput label="Password" register={register("password")} />
-          <div className="flex gap-2">
+          <FormInput
+            label="Email"
+            inputAttributes={{
+              ...register("email"),
+              value: watch("email"),
+            }}
+            error={(errors.email as GlobalError)?.message}
+          />
+          <FormInput
+            label="Password"
+            inputAttributes={{
+              ...register("password"),
+              value: watch("password"),
+            }}
+            error={(errors.password as GlobalError)?.message}
+          />
+          <div className="flex gap-4 justify-between">
             <Button type="submit">Sign In</Button>
-            <Button variant="google">Sign In with Google</Button>
+            <Button type="button" variant="google" onClick={signInWithGoogle}>
+              Sign In with Google
+            </Button>
           </div>
         </form>
       </div>
