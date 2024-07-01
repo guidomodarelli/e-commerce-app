@@ -1,23 +1,24 @@
-import { UseFormRegisterReturn } from "react-hook-form";
 import "./FormInput.styles.css";
 import { cn } from "@/utils/cn";
 import { InputHTMLAttributes } from "react";
+import FormError from "./FormError/FormError.components";
 
 interface FormInputProps {
   label?: string;
-  register: UseFormRegisterReturn;
   inputAttributes?: InputHTMLAttributes<HTMLInputElement>;
+  error?: string;
 }
 
-function FormInput({ label, register, inputAttributes = {} }: FormInputProps) {
+function FormInput({ label, inputAttributes = {}, error }: FormInputProps) {
+  console.log(inputAttributes);
   return (
     <div className="group">
-      <input className="form-input" {...register} />
+      <input className="form-input" {...inputAttributes} />
       {label && (
         <label
           className={cn(
             {
-              shrink: (inputAttributes?.value as string)?.length,
+              shrink: (inputAttributes.value as string)?.length,
             },
             "form-input-label",
           )}
@@ -25,6 +26,7 @@ function FormInput({ label, register, inputAttributes = {} }: FormInputProps) {
           {label}
         </label>
       )}
+      {error ? <FormError>{error}</FormError> : <></>}
     </div>
   );
 }
