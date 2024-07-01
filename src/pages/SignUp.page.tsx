@@ -4,7 +4,11 @@ import FormInput from "@/components/Form/FormInput.component";
 import H1 from "@/components/Heading/H1.component";
 import H2 from "@/components/Heading/H2.component";
 import Layout from "@/layouts/Layout";
-import { EMAIL_EXISTS, WEAK_PASSWORD } from "@/utils/firebase/auth-error-codes.constants";
+import { FIREBASE_EMAIL_EXISTS, FIREBASE_WEAK_PASSWORD } from "@/utils/firebase/auth-error-codes.constants";
+import {
+  FIREBASE_MESSAGE_EMAIL_EXISTS,
+  FIREBASE_MESSAGE_WEAK_PASSWORD,
+} from "@/utils/firebase/auth-error-messages.constants";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "@/utils/firebase/firebase.utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FirebaseError } from "firebase/app";
@@ -61,24 +65,24 @@ function SignUp() {
     } catch (error) {
       if (error instanceof FirebaseError) {
         switch (error.code) {
-          case WEAK_PASSWORD: {
+          case FIREBASE_WEAK_PASSWORD: {
             setError("password", {
-              message: "The password provided is too weak",
+              message: FIREBASE_MESSAGE_WEAK_PASSWORD,
             });
             break;
           }
-          case EMAIL_EXISTS: {
+          case FIREBASE_EMAIL_EXISTS: {
             setError("email", {
-              message: "The account already exists for this email",
+              message: FIREBASE_MESSAGE_EMAIL_EXISTS,
             });
             break;
           }
           default: {
-            console.log("FirebaseError:", error);
+            console.error("FirebaseError:", error);
           }
         }
       } else {
-        console.log(error);
+        console.error(error);
       }
     }
   };
