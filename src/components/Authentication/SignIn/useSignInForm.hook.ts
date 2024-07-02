@@ -40,7 +40,7 @@ const handleFirebaseError = (error: FirebaseError) => {
   }
 };
 
-function useSignIn() {
+function useSignInForm() {
   const navigate = useNavigate();
   const { register, reset, setError, handleSubmit, formState } = useForm<SignInFormFields>({
     resolver: zodResolver(schema),
@@ -80,4 +80,4 @@ function useSignIn() {
   };
 }
 
-export default useSignIn;
+export default useSignInForm;
