@@ -58,7 +58,7 @@ function useSignIn() {
             break;
           }
           default: {
-            console.error("FirebaseError:", error);
+            console.error(error);
           }
         }
       } else {
