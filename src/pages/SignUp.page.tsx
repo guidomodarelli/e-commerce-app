@@ -1,4 +1,4 @@
-import SignUpForm from "@/components/Authentication/SignUp/SignUp.component";
+import SignUpForm from "@/components/Authentication/SignUp/SignUpForm.component";
 import H1 from "@/components/Heading/H1.component";
 import Layout from "@/layouts/Layout";
 
