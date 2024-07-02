@@ -83,7 +83,7 @@ module.exports = {
       },
     },
     {
-      files: ["src/**/hooks/**/*.{ts,tsx}"],
+      files: ["src/**/hooks/**/*.{ts,tsx}", "src/**/*.hook.ts",],
       rules: {
         "unicorn/filename-case": [
           "error",
