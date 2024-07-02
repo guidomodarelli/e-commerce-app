@@ -3,23 +3,24 @@ import { User } from "firebase/auth";
 import { Dispatch, PropsWithChildren, SetStateAction, createContext, useEffect, useState } from "react";
 
 interface UserContextType {
-  currentUser: User | null;
-  setCurrentUser: Dispatch<SetStateAction<User | null>>;
+  currentUser?: User | null;
+  setCurrentUser: Dispatch<SetStateAction<User | null | undefined>>;
 }
 
 export const UserContext = createContext<UserContextType>({
-  currentUser: null,
-  setCurrentUser: () => null,
+  currentUser: undefined,
+  setCurrentUser: () => undefined,
 });
 
 interface UserProviderProps extends PropsWithChildren {}
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<User | null | undefined>(undefined);
   const value = { currentUser, setCurrentUser };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener(async (user: User | null) => {
+      console.log(user);
       if (user) {
         await createUserDocumentFromAuth(user);
       }
