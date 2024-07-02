@@ -5,10 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FirebaseError } from "firebase/app";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SignUpFormFields, schema } from "./sign-up.schema";
-
-interface UseSignUpProps {
-  onSuccess: () => void;
-}
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface FieldMessage {
   field: keyof SignUpFormFields;
@@ -27,7 +25,8 @@ const handleSignUpError = (error: FirebaseError): FieldMessage | null => {
   }
 };
 
-function useSignUp({ onSuccess }: UseSignUpProps) {
+function useSignUp() {
+  const navigate = useNavigate();
   const { register, handleSubmit, formState, reset, setError, getValues } = useForm<SignUpFormFields>({
     resolver: zodResolver(schema),
   });
@@ -39,7 +38,8 @@ function useSignUp({ onSuccess }: UseSignUpProps) {
         displayName: getValues("displayName"),
       });
       reset();
-      onSuccess();
+      toast.success("User has been created successfully!");
+      navigate("/");
     } catch (error) {
       if (error instanceof FirebaseError) {
         const errorInfo = handleSignUpError(error);

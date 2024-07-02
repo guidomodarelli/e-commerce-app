@@ -2,12 +2,11 @@ import Button from "@/components/Button/Button.component";
 import FormError from "@/components/Form/FormError/FormError.components";
 import FormInput from "@/components/Form/FormInput.component";
 import H2 from "@/components/Heading/H2.component";
+import { InputHTMLAttributes } from "react";
 import { GlobalError } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { SignUpFormFields } from "./sign-up.schema";
 import useSignUp from "./useSignUp.hook";
-import { toast } from "sonner";
-import { InputHTMLAttributes } from "react";
 
 interface FormFields {
   label: string;
@@ -39,17 +38,11 @@ const formFields: FormFields[] = [
 ];
 
 function SignUpForm() {
-  const navigate = useNavigate();
   const {
     register,
     onSubmit,
     formState: { dirtyFields, errors, isSubmitting, isValidating },
-  } = useSignUp({
-    onSuccess() {
-      toast.success("User has been created successfully!");
-      navigate("/");
-    },
-  });
+  } = useSignUp();
 
   return (
     <div className="max-w-96 mx-auto">
