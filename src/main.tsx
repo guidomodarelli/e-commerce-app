@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { UserProvider } from "./contexts/User.context";
 
 const root = document.querySelector("#root") as unknown as Element;
 
@@ -12,7 +13,9 @@ ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <BrowserRouter>
       <Toaster richColors position="top-right" />
-      <App />
+      <UserProvider>
+        <App />
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );
