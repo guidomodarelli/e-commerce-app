@@ -25,6 +25,19 @@ const schema = z.object({
 
 type SignInFormFields = z.infer<typeof schema>;
 
+const handleFirebaseError = (error: FirebaseError) => {
+  switch (error.code) {
+    case FIREBASE_INVALID_PASSWORD:
+    case FIREBASE_INVALID_EMAIL:
+    case FIREBASE_INVALID_LOGIN_CREDENTIALS:
+      return MESSAGE_INVALID_LOGIN_CREDENTIALS;
+    case FIREBASE_TOO_MANY_ATTEMPTS_TRY_LATER:
+      return MESSAGE_TOO_MANY_ATTEMPTS_TRY_LATER;
+    default:
+      return null;
+  }
+};
+
 function useSignIn() {
   const { register, reset, setError, handleSubmit, formState } = useForm<SignInFormFields>({
     resolver: zodResolver(schema),
@@ -42,25 +55,8 @@ function useSignIn() {
       reset();
     } catch (error) {
       if (error instanceof FirebaseError) {
-        switch (error.code) {
-          case FIREBASE_INVALID_PASSWORD:
-          case FIREBASE_INVALID_EMAIL:
-          case FIREBASE_INVALID_LOGIN_CREDENTIALS: {
-            setError("root", {
-              message: MESSAGE_INVALID_LOGIN_CREDENTIALS,
-            });
-            break;
-          }
-          case FIREBASE_TOO_MANY_ATTEMPTS_TRY_LATER: {
-            setError("root", {
-              message: MESSAGE_TOO_MANY_ATTEMPTS_TRY_LATER,
-            });
-            break;
-          }
-          default: {
-            console.error(error);
-          }
-        }
+        const errorMessage = handleFirebaseError(error);
+        if (errorMessage) setError("root", { message: errorMessage });
       } else {
         console.error(error);
       }
