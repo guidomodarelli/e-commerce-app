@@ -13,9 +13,13 @@ interface ButtonProps extends PropsWithChildren, ButtonHTMLAttributes<HTMLButton
   loading?: boolean;
 }
 
-function Button({ children, variant, loading = false, ...otherProps }: ButtonProps) {
+function Button({ children, variant, loading = false, disabled = false, ...otherProps }: ButtonProps) {
   return (
-    <button className={cn("button-container", variant ? BUTTON_VARIANT[variant] : "")} {...otherProps}>
+    <button
+      className={cn("button-container", variant ? BUTTON_VARIANT[variant] : "")}
+      disabled={disabled || loading}
+      {...otherProps}
+    >
       {loading ? <LdsRing /> : children}
     </button>
   );
