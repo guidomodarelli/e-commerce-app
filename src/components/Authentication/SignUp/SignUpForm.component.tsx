@@ -6,7 +6,7 @@ import { InputHTMLAttributes } from "react";
 import { GlobalError } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { SignUpFormFields } from "./sign-up.schema";
-import useSignUp from "./useSignUp.hook";
+import useSignUpForm from "./useSignUpForm.hook";
 
 interface FormFields {
   label: string;
@@ -42,7 +42,7 @@ function SignUpForm() {
     register,
     onSubmit,
     formState: { dirtyFields, errors, isSubmitting, isValidating },
-  } = useSignUp();
+  } = useSignUpForm();
 
   return (
     <div className="max-w-96 mx-auto">
