@@ -31,6 +31,7 @@ function SignInForm() {
           label="Password"
           inputAttributes={{
             ...register("password"),
+            type: "password",
           }}
           dirty={dirtyFields.password}
           error={(errors.password as GlobalError)?.message}

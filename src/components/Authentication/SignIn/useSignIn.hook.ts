@@ -17,6 +17,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FirebaseError } from "firebase/app";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
   email: z.string().email().default(""),
@@ -39,20 +41,27 @@ const handleFirebaseError = (error: FirebaseError) => {
 };
 
 function useSignIn() {
+  const navigate = useNavigate();
   const { register, reset, setError, handleSubmit, formState } = useForm<SignInFormFields>({
     resolver: zodResolver(schema),
   });
 
+  const onSuccessSignIn = () => {
+    reset();
+    toast.success("You are logged in successfully!");
+    navigate("/");
+  };
+
   const signInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();
     await createUserDocumentFromAuth(user);
-    reset();
+    onSuccessSignIn();
   };
 
   const onSubmit: SubmitHandler<SignInFormFields> = async (data) => {
     try {
       await signInAuthUserWithEmailAndPassword(data.email, data.password);
-      reset();
+      onSuccessSignIn();
     } catch (error) {
       if (error instanceof FirebaseError) {
         const errorMessage = handleFirebaseError(error);
