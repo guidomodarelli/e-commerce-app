@@ -113,7 +113,7 @@ function SignUp() {
       <H1>Create new account</H1>
       <div className="max-w-96 mx-auto">
         <H2 className="text-3xl">I do not have an account</H2>
-        <span>Sign up with your email and password</span>
+        <p>Sign up with your email and password</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           {formFields.map(({ value, label }) => (
             <FormInput
@@ -124,7 +124,7 @@ function SignUp() {
               error={(errors[value] as GlobalError)?.message}
             />
           ))}
-          <p className="mb-2">
+          <p className="mb-4">
             Already have an account?{" "}
             <Link className="underline text-blue-700" to="/signIn">
               Login
