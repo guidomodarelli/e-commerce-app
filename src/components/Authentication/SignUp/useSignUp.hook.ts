@@ -31,15 +31,19 @@ function useSignUp() {
     resolver: zodResolver(schema),
   });
 
+  const onSuccessSignUp = () => {
+    reset();
+    toast.success("User has been created successfully!");
+    navigate("/");
+  };
+
   const onSubmit: SubmitHandler<SignUpFormFields> = async (data) => {
     try {
       const { user } = await createAuthUserWithEmailAndPassword(data.email, data.password);
       await createUserDocumentFromAuth(user, {
         displayName: getValues("displayName"),
       });
-      reset();
-      toast.success("User has been created successfully!");
-      navigate("/");
+      onSuccessSignUp();
     } catch (error) {
       if (error instanceof FirebaseError) {
         const errorInfo = handleSignUpError(error);
