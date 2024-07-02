@@ -17,9 +17,13 @@ import {
   FIREBASE_INVALID_EMAIL,
   FIREBASE_INVALID_LOGIN_CREDENTIALS,
   FIREBASE_INVALID_PASSWORD,
+  FIREBASE_TOO_MANY_ATTEMPTS_TRY_LATER,
 } from "@/utils/firebase/auth-error-codes.constants";
 import { Link } from "react-router-dom";
-import { MESSAGE_INVALID_LOGIN_CREDENTIALS } from "@/utils/firebase/auth-error-messages.constants";
+import {
+  MESSAGE_INVALID_LOGIN_CREDENTIALS,
+  MESSAGE_TOO_MANY_ATTEMPTS_TRY_LATER,
+} from "@/utils/firebase/auth-error-messages.constants";
 
 const schema = z.object({
   email: z.string().email().default(""),
@@ -46,6 +50,7 @@ function SignIn() {
   };
 
   const onSubmit: SubmitHandler<SignInFormFields> = async (data) => {
+    console.log("onSubmit");
     try {
       const response = await signInAuthUserWithEmailAndPassword(data.email, data.password);
       console.log(response);
@@ -58,6 +63,12 @@ function SignIn() {
           case FIREBASE_INVALID_LOGIN_CREDENTIALS: {
             setError("root", {
               message: MESSAGE_INVALID_LOGIN_CREDENTIALS,
+            });
+            break;
+          }
+          case FIREBASE_TOO_MANY_ATTEMPTS_TRY_LATER: {
+            setError("root", {
+              message: MESSAGE_TOO_MANY_ATTEMPTS_TRY_LATER,
             });
             break;
           }
