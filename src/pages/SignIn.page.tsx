@@ -100,7 +100,7 @@ function SignIn() {
               Create one
             </Link>
           </p>
-          <div className="flex gap-4 justify-between">
+          <div className="flex gap-4 justify-between sm:flex-row flex-col">
             <Button loading={isSubmitting || isValidating} type="submit">
               Sign In
             </Button>
