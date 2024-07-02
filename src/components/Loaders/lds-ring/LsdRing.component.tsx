@@ -5,7 +5,7 @@ interface LdsRingProps {
   size?: number;
 }
 
-function LdsRing({ size = 40 }: LdsRingProps) {
+function LdsRing({ size = 30 }: LdsRingProps) {
   const style = {
     "--size": `${size.toString()}px`,
   } as CSSProperties;
