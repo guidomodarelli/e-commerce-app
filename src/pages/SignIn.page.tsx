@@ -19,7 +19,7 @@ import {
   FIREBASE_INVALID_PASSWORD,
 } from "@/utils/firebase/auth-error-codes.constants";
 import { Link } from "react-router-dom";
-import { FIREBASE_MESSAGE_INVALID_LOGIN_CREDENTIALS } from "@/utils/firebase/auth-error-messages.constants";
+import { MESSAGE_INVALID_LOGIN_CREDENTIALS } from "@/utils/firebase/auth-error-messages.constants";
 
 const schema = z.object({
   email: z.string().email().default(""),
@@ -32,8 +32,7 @@ function SignIn() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    watch,
+    formState: { errors, isSubmitting, isValidating, dirtyFields },
     reset,
     setError,
   } = useForm<SignInFormFields>({
@@ -58,7 +57,7 @@ function SignIn() {
           case FIREBASE_INVALID_EMAIL:
           case FIREBASE_INVALID_LOGIN_CREDENTIALS: {
             setError("root", {
-              message: FIREBASE_MESSAGE_INVALID_LOGIN_CREDENTIALS,
+              message: MESSAGE_INVALID_LOGIN_CREDENTIALS,
             });
             break;
           }
@@ -74,7 +73,7 @@ function SignIn() {
 
   return (
     <Layout>
-      <H1 className="text-4xl">Sign In Page</H1>
+      <H1>Sign In</H1>
       <div className="max-w-96 mx-auto">
         <H2 className="text-3xl">Already have an account?</H2>
         <span>Sign in with your email and password</span>
@@ -84,7 +83,7 @@ function SignIn() {
             inputAttributes={{
               ...register("email"),
             }}
-            value={watch("email")}
+            dirty={dirtyFields.email}
             error={(errors.email as GlobalError)?.message}
           />
           <FormInput
@@ -92,7 +91,7 @@ function SignIn() {
             inputAttributes={{
               ...register("password"),
             }}
-            value={watch("password")}
+            dirty={dirtyFields.password}
             error={(errors.password as GlobalError)?.message}
           />
           <p className="mb-2">
@@ -102,12 +101,14 @@ function SignIn() {
             </Link>
           </p>
           <div className="flex gap-4 justify-between">
-            <Button type="submit">Sign In</Button>
+            <Button loading={isSubmitting || isValidating} type="submit">
+              Sign In
+            </Button>
             <Button type="button" variant="google" onClick={signInWithGoogle}>
               Sign In with Google
             </Button>
           </div>
-          {errors.root && <FormError className="mt-3">{errors.root.message}</FormError>}
+          {errors.root ? <FormError className="mt-3">{errors.root.message}</FormError> : <></>}
         </form>
       </div>
     </Layout>

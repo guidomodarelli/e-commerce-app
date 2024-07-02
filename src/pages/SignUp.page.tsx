@@ -5,14 +5,12 @@ import H1 from "@/components/Heading/H1.component";
 import H2 from "@/components/Heading/H2.component";
 import Layout from "@/layouts/Layout";
 import { FIREBASE_EMAIL_EXISTS, FIREBASE_WEAK_PASSWORD } from "@/utils/firebase/auth-error-codes.constants";
-import {
-  FIREBASE_MESSAGE_EMAIL_EXISTS,
-  FIREBASE_MESSAGE_WEAK_PASSWORD,
-} from "@/utils/firebase/auth-error-messages.constants";
+import { MESSAGE_EMAIL_EXISTS, MESSAGE_WEAK_PASSWORD } from "@/utils/firebase/auth-error-messages.constants";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "@/utils/firebase/firebase.utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FirebaseError } from "firebase/app";
 import { useForm, SubmitHandler, GlobalError } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 
 const schema = z
@@ -42,12 +40,35 @@ const schema = z
 
 type SignUpFormFields = z.infer<typeof schema>;
 
+interface FormFields {
+  label: string;
+  value: keyof SignUpFormFields;
+}
+
+const formFields: FormFields[] = [
+  {
+    label: "Display Name",
+    value: "displayName",
+  },
+  {
+    label: "Email",
+    value: "email",
+  },
+  {
+    label: "Password",
+    value: "password",
+  },
+  {
+    label: "Confirm password",
+    value: "confirmPassword",
+  },
+];
+
 function SignUp() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    watch,
+    formState: { errors, isSubmitting, isValidating, dirtyFields },
     reset,
     setError,
     getValues,
@@ -67,13 +88,13 @@ function SignUp() {
         switch (error.code) {
           case FIREBASE_WEAK_PASSWORD: {
             setError("password", {
-              message: FIREBASE_MESSAGE_WEAK_PASSWORD,
+              message: MESSAGE_WEAK_PASSWORD,
             });
             break;
           }
           case FIREBASE_EMAIL_EXISTS: {
             setError("email", {
-              message: FIREBASE_MESSAGE_EMAIL_EXISTS,
+              message: MESSAGE_EMAIL_EXISTS,
             });
             break;
           }
@@ -89,39 +110,32 @@ function SignUp() {
 
   return (
     <Layout>
-      <H1>Sign Up Page</H1>
+      <H1>Create new account</H1>
       <div className="max-w-96 mx-auto">
         <H2 className="text-3xl">I do not have an account</H2>
         <span>Sign up with your email and password</span>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput
-            label="Display Name"
-            inputAttributes={{ ...register("displayName") }}
-            value={watch("displayName")}
-            error={(errors.displayName as GlobalError)?.message}
-          />
-          <FormInput
-            label="Email"
-            inputAttributes={{ ...register("email") }}
-            value={watch("email")}
-            error={(errors.email as GlobalError)?.message}
-          />
-          <FormInput
-            label="Password"
-            inputAttributes={{ ...register("password") }}
-            value={watch("password")}
-            error={(errors.password as GlobalError)?.message}
-          />
-          <FormInput
-            label="Confirm Password"
-            inputAttributes={{ ...register("confirmPassword") }}
-            value={watch("confirmPassword")}
-            error={(errors.confirmPassword as GlobalError)?.message}
-          />
-          <div className="flex justify-end">
-            <Button type="submit">Sign Up</Button>
+          {formFields.map(({ value, label }) => (
+            <FormInput
+              key={value}
+              label={label}
+              inputAttributes={{ ...register(value) }}
+              dirty={dirtyFields[value]}
+              error={(errors[value] as GlobalError)?.message}
+            />
+          ))}
+          <p className="mb-2">
+            Already have an account?{" "}
+            <Link className="underline text-blue-700" to="/signIn">
+              Login
+            </Link>
+          </p>
+          <div>
+            <Button loading={isSubmitting || isValidating} type="submit">
+              Sign Up
+            </Button>
           </div>
-          {errors.root && <FormError className="mt-3">{errors.root.message}</FormError>}
+          {errors.root ? <FormError className="mt-3">{errors.root.message}</FormError> : <></>}
         </form>
       </div>
     </Layout>
