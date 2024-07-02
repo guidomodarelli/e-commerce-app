@@ -6,6 +6,10 @@ import { FirebaseError } from "firebase/app";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SignUpFormFields, schema } from "./sign-up.schema";
 
+interface UseSignUpProps {
+  onSuccess: () => void;
+}
+
 interface FieldMessage {
   field: keyof SignUpFormFields;
   message: string;
@@ -23,7 +27,7 @@ const handleSignUpError = (error: FirebaseError): FieldMessage | null => {
   }
 };
 
-function useSignUp() {
+function useSignUp({ onSuccess }: UseSignUpProps) {
   const { register, handleSubmit, formState, reset, setError, getValues } = useForm<SignUpFormFields>({
     resolver: zodResolver(schema),
   });
@@ -35,6 +39,7 @@ function useSignUp() {
         displayName: getValues("displayName"),
       });
       reset();
+      onSuccess();
     } catch (error) {
       if (error instanceof FirebaseError) {
         const errorInfo = handleSignUpError(error);

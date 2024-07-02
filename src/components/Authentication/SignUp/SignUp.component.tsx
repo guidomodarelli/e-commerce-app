@@ -3,51 +3,64 @@ import FormError from "@/components/Form/FormError/FormError.components";
 import FormInput from "@/components/Form/FormInput.component";
 import H2 from "@/components/Heading/H2.component";
 import { GlobalError } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SignUpFormFields } from "./sign-up.schema";
 import useSignUp from "./useSignUp.hook";
+import { toast } from "sonner";
+import { InputHTMLAttributes } from "react";
 
 interface FormFields {
   label: string;
   value: keyof SignUpFormFields;
+  type: InputHTMLAttributes<HTMLInputElement>["type"];
 }
 
 const formFields: FormFields[] = [
   {
     label: "Display Name",
     value: "displayName",
+    type: "text",
   },
   {
     label: "Email",
     value: "email",
+    type: "text",
   },
   {
     label: "Password",
     value: "password",
+    type: "password",
   },
   {
     label: "Confirm password",
     value: "confirmPassword",
+    type: "password",
   },
 ];
 
 function SignUpForm() {
+  const navigate = useNavigate();
   const {
     register,
     onSubmit,
     formState: { dirtyFields, errors, isSubmitting, isValidating },
-  } = useSignUp();
+  } = useSignUp({
+    onSuccess() {
+      toast.success("User has been created successfully!");
+      navigate("/");
+    },
+  });
 
   return (
     <div className="max-w-96 mx-auto">
       <H2 className="text-3xl">I do not have an account</H2>
       <p>Sign up with your email and password</p>
       <form onSubmit={onSubmit}>
-        {formFields.map(({ value, label }) => (
+        {formFields.map(({ value, label, type }) => (
           <FormInput
             key={value}
             label={label}
-            inputAttributes={{ ...register(value) }}
+            inputAttributes={{ ...register(value), type }}
             dirty={dirtyFields[value]}
             error={(errors[value] as GlobalError)?.message}
           />
