@@ -4,7 +4,7 @@ import FormInput from "@/components/Form/FormInput.component";
 import H2 from "@/components/Heading/H2.component";
 import { GlobalError } from "react-hook-form";
 import { Link } from "react-router-dom";
-import useSignIn from "./useSignIn.hook";
+import useSignInForm from "./useSignInForm.hook";
 
 function SignInForm() {
   const {
@@ -12,7 +12,7 @@ function SignInForm() {
     formState: { dirtyFields, errors, isSubmitting, isValidating },
     onSubmit,
     signInWithGoogle,
-  } = useSignIn();
+  } = useSignInForm();
 
   return (
     <div className="max-w-96 mx-auto">

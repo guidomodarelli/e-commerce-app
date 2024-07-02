@@ -1,4 +1,4 @@
-import SignInForm from "@/components/Authentication/SignIn/SignIn.component";
+import SignInForm from "@/components/Authentication/SignIn/SignInForm.component";
 import H1 from "@/components/Heading/H1.component";
 import Layout from "@/layouts/Layout";
 
