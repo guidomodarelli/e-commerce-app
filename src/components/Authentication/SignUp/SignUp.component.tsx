@@ -31,7 +31,7 @@ const formFields: FormFields[] = [
   },
 ];
 
-function SignUp() {
+function SignUpForm() {
   const {
     register,
     onSubmit,
@@ -69,4 +69,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignUpForm;
