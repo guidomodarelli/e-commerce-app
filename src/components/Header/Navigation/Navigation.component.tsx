@@ -4,6 +4,7 @@ import Logo from "@assets/Logo.tsx";
 import { useContext } from "react";
 import { UserContext } from "@/contexts/User.context";
 import { signOutUser } from "@/utils/firebase/firebase.utils";
+import LdsRing from "@/components/Loaders/lds-ring/LsdRing.component";
 
 interface NavigationProps {}
 
@@ -22,14 +23,18 @@ function Navigation({}: NavigationProps) {
           </Link>
         </li>
         <li>
-          {currentUser ? (
-            <span className={styles["nav-link"]} onClick={signOutUser}>
-              SIGN OUT
-            </span>
-          ) : (
+          {currentUser === undefined ? (
+            <div className={styles["nav-link"]}>
+              <LdsRing />
+            </div>
+          ) : currentUser === null ? (
             <Link className={styles["nav-link"]} to={"/signIn"}>
               SIGN IN
             </Link>
+          ) : (
+            <span className={styles["nav-link"]} onClick={signOutUser}>
+              SIGN OUT
+            </span>
           )}
         </li>
       </ul>
