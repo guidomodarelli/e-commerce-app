@@ -5,26 +5,28 @@ import FormError from "./FormError/FormError.components";
 
 interface FormInputProps {
   label?: string;
-  value?: string;
+  dirty?: boolean;
   inputAttributes?: InputHTMLAttributes<HTMLInputElement>;
   error?: string;
 }
 
-function FormInput({ label, value, inputAttributes = {}, error }: FormInputProps) {
+function FormInput({ label, dirty, inputAttributes = {}, error }: FormInputProps) {
   return (
     <div className="group">
       <input className="form-input" {...inputAttributes} />
-      {label && (
+      {label ? (
         <label
           className={cn(
             {
-              shrink: value?.length,
+              shrink: dirty,
             },
             "form-input-label",
           )}
         >
           {label}
         </label>
+      ) : (
+        <></>
       )}
       {error ? <FormError>{error}</FormError> : <></>}
     </div>
