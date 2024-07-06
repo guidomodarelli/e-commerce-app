@@ -7,7 +7,7 @@ interface CartIconProps {
 }
 
 function CartIcon({ fill = "#010002" }: CartIconProps) {
-  const { openCart, cartItems } = useContext(CartContext);
+  const { openCart, totalItems } = useContext(CartContext);
 
   return (
     <div onClick={openCart} className="cart-icon-container">
@@ -36,7 +36,7 @@ function CartIcon({ fill = "#010002" }: CartIconProps) {
           }}
         />
       </svg>
-      <span className="item-count select-none">{cartItems.length}</span>
+      <span className="item-count select-none">{totalItems}</span>
     </div>
   );
 }

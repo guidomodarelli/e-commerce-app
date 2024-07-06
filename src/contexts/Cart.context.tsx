@@ -9,6 +9,7 @@ interface CartContextType {
   closeCart: () => void;
   cartItems: CartItem[];
   addItemToCart: (newItem: Product) => void;
+  totalItems: number;
 }
 
 export const CartContext = createContext<CartContextType>({
@@ -18,6 +19,7 @@ export const CartContext = createContext<CartContextType>({
   closeCart: () => {},
   cartItems: [],
   addItemToCart: () => {},
+  totalItems: 0,
 });
 
 interface CartProviderProps extends PropsWithChildren {}
@@ -61,6 +63,7 @@ function CartProvider({ children }: CartProviderProps) {
     addItemToCart(productToAdd: Product) {
       setCartItems(addCartItem(cartItems, productToAdd));
     },
+    totalItems: cartItems.reduce((previous, current) => previous + current.quantity, 0),
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
