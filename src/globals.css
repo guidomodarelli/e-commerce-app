@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --px: 20px;
+  --py: 40px;
+}
+
 body {
-  padding: 20px 40px;
-  font-family: 'Open Sans Variable', sans-serif;
+  font-family: "Open Sans Variable", sans-serif;
 }
