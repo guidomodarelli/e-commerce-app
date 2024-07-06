@@ -16,9 +16,12 @@
 }
 
 .cart-dropdown-container {
+  --cart-dropdown-height: 440px;
+
   position: absolute;
-  width: 240px;
-  height: 340px;
+  max-width: 380px;
+  width: 100%;
+  height: var(--cart-dropdown-height);
   display: none;
   flex-direction: column;
   padding: 20px;
@@ -38,7 +41,7 @@
   }
 
   .cart-items {
-    height: 240px;
+    height: calc(var(--cart-dropdown-height) - 100px);
     display: flex;
     flex-direction: column;
     overflow-y: auto;
