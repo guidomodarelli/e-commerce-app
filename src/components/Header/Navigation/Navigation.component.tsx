@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "@/contexts/User.context";
 import { signOutUser } from "@/utils/firebase/firebase.utils";
 import LdsRing from "@/components/Loaders/lds-ring/LsdRing.component";
+import CartIcon from "@/components/icons/cart/CartIcon.component";
 
 interface NavigationProps {}
 
@@ -36,6 +37,9 @@ function Navigation({}: NavigationProps) {
               SIGN OUT
             </span>
           )}
+        </li>
+        <li>
+          <CartIcon />
         </li>
       </ul>
     </nav>
