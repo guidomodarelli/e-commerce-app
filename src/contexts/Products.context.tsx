@@ -1,6 +1,6 @@
-import { Product } from "@/components/shop/shop.types";
 import { PropsWithChildren, createContext, useState } from "react";
 import PRODUCTS_DATA from "../shop-data.json";
+import { Product } from "@/global/types/products.types";
 
 interface ProductsContextType {
   products: Product[];

@@ -1,16 +1,15 @@
+import ProductCard from "../product-card/ProductCard.component";
 import useProducts from "./useProducts.hook";
+import "./shop.styles.css";
 
 interface ShopProps {}
 
 function Shop({}: ShopProps) {
   const { data } = useProducts();
   return (
-    <div>
+    <div className="products-container">
       {data.map((product) => (
-        <div key={product.id}>
-          <h1>{product.name}</h1>
-          <img src={product.imageUrl} alt={product.name} />
-        </div>
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );
