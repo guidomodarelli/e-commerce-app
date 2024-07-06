@@ -1,10 +1,14 @@
-.navigation {
-  @apply bg-white/90 fixed w-full h-dvh inset-0 flex flex-col items-center justify-center gap-8 duration-300;
+:root {
+  --nav-height: 70px;
+}
 
-  .logo-container {
-    place-content: center;
-    padding: 0 15px;
-  }
+.logo-container {
+  place-content: center;
+  padding: 0 15px;
+}
+
+.navigation {
+  @apply bg-white/80 fixed w-full h-dvh backdrop-blur-md inset-0 hidden flex-col items-center pt-8 gap-4;
 
   .nav-links-container {
     display: flex;
@@ -26,11 +30,12 @@
 
 @media (min-width: 768px) {
   .navigation {
-    height: 70px;
-    justify-content: space-between;
-    padding-inline: var(--px);
+    height: var(--nav-height);
+    display: flex;
+    justify-content: flex-end;
     position: initial;
     transition-duration: 0ms;
+    padding-top: 0;
 
     @apply flex-row translate-y-[initial];
   }

@@ -8,9 +8,7 @@ function Header({}: HeaderProps) {
   return (
     <>
       <header className={styles.header}>
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-16">
-          <Navigation />
-        </div>
+        <Navigation />
       </header>
       <Outlet />
     </>
