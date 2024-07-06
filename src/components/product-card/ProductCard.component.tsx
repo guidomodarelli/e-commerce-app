@@ -3,6 +3,7 @@ import Button from "../Button/Button.component";
 import "./product-card.styles.css";
 import { useContext } from "react";
 import { CartContext } from "@/contexts/Cart.context";
+import { toast } from "sonner";
 
 interface ProductCardProps {
   product: Product;
@@ -10,9 +11,15 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
   const { name, price, imageUrl } = product;
-  const { addItemToCart } = useContext(CartContext);
+  const { addItemToCart, cartItems } = useContext(CartContext);
+
+  const currentCartItem = cartItems.find((item) => item.id === product.id);
+  const quantity = (currentCartItem?.quantity ?? 0) + 1;
 
   const addProductToCart = () => {
+    toast.info(
+      `The product "${product.name}" has been added successfully. Now, you have ${quantity.toString()} in your cart.`,
+    );
     addItemToCart(product);
   };
 
