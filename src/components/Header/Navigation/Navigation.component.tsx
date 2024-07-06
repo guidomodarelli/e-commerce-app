@@ -6,6 +6,7 @@ import { UserContext } from "@/contexts/User.context";
 import { signOutUser } from "@/utils/firebase/firebase.utils";
 import LdsRing from "@/components/Loaders/lds-ring/LsdRing.component";
 import CartIcon from "@/components/icons/cart/CartIcon.component";
+import CartDropdown from "@/components/cart-dropdown/CartDropdown.component";
 
 interface NavigationProps {}
 
@@ -42,6 +43,7 @@ function Navigation({}: NavigationProps) {
           <CartIcon />
         </li>
       </ul>
+      <CartDropdown />
     </nav>
   );
 }
