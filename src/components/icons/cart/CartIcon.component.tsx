@@ -1,21 +1,21 @@
-import { SVGProps } from "react";
+import { CartContext } from "@/contexts/Cart.context";
+import { useContext } from "react";
 import "./cart-icon.styles.css";
 
-interface CartIconProps extends SVGProps<SVGSVGElement> {
+interface CartIconProps {
   fill?: string;
 }
 
-function CartIcon(props: CartIconProps) {
-  const { fill = "#010002" } = props;
+function CartIcon({ fill = "#010002" }: CartIconProps) {
+  const { openCart } = useContext(CartContext);
 
   return (
-    <div className="cart-icon-container">
+    <div onClick={openCart} className="cart-icon-container">
       <svg
         className="shopping-icon"
         xmlns="http://www.w3.org/2000/svg"
         xmlSpace="preserve"
         viewBox="0 0 407.453 407.453"
-        {...props}
       >
         <path
           d="M255.099 116.515a8.126 8.126 0 0 0 8.129-8.129 8.127 8.127 0 0 0-8.129-8.129H143.486a8.126 8.126 0 0 0-8.129 8.129 8.127 8.127 0 0 0 8.129 8.129h111.613z"
@@ -36,7 +36,7 @@ function CartIcon(props: CartIconProps) {
           }}
         />
       </svg>
-      <span className="item-count">0</span>
+      <span className="item-count select-none">0</span>
     </div>
   );
 }
