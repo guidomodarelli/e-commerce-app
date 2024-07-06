@@ -13,7 +13,11 @@ function CartItem({ cartItem }: CartItemProps) {
       <div className="item-details">
         <span className="name">{name}</span>
         <span className="price">
-          {quantity} x ${price}
+          {quantity} x{" "}
+          {Intl.NumberFormat("EN-en", {
+            style: "currency",
+            currency: "USD",
+          }).format(price)}
         </span>
       </div>
     </div>

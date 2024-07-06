@@ -21,7 +21,12 @@ function ProductCard({ product }: ProductCardProps) {
       <img src={imageUrl} alt={name} />
       <div className="footer">
         <span className="name">{name}</span>
-        <span className="price">{price}</span>
+        <span className="price">
+          {Intl.NumberFormat("EN-en", {
+            style: "currency",
+            currency: "USD",
+          }).format(price)}
+        </span>
       </div>
       <Button variant="inverted" onClick={addProductToCart}>
         Add to card
