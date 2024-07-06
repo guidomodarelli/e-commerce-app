@@ -1,0 +1,50 @@
+:root {
+  --cart-dropdown-z-index: 5;
+}
+
+.cart-dropdown-back {
+  display: none;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  z-index: var(--cart-dropdown-z-index);
+
+  &[data-active="true"] {
+    display: flex;
+  }
+}
+
+.cart-dropdown-container {
+  position: absolute;
+  width: 240px;
+  height: 340px;
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid black;
+  background-color: white;
+  top: 55px;
+  right: 40px;
+  z-index: calc(var(--cart-dropdown-z-index) + 5);
+
+  &[data-active="true"] {
+    display: flex;
+  }
+
+  .empty-message {
+    font-size: 18px;
+    margin: 50px auto;
+  }
+
+  .cart-items {
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+  }
+
+  button {
+    margin-top: auto;
+  }
+}
