@@ -7,8 +7,20 @@
   padding: 0 15px;
 }
 
+@keyframes slideDown {
+  from {
+    height: 0%;
+  }
+
+  to {
+    height: 100%
+  }
+}
+
 .navigation {
   @apply bg-white/80 fixed w-full h-dvh backdrop-blur-md inset-0 hidden flex-col items-center pt-8 gap-4;
+
+  animation: slideDown 200ms ease-in-out;
 
   .nav-links-container {
     display: flex;
