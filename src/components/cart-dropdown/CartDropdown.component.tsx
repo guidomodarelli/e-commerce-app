@@ -13,7 +13,7 @@ function CartDropdown({}: CartDropdownProps) {
   const { closeHeaderNav } = useContext(HeaderNavContext);
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const goToCheckoutHandler = () => {
     navigate("/checkout");
     closeHeaderNav();
     closeCart();
@@ -28,7 +28,7 @@ function CartDropdown({}: CartDropdownProps) {
             <CartItem key={cartItem.id} cartItem={cartItem} />
           ))}
         </div>
-        <Button onClick={handleClick}>Go to checkout</Button>
+        <Button onClick={goToCheckoutHandler}>Go to checkout</Button>
       </div>
     </>
   );
