@@ -3,11 +3,21 @@ import { useContext } from "react";
 import Button from "../Button/Button.component";
 import "./cart-dropdown.styles.css";
 import CartItem from "./cart-item/CartItem.component";
+import { useNavigate } from "react-router-dom";
+import { HeaderNavContext } from "@/contexts/HeaderNav.context";
 
 interface CartDropdownProps {}
 
 function CartDropdown({}: CartDropdownProps) {
   const { isCartOpen, closeCart, cartItems } = useContext(CartContext);
+  const { closeHeaderNav } = useContext(HeaderNavContext);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/checkout");
+    closeHeaderNav();
+    closeCart();
+  };
 
   return (
     <>
@@ -18,7 +28,7 @@ function CartDropdown({}: CartDropdownProps) {
             <CartItem key={cartItem.id} cartItem={cartItem} />
           ))}
         </div>
-        <Button>Go to checkout</Button>
+        <Button onClick={handleClick}>Go to checkout</Button>
       </div>
     </>
   );
