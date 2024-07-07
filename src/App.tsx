@@ -5,6 +5,7 @@ import SignIn from "./pages/SignIn.page";
 import ShopPage from "./pages/Shop.page";
 import SignUp from "./pages/SignUp.page";
 import Page404 from "./pages/404.page";
+import CheckoutPage from "./pages/Checkout.page";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="shop" element={<ShopPage />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
+        <Route path="checkout" element={<CheckoutPage />} />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>
