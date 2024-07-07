@@ -1,4 +1,5 @@
 import CartProvider from "@/contexts/Cart.context";
+import HeaderNavProvider from "@/contexts/HeaderNav.context";
 import { ProductsProvider } from "@/contexts/Products.context";
 import { UserProvider } from "@/contexts/User.context";
 import { PropsWithChildren } from "react";
@@ -9,7 +10,9 @@ function Providers({ children }: ProvidersProps) {
   return (
     <UserProvider>
       <ProductsProvider>
-        <CartProvider>{children}</CartProvider>
+        <HeaderNavProvider>
+          <CartProvider>{children}</CartProvider>
+        </HeaderNavProvider>
       </ProductsProvider>
     </UserProvider>
   );
