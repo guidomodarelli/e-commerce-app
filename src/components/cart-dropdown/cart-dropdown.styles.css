@@ -1,20 +1,3 @@
-:root {
-  --cart-dropdown-z-index: 5;
-}
-
-.cart-dropdown-back {
-  display: none;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  right: 0;
-  z-index: var(--cart-dropdown-z-index);
-
-  &[data-active="true"] {
-    display: flex;
-  }
-}
-
 .cart-dropdown-container {
   --cart-dropdown-height: 440px;
 
@@ -29,7 +12,7 @@
   background-color: white;
   top: 55px;
   right: 40px;
-  z-index: calc(var(--cart-dropdown-z-index) + 5);
+  z-index: 5;
 
   &[data-active="true"] {
     display: flex;
