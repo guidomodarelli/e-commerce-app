@@ -24,7 +24,7 @@ function CartItem({ cartItem }: CartItemProps) {
   };
 
   return (
-    <>
+    <article className="checkout-item-container">
       <picture className="image-container">
         <img src={imageUrl} alt={name} />
       </picture>
@@ -53,8 +53,7 @@ function CartItem({ cartItem }: CartItemProps) {
       <div className="remove-button" onClick={clearItemHandler}>
         &#10005;
       </div>
-      <hr />
-    </>
+    </article>
   );
 }
 

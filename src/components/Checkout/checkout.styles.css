@@ -7,15 +7,24 @@
   gap: 1rem;
   margin: 50px auto 0;
 
+  .checkout-header {
+    width: 100%;
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: span var(--grid-columns);
+    border-bottom: 1px solid darkgrey;
+    gap: 1rem;
+
+    .header-block {
+      text-transform: capitalize;
+    }
+  }
+
   .total {
     grid-column: span var(--grid-columns);
     justify-self: end;
     margin-top: 30px;
     font-size: 36px;
   }
-}
-
-hr {
-  border-color: darkgray;
-  grid-column: span var(--grid-columns);
 }

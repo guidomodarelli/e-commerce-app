@@ -10,25 +10,26 @@ function Checkout({}: CheckoutProps) {
 
   return (
     <section className="checkout-container">
-      <div className="header-block">
-        <span>Product</span>
+      <div className="checkout-header">
+        <div className="header-block">
+          <span>Product</span>
+        </div>
+        <div className="header-block">
+          <span>Description</span>
+        </div>
+        <div className="header-block">
+          <span>Quantity</span>
+        </div>
+        <div className="header-block">
+          <span>Unit</span>
+        </div>
+        <div className="header-block">
+          <span>SubTotal</span>
+        </div>
+        <div className="header-block">
+          <span>Remove</span>
+        </div>
       </div>
-      <div className="header-block">
-        <span>Description</span>
-      </div>
-      <div className="header-block">
-        <span>Quantity</span>
-      </div>
-      <div className="header-block">
-        <span>Unit</span>
-      </div>
-      <div className="header-block">
-        <span>SubTotal</span>
-      </div>
-      <div className="header-block">
-        <span>Remove</span>
-      </div>
-      <hr />
       {cartItems.map((cartItem) => (
         <CartItem key={cartItem.id} cartItem={cartItem} />
       ))}
