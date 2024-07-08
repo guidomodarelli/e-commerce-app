@@ -31,6 +31,7 @@ module.exports = {
       ],
       plugins: ["react-refresh", "unicorn"],
       rules: {
+        "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-empty-function": "off",
         "unicorn/no-useless-undefined": "off",
         "unicorn/no-null": "off",
