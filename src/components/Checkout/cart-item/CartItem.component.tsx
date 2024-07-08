@@ -24,12 +24,12 @@ function CartItem({ cartItem }: CartItemProps) {
   };
 
   return (
-    <article className="checkout-item-container">
+    <>
       <picture className="image-container">
         <img src={imageUrl} alt={name} />
       </picture>
       <span className="name">{name}</span>
-      <span className="quantity">
+      <div className="quantity">
         <div className="arrow" onClick={removeItemHandler}>
           &#10094;
         </div>
@@ -37,7 +37,7 @@ function CartItem({ cartItem }: CartItemProps) {
         <div className="arrow" onClick={addItemHandler}>
           &#10095;
         </div>
-      </span>
+      </div>
       <span className="price">
         {Intl.NumberFormat("EN-en", {
           style: "currency",
@@ -53,7 +53,8 @@ function CartItem({ cartItem }: CartItemProps) {
       <div className="remove-button" onClick={clearItemHandler}>
         &#10005;
       </div>
-    </article>
+      <hr />
+    </>
   );
 }
 

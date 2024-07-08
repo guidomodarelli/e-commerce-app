@@ -1,25 +1,21 @@
 .checkout-container {
-  display: flex;
-  flex-direction: column;
+  --grid-columns: 6;
+
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
   align-items: center;
+  gap: 1rem;
   margin: 50px auto 0;
 
-  .checkout-header {
-    width: 100%;
-    padding: 10px 0;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    border-bottom: 1px solid darkgrey;
-    gap: 1rem;
-
-    .header-block {
-      text-transform: capitalize;
-    }
-  }
-
   .total {
+    grid-column: span var(--grid-columns);
+    justify-self: end;
     margin-top: 30px;
-    margin-left: auto;
     font-size: 36px;
   }
+}
+
+hr {
+  border-color: darkgray;
+  grid-column: span var(--grid-columns);
 }
