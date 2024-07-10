@@ -33,6 +33,7 @@ module.exports = {
       rules: {
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-empty-function": "off",
+        "unicorn/no-array-reduce": "off",
         "unicorn/no-useless-undefined": "off",
         "unicorn/no-null": "off",
         "unicorn/switch-case-braces": "off",
