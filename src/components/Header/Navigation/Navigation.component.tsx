@@ -1,20 +1,20 @@
+import LdsRing from "@/components/Loaders/lds-ring/LsdRing.component";
+import CartDropdown from "@/components/cart-dropdown/CartDropdown.component";
+import CartIcon from "@/components/icons/cart/CartIcon.component";
+import { HeaderNavContext } from "@/contexts/HeaderNav.context";
+import useUser from "@/global/hooks/useUser.hook";
+import { cn } from "@/utils/cn";
+import { signOutUser } from "@/utils/firebase/firebase.utils";
+import Logo from "@assets/Logo.tsx";
+import { MenuIcon, XIcon } from "lucide-react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Navigation.styles.css";
-import Logo from "@assets/Logo.tsx";
-import { useContext } from "react";
-import { UserContext } from "@/contexts/User.context";
-import { signOutUser } from "@/utils/firebase/firebase.utils";
-import LdsRing from "@/components/Loaders/lds-ring/LsdRing.component";
-import CartIcon from "@/components/icons/cart/CartIcon.component";
-import CartDropdown from "@/components/cart-dropdown/CartDropdown.component";
-import { XIcon, MenuIcon } from "lucide-react";
-import { cn } from "@/utils/cn";
-import { HeaderNavContext } from "@/contexts/HeaderNav.context";
 
 interface NavigationProps {}
 
 function Navigation({}: NavigationProps) {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useUser();
   const { isHeaderNavOpen, closeHeaderNav, openHeaderNav } = useContext(HeaderNavContext);
 
   return (
