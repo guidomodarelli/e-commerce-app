@@ -1,15 +1,15 @@
-import ProductCard from "../product-card/ProductCard.component";
-import useProducts from "./useProducts.hook";
+import CategoryPreview from "../Categories/CategoryPreview/CategoryPreview.component";
 import "./shop.styles.css";
+import useCategories from "./useCategories.hook";
 
 interface ShopProps {}
 
 function Shop({}: ShopProps) {
-  const { data } = useProducts();
+  const { categories } = useCategories();
   return (
-    <div className="products-container">
-      {data.map((product) => (
-        <ProductCard key={product.id} product={product} />
+    <div className="shop-container">
+      {Object.entries(categories).map(([title, products]) => (
+        <CategoryPreview key={title} title={title} products={products} />
       ))}
     </div>
   );
