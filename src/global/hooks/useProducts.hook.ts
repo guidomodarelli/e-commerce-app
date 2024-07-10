@@ -1,7 +1,7 @@
 import { CategoriesContext } from "@/contexts/Categories.context";
 import { useContext } from "react";
 
-function useCategories() {
+function useProducts() {
   const { categories } = useContext(CategoriesContext);
 
   return {
@@ -9,4 +9,4 @@ function useCategories() {
   };
 }
 
-export default useCategories;
+export default useProducts;
