@@ -1,13 +1,12 @@
 import LdsRing from "@/components/Loaders/lds-ring/LsdRing.component";
 import CartDropdown from "@/components/cart-dropdown/CartDropdown.component";
 import CartIcon from "@/components/icons/cart/CartIcon.component";
-import { HeaderNavContext } from "@/contexts/HeaderNav.context";
+import useHeaderNav from "@/global/hooks/useHeaderNav.hook";
 import useUser from "@/global/hooks/useUser.hook";
 import { cn } from "@/utils/cn";
 import { signOutUser } from "@/utils/firebase/firebase.utils";
 import Logo from "@assets/Logo.tsx";
 import { MenuIcon, XIcon } from "lucide-react";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Navigation.styles.css";
 
@@ -15,7 +14,7 @@ interface NavigationProps {}
 
 function Navigation({}: NavigationProps) {
   const { currentUser } = useUser();
-  const { isHeaderNavOpen, closeHeaderNav, openHeaderNav } = useContext(HeaderNavContext);
+  const { isHeaderNavOpen, closeHeaderNav, openHeaderNav } = useHeaderNav();
 
   return (
     <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-[--px] h-[--nav-height]">
