@@ -1,4 +1,4 @@
-import useCart from "@/global/hooks/useCart.hook";
+import useCart from "@global/hooks/useCart.hook";
 import CartItem from "./cart-item/CartItem.component";
 import "./checkout.styles.css";
 

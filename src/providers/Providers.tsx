@@ -1,7 +1,7 @@
-import CartProvider from "@/contexts/Cart.context";
-import HeaderNavProvider from "@/contexts/HeaderNav.context";
-import { CategoriesProvider } from "@/contexts/Categories.context";
-import { UserProvider } from "@/contexts/User.context";
+import CartProvider from "@global/contexts/Cart.context";
+import { CategoriesProvider } from "@global/contexts/Categories.context";
+import HeaderNavProvider from "@global/contexts/HeaderNav.context";
+import { UserProvider } from "@global/contexts/User.context";
 import { PropsWithChildren } from "react";
 
 interface ProvidersProps extends PropsWithChildren {}

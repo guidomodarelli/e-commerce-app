@@ -1,8 +1,8 @@
 import LdsRing from "@/components/Loaders/lds-ring/LsdRing.component";
 import CartDropdown from "@/components/cart-dropdown/CartDropdown.component";
 import CartIcon from "@/components/icons/cart/CartIcon.component";
-import useHeaderNav from "@/global/hooks/useHeaderNav.hook";
-import useUser from "@/global/hooks/useUser.hook";
+import useHeaderNav from "@global/hooks/useHeaderNav.hook";
+import useUser from "@global/hooks/useUser.hook";
 import { cn } from "@/utils/cn";
 import { signOutUser } from "@/utils/firebase/firebase.utils";
 import Logo from "@assets/Logo.tsx";

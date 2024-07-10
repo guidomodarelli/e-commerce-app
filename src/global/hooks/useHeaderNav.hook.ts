@@ -1,4 +1,4 @@
-import { HeaderNavContext } from "@/contexts/HeaderNav.context";
+import { HeaderNavContext } from "@global/contexts/HeaderNav.context";
 import { useContext } from "react";
 
 function useHeaderNav() {

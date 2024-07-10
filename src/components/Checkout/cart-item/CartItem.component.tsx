@@ -1,6 +1,6 @@
-import { CartItem as CartItemType } from "@/global/types/cart-item.types";
+import { CartItem as CartItemType } from "@global/types/cart-item.types";
 import "./cart-item.styles.css";
-import useCart from "@/global/hooks/useCart.hook";
+import useCart from "@global/hooks/useCart.hook";
 
 interface CartItemProps {
   cartItem: CartItemType;

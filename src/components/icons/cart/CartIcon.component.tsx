@@ -1,4 +1,4 @@
-import useCart from "@/global/hooks/useCart.hook";
+import useCart from "@global/hooks/useCart.hook";
 import "./cart-icon.styles.css";
 
 interface CartIconProps {

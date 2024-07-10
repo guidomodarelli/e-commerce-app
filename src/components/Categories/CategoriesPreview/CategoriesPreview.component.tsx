@@ -1,4 +1,4 @@
-import useProducts from "@/global/hooks/useProducts.hook";
+import useProducts from "@global/hooks/useProducts.hook";
 import CategoryPreview from "../CategoryPreview/CategoryPreview.component";
 
 interface CategoriesPreviewProps {}

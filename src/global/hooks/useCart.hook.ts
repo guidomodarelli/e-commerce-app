@@ -1,4 +1,4 @@
-import { CartContext } from "@/contexts/Cart.context";
+import { CartContext } from "@global/contexts/Cart.context";
 import { useContext } from "react";
 
 const useCart = () => {

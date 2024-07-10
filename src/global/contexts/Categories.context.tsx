@@ -1,6 +1,6 @@
 import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { getCategoriesAndDocuments } from "@/utils/firebase/firebase.utils";
-import { Product } from "@/global/types/products.types";
+import { Product } from "@global/types/products.types";
 
 interface CategoriesContextType {
   categories: Record<string, Product[]>;

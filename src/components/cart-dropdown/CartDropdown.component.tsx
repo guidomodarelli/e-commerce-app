@@ -1,6 +1,6 @@
-import useCart from "@/global/hooks/useCart.hook";
-import useClickOutside from "@/global/hooks/useComponentVisible.hook";
-import useHeaderNav from "@/global/hooks/useHeaderNav.hook";
+import useCart from "@global/hooks/useCart.hook";
+import useClickOutside from "@global/hooks/useComponentVisible.hook";
+import useHeaderNav from "@global/hooks/useHeaderNav.hook";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button.component";
 import "./cart-dropdown.styles.css";

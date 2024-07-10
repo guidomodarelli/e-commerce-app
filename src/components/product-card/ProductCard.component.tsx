@@ -1,5 +1,5 @@
-import useCart from "@/global/hooks/useCart.hook";
-import { Product } from "@/global/types/products.types";
+import useCart from "@global/hooks/useCart.hook";
+import { Product } from "@global/types/products.types";
 import { toast } from "sonner";
 import Button from "../Button/Button.component";
 import "./product-card.styles.css";

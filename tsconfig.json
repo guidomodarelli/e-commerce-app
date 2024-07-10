@@ -21,8 +21,8 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
+      "@global/*": [
+        "./src/global/*"
       ],
       "@components/*": [
         "./src/components/*"
@@ -32,6 +32,9 @@
       ],
       "@assets/*": [
         "./src/assets/*"
+      ],
+      "@/*": [
+        "./src/*"
       ],
     }
   },

@@ -1,4 +1,4 @@
-import { Product } from "@/global/types/products.types";
+import { Product } from "@global/types/products.types";
 import "./category-preview.styles.css";
 import ProductCard from "@/components/product-card/ProductCard.component";
 
