@@ -1,4 +1,3 @@
-import Loader from "@/components/Loaders/lds-ring/LsdRing.component";
 import CartDropdown from "@/components/cart-dropdown/CartDropdown.component";
 import CartIcon from "@/components/icons/cart/CartIcon.component";
 import useHeaderNav from "@global/hooks/useHeaderNav.hook";
@@ -6,7 +5,7 @@ import useUser from "@global/hooks/useUser.hook";
 import { cn } from "@/utils/cn";
 import { signOutUser } from "@/utils/firebase/firebase.utils";
 import Logo from "@assets/Logo.tsx";
-import { MenuIcon, XIcon } from "lucide-react";
+import { Loader, MenuIcon, XIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Navigation.styles.css";
 

@@ -1,4 +1,4 @@
-import Loader from "@/components/Loaders/lds-ring/LsdRing.component";
+import Loader from "@/components/Loaders/loader/Loader.component";
 import useUser from "@global/hooks/useUser.hook";
 import { PropsWithChildren, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

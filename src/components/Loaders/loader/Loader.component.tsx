@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import "./LsdRing.styles.css";
+import "./Loader.styles.css";
 
 interface LoaderProps {
   size?: number;
