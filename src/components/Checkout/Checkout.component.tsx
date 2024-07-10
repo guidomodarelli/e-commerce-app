@@ -1,12 +1,11 @@
-import { useContext } from "react";
-import "./checkout.styles.css";
-import { CartContext } from "@/contexts/Cart.context";
+import useCart from "@/global/hooks/useCart.hook";
 import CartItem from "./cart-item/CartItem.component";
+import "./checkout.styles.css";
 
 interface CheckoutProps {}
 
 function Checkout({}: CheckoutProps) {
-  const { cartItems, totalPrice } = useContext(CartContext);
+  const { cartItems, totalPrice } = useCart();
 
   return (
     <section className="checkout-container">

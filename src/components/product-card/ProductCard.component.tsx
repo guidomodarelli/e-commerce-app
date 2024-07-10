@@ -1,9 +1,8 @@
+import useCart from "@/global/hooks/useCart.hook";
 import { Product } from "@/global/types/products.types";
+import { toast } from "sonner";
 import Button from "../Button/Button.component";
 import "./product-card.styles.css";
-import { useContext } from "react";
-import { CartContext } from "@/contexts/Cart.context";
-import { toast } from "sonner";
 
 interface ProductCardProps {
   product: Product;
@@ -11,7 +10,7 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
   const { name, price, imageUrl } = product;
-  const { addItemToCart, cartItems } = useContext(CartContext);
+  const { addItemToCart, cartItems } = useCart();
 
   const currentCartItem = cartItems.find((item) => item.id === product.id);
   const quantity = (currentCartItem?.quantity ?? 0) + 1;

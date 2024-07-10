@@ -1,5 +1,4 @@
-import { CartContext } from "@/contexts/Cart.context";
-import { useContext } from "react";
+import useCart from "@/global/hooks/useCart.hook";
 import "./cart-icon.styles.css";
 
 interface CartIconProps {
@@ -7,7 +6,7 @@ interface CartIconProps {
 }
 
 function CartIcon({ fill = "#010002" }: CartIconProps) {
-  const { openCart, totalItems } = useContext(CartContext);
+  const { openCart, totalItems } = useCart();
 
   return (
     <div onClick={openCart} className="cart-icon-container">

@@ -1,7 +1,6 @@
 import { CartItem as CartItemType } from "@/global/types/cart-item.types";
 import "./cart-item.styles.css";
-import { useContext } from "react";
-import { CartContext } from "@/contexts/Cart.context";
+import useCart from "@/global/hooks/useCart.hook";
 
 interface CartItemProps {
   cartItem: CartItemType;
@@ -9,7 +8,7 @@ interface CartItemProps {
 
 function CartItem({ cartItem }: CartItemProps) {
   const { name, price, quantity, imageUrl } = cartItem;
-  const { addItemToCart, removeItemFromCart, clearItemFromCart } = useContext(CartContext);
+  const { addItemToCart, removeItemFromCart, clearItemFromCart } = useCart();
 
   const clearItemHandler = () => {
     clearItemFromCart(cartItem);

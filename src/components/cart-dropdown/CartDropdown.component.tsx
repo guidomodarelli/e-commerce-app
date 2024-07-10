@@ -1,7 +1,6 @@
-import { CartContext } from "@/contexts/Cart.context";
+import useCart from "@/global/hooks/useCart.hook";
 import useClickOutside from "@/global/hooks/useComponentVisible.hook";
 import useHeaderNav from "@/global/hooks/useHeaderNav.hook";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button.component";
 import "./cart-dropdown.styles.css";
@@ -10,7 +9,7 @@ import CartItem from "./cart-item/CartItem.component";
 interface CartDropdownProps {}
 
 function CartDropdown({}: CartDropdownProps) {
-  const { isCartOpen, closeCart, cartItems } = useContext(CartContext);
+  const { isCartOpen, closeCart, cartItems } = useCart();
   const { closeHeaderNav } = useHeaderNav();
   const navigate = useNavigate();
   const { ref } = useClickOutside<HTMLDivElement>(closeCart);
