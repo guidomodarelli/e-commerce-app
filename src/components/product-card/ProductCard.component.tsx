@@ -25,7 +25,12 @@ function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div className="product-card-container">
-      <img src={imageUrl} alt={name} />
+      <div className="img-container">
+        <img src={imageUrl} alt={name} />
+        <Button variant="inverted" onClick={addProductToCart}>
+          Add to card
+        </Button>
+      </div>
       <div className="footer">
         <span className="name">{name}</span>
         <span className="price">
@@ -35,9 +40,6 @@ function ProductCard({ product }: ProductCardProps) {
           }).format(price)}
         </span>
       </div>
-      <Button variant="inverted" onClick={addProductToCart}>
-        Add to card
-      </Button>
     </div>
   );
 }
