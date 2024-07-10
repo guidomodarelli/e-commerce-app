@@ -1,11 +1,11 @@
 import { CSSProperties } from "react";
 import "./LsdRing.styles.css";
 
-interface LdsRingProps {
+interface LoaderProps {
   size?: number;
 }
 
-function LdsRing({ size = 30 }: LdsRingProps) {
+function Loader({ size = 30 }: LoaderProps) {
   const style = {
     "--size": `${size.toString()}px`,
   } as CSSProperties;
@@ -20,4 +20,4 @@ function LdsRing({ size = 30 }: LdsRingProps) {
   );
 }
 
-export default LdsRing;
+export default Loader;

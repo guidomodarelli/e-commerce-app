@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import "./Button.styles.css";
-import LdsRing from "../Loaders/lds-ring/LsdRing.component";
+import Loader from "../Loaders/lds-ring/LsdRing.component";
 
 const BUTTON_VARIANT = {
   google: "google-sign-in",
@@ -20,7 +20,7 @@ function Button({ children, variant, loading = false, disabled = false, ...other
       disabled={disabled || loading}
       {...otherProps}
     >
-      {loading ? <LdsRing /> : children}
+      {loading ? <Loader /> : children}
     </button>
   );
 }

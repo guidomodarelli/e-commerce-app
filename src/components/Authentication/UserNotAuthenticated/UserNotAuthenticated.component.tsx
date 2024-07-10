@@ -1,4 +1,4 @@
-import LdsRing from "@/components/Loaders/lds-ring/LsdRing.component";
+import Loader from "@/components/Loaders/lds-ring/LsdRing.component";
 import useUser from "@global/hooks/useUser.hook";
 import { PropsWithChildren, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,7 @@ function UserNotAuthenticated({ children }: UserNotAuthenticatedProps) {
   if (currentUser === undefined) {
     return (
       <div className="flex justify-center">
-        <LdsRing />
+        <Loader />
       </div>
     );
   }

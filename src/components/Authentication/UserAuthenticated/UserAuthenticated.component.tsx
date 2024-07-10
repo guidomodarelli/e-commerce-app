@@ -1,4 +1,4 @@
-import LdsRing from "@/components/Loaders/lds-ring/LsdRing.component";
+import Loader from "@/components/Loaders/lds-ring/LsdRing.component";
 import useUser from "@global/hooks/useUser.hook";
 import { PropsWithChildren, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ function UserAuthenticated({ children }: UserAuthenticatedProps) {
     return children;
   }
 
-  return <LdsRing />;
+  return <Loader />;
 }
 
 export default UserAuthenticated;

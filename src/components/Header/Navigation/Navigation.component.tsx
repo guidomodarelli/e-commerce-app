@@ -1,4 +1,4 @@
-import LdsRing from "@/components/Loaders/lds-ring/LsdRing.component";
+import Loader from "@/components/Loaders/lds-ring/LsdRing.component";
 import CartDropdown from "@/components/cart-dropdown/CartDropdown.component";
 import CartIcon from "@/components/icons/cart/CartIcon.component";
 import useHeaderNav from "@global/hooks/useHeaderNav.hook";
@@ -31,7 +31,7 @@ function Navigation({}: NavigationProps) {
           <li>
             {currentUser === undefined ? (
               <div className="nav-link">
-                <LdsRing />
+                <Loader />
               </div>
             ) : currentUser === null ? (
               <Link onClick={closeHeaderNav} className="nav-link" to={"/signIn"}>
