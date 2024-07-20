@@ -68,35 +68,7 @@ module.exports = {
           },
         ],
         "unicorn/prefer-module": "off",
-        "unicorn/filename-case": [
-          "error",
-          {
-            case: "pascalCase",
-            ignore: ["main"],
-          },
-        ],
-      },
-    },
-    {
-      files: ["src/**/*.ts"],
-      rules: {
-        "unicorn/filename-case": [
-          "error",
-          {
-            case: "kebabCase",
-          },
-        ],
-      },
-    },
-    {
-      files: ["src/**/hooks/**/*.{ts,tsx}", "src/**/*.hook.ts",],
-      rules: {
-        "unicorn/filename-case": [
-          "error",
-          {
-            case: "camelCase",
-          },
-        ],
+        "unicorn/filename-case": "off",
       },
     },
     {
