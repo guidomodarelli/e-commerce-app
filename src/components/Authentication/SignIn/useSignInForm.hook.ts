@@ -3,11 +3,11 @@ import {
   FIREBASE_INVALID_LOGIN_CREDENTIALS,
   FIREBASE_INVALID_PASSWORD,
   FIREBASE_TOO_MANY_ATTEMPTS_TRY_LATER,
-} from "@/utils/firebase/auth-error-codes.constants";
+} from "@utils/firebase/constants/auth-error-codes.constants";
 import {
   MESSAGE_INVALID_LOGIN_CREDENTIALS,
   MESSAGE_TOO_MANY_ATTEMPTS_TRY_LATER,
-} from "@/utils/firebase/auth-error-messages.constants";
+} from "@utils/firebase/constants/auth-error-messages.constants";
 import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,

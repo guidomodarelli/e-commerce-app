@@ -1,5 +1,5 @@
-import { FIREBASE_EMAIL_EXISTS, FIREBASE_WEAK_PASSWORD } from "@/utils/firebase/auth-error-codes.constants";
-import { MESSAGE_EMAIL_EXISTS, MESSAGE_WEAK_PASSWORD } from "@/utils/firebase/auth-error-messages.constants";
+import { FIREBASE_EMAIL_EXISTS, FIREBASE_WEAK_PASSWORD } from "@utils/firebase/constants/auth-error-codes.constants";
+import { MESSAGE_EMAIL_EXISTS, MESSAGE_WEAK_PASSWORD } from "@utils/firebase/constants/auth-error-messages.constants";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "@/utils/firebase/firebase.utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FirebaseError } from "firebase/app";
