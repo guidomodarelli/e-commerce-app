@@ -1,9 +1,9 @@
 import { User } from "../domain/entities/User";
 import { UserRepository } from "../ports/UserRepository.port";
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import { doc, Firestore, getDoc, setDoc } from "firebase/firestore";
 
 export class UserRepositoryFirestoreAdapter implements UserRepository {
-  private readonly database = getFirestore();
+  constructor(private readonly database: Firestore) {}
 
   async save<Info>(user: User, additionalInformation?: Info | undefined): Promise<void> {
     const userDocumentReference = doc(this.database, "users", user.uid);
