@@ -21,6 +21,9 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
+      "@core/*": [
+        "./src/core/*"
+      ],
       "@global/*": [
         "./src/global/*"
       ],
