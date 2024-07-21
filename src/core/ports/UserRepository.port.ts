@@ -1,5 +1,9 @@
 import { User } from "../domain/entities/User";
 
+export interface InfoExtra {
+  displayName: string;
+}
+
 export interface UserRepository {
-  save<Info>(user: User, additionalInformation?: Info): Promise<void>;
+  save(user: User, extra?: InfoExtra): Promise<void>;
 }
