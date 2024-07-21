@@ -1,13 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { UserAuthWithEmailAndPasswordFirebaseAdapter } from "./core/adapters/UserAuthWithEmailAndPasswordFirebaseAdapter";
-import { UserRepositoryTursoAdapter } from "./core/adapters/UserRepositoryTursoAdapter";
 import { SaveAuthUserUseCase } from "./core/domain/useCases/SaveAuthUserUseCase";
 import { signInAuthUserWithEmailAndPasswordUseCase } from "./core/domain/useCases/SignInAuthUserWithEmailAndPasswordUseCase";
 import { signOutUserUseCase } from "./core/domain/useCases/SignOutUser";
 import { signUpAuthUserWithEmailAndPasswordUseCase } from "./core/domain/useCases/SignUpAuthUserWithEmailAndPasswordUseCase";
 import { UserRepository } from "./core/ports/UserRepository.port";
 import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/libsql";
+import { UserRepositoryDrizzleAdapter } from "./core/adapters/drizzle/UserRepositoryDrizzleAdapter";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY as string,
@@ -25,8 +26,10 @@ export const turso = createClient({
   authToken: import.meta.env.VITE_TURSO_AUTH_TOKEN as string,
 });
 
+const db = drizzle(turso);
+
 const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth);
-const userRepository: UserRepository = new UserRepositoryTursoAdapter(turso);
+const userRepository: UserRepository = new UserRepositoryDrizzleAdapter(db);
 
 export const signInWithEmailAndPassword = signInAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
 export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
