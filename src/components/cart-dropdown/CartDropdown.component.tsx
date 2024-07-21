@@ -1,4 +1,4 @@
-import useClickOutside from "@global/hooks/useComponentVisible.hook";
+import useClickOutside from "@/hooks/useComponentVisible.hook";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button.component";
 import "./cart-dropdown.styles.css";
