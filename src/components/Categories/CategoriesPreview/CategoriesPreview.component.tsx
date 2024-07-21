@@ -4,7 +4,7 @@ import CategoryPreview from "../CategoryPreview/CategoryPreview.component";
 interface CategoriesPreviewProps {}
 
 function CategoriesPreview({}: CategoriesPreviewProps) {
-  const { categories } = useProducts();
+  const { products: categories } = useProducts();
 
   return (
     <>

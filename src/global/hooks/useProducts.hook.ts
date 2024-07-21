@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { CategoriesContext } from "@global/contexts/Categories.context";
+import { ProductsContext } from "@global/contexts/Categories.context";
 
 function useProducts() {
-  return useContext(CategoriesContext);
+  return useContext(ProductsContext);
 }
 
 export default useProducts;

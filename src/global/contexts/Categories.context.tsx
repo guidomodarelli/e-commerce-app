@@ -2,29 +2,29 @@ import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { getCategoriesAndDocuments } from "@/utils/firebase/firebase.utils";
 import { Product } from "@/core/domain/entities/Product";
 
-interface CategoriesContextType {
-  categories: Record<string, Product[]>;
+interface ProductsContextType {
+  products: Record<string, Product[]>;
 }
 
-export const CategoriesContext = createContext<CategoriesContextType>({
-  categories: {},
+export const ProductsContext = createContext<ProductsContextType>({
+  products: {},
 });
 
-interface CategoriesProviderProps extends PropsWithChildren {}
+interface ProductsProviderProps extends PropsWithChildren {}
 
-export const CategoriesProvider = ({ children }: CategoriesProviderProps) => {
-  const [categories, setCategories] = useState<Record<string, Product[]>>({});
+export const ProductsProvider = ({ children }: ProductsProviderProps) => {
+  const [products, setProducts] = useState<Record<string, Product[]>>({});
 
   useEffect(() => {
     const getCategoriesMap = async () => {
-      const categoryMap = await getCategoriesAndDocuments();
-      setCategories(categoryMap);
+      const mapped = await getCategoriesAndDocuments();
+      setProducts(mapped);
     };
 
     void getCategoriesMap();
   });
 
-  const value = { categories };
+  const value = { products };
 
-  return <CategoriesContext.Provider value={value}>{children}</CategoriesContext.Provider>;
+  return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 };
