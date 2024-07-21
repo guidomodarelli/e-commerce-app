@@ -1,5 +1,5 @@
 export interface Category {
-  id: React.Key;
+  id: string;
   title: string;
   img: string;
 }
