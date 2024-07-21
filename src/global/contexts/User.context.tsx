@@ -1,4 +1,4 @@
-import { onAuthStateChangedListener } from "@/utils/firebase/firebase.utils";
+import { onAuthStateChanged } from "@/setup";
 import { User } from "firebase/auth";
 import { Dispatch, PropsWithChildren, SetStateAction, createContext, useEffect, useState } from "react";
 
@@ -19,7 +19,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const value = { currentUser, setCurrentUser };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user: User | null) => {
+    const unsubscribe = onAuthStateChanged((user: User | null) => {
       setCurrentUser(user);
     });
 
