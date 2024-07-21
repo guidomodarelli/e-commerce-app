@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useContext, useEffect, useState } from "react";
+import { PropsWithChildren, createContext, useContext, useState } from "react";
 import { Product } from "@/core/domain/entities/Product";
 import { getProductsGroupByCategories } from "@/setup";
 import { useEffectOnce } from "react-use";
