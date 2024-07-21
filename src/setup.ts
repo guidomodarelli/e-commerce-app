@@ -9,11 +9,11 @@ import {
   signInWithPopup,
   User,
 } from "firebase/auth";
-import { UserRepositoryDrizzleAdapter } from "@core/adapters/drizzle/UserRepositoryDrizzleAdapter";
-import { UserAuthWithEmailAndPasswordFirebaseAdapter } from "@core/adapters/UserAuthWithEmailAndPasswordFirebaseAdapter";
+import { UserRepositoryDrizzleTursoAdapter } from "@core/adapters/drizzle-turso/UserRepositoryDrizzleAdapter";
+import { UserAuthWithEmailAndPasswordFirebaseAdapter } from "@core/adapters/auth/firebase/UserAuthWithEmailAndPasswordFirebaseAdapter";
 import { UserRepository } from "@core/ports/UserRepository.port";
 import { ProductRepository } from "@core/ports/ProductRepository.port";
-import { ProductRepositoryDrizzleAdapter } from "@core/adapters/drizzle/ProductRepositoryDrizzleAdapter";
+import { ProductRepositoryDrizzleTursoAdapter } from "@core/adapters/drizzle-turso/ProductRepositoryDrizzleAdapter";
 import {
   saveAllProductsUseCase,
   SaveAuthUserUseCase,
@@ -34,8 +34,8 @@ provider.setCustomParameters({
 });
 
 const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth);
-const userRepository: UserRepository = new UserRepositoryDrizzleAdapter(db);
-const productRepository: ProductRepository = new ProductRepositoryDrizzleAdapter(db);
+const userRepository: UserRepository = new UserRepositoryDrizzleTursoAdapter(db);
+const productRepository: ProductRepository = new ProductRepositoryDrizzleTursoAdapter(db);
 
 export const signInWithGoogle = () => signInWithPopup(auth, provider);
 export const onAuthStateChanged = (callback: NextOrObserver<User>) => onAuthStateChangedFirebase(auth, callback);

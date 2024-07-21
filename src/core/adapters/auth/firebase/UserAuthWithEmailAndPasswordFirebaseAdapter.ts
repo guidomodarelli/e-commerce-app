@@ -1,6 +1,6 @@
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { User } from "../domain/entities/User";
-import { UserAuthWithEmailAndPassword } from "../ports/UserAuthWithEmailAndPassword.port";
+import { User } from "../../../domain/entities/User";
+import { UserAuthWithEmailAndPassword } from "../../../ports/UserAuthWithEmailAndPassword.port";
 
 export class UserAuthWithEmailAndPasswordFirebaseAdapter implements UserAuthWithEmailAndPassword {
   constructor(private auth: Auth) {}
