@@ -3,11 +3,11 @@ import CartIcon from "@/components/icons/cart/CartIcon.component";
 import useHeaderNav from "@global/hooks/useHeaderNav.hook";
 import useUser from "@global/hooks/useUser.hook";
 import { cn } from "@/utils/cn";
-import { signOutUser } from "@/utils/firebase/firebase.utils";
 import Logo from "@assets/Logo.tsx";
 import { Loader, MenuIcon, XIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Navigation.styles.css";
+import { signOut } from "@/setup";
 
 interface NavigationProps {}
 
@@ -37,7 +37,7 @@ function Navigation({}: NavigationProps) {
                 SIGN IN
               </Link>
             ) : (
-              <span className="nav-link" onClick={signOutUser}>
+              <span className="nav-link" onClick={signOut}>
                 SIGN OUT
               </span>
             )}
