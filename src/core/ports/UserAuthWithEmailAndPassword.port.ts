@@ -1,7 +1,7 @@
-type UserCredential = unknown;
+import { User } from "../domain/entities/User";
 
-export interface UserAuthWithEmailAndPassword<T = UserCredential> {
-  signUp(email: string, password: string): T | Promise<T>;
-  signIn(email: string, password: string): T | Promise<T>;
-  signOut(): void | Promise<void>;
+export interface UserAuthWithEmailAndPassword {
+  signUp(email: string, password: string): Promise<User>;
+  signIn(email: string, password: string): Promise<User>;
+  signOut(): Promise<void>;
 }
