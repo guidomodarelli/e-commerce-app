@@ -64,7 +64,7 @@ module.exports = {
                 value: true,
               },
             },
-            ignore: ["i", "env", "props", "Props", "ref"],
+            ignore: ["i", "env", "props", "Props", "ref", "db"],
           },
         ],
         "unicorn/prefer-module": "off",
