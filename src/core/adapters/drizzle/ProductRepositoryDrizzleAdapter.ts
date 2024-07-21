@@ -26,4 +26,8 @@ export class ProductRepositoryDrizzleAdapter implements ProductRepository {
 
     await this.db.batch(batchItems as unknown as readonly [BatchItem<"sqlite">, ...BatchItem<"sqlite">[]]);
   }
+
+  findAll(): Promise<Product[]> {
+    return this.db.select().from(productTable);
+  }
 }

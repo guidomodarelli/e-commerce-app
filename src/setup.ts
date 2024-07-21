@@ -22,6 +22,7 @@ import {
   signUpAuthUserWithEmailAndPasswordUseCase,
 } from "@core/domain/useCases";
 import { firebaseConfig, tursoConfig } from "./config";
+import { getProductsGroupByCategoriesUseCase } from "@core/domain/useCases/getProductsGroupByCategoriesUseCase";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -43,3 +44,4 @@ export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseC
 export const signOut = signOutUserUseCase(userAuthWithEmailAndPassword);
 export const saveUser = SaveAuthUserUseCase(userRepository);
 export const saveAllProducts = saveAllProductsUseCase(productRepository);
+export const getProductsGroupByCategories = getProductsGroupByCategoriesUseCase(productRepository);
