@@ -1,14 +1,14 @@
+import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/libsql";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { UserRepositoryDrizzleAdapter } from "./core/adapters/drizzle/UserRepositoryDrizzleAdapter";
 import { UserAuthWithEmailAndPasswordFirebaseAdapter } from "./core/adapters/UserAuthWithEmailAndPasswordFirebaseAdapter";
 import { SaveAuthUserUseCase } from "./core/domain/useCases/SaveAuthUserUseCase";
 import { signInAuthUserWithEmailAndPasswordUseCase } from "./core/domain/useCases/SignInAuthUserWithEmailAndPasswordUseCase";
 import { signOutUserUseCase } from "./core/domain/useCases/SignOutUser";
 import { signUpAuthUserWithEmailAndPasswordUseCase } from "./core/domain/useCases/SignUpAuthUserWithEmailAndPasswordUseCase";
 import { UserRepository } from "./core/ports/UserRepository.port";
-import { createClient } from "@libsql/client";
-import { drizzle } from "drizzle-orm/libsql";
-import { UserRepositoryDrizzleAdapter } from "./core/adapters/drizzle/UserRepositoryDrizzleAdapter";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY as string,
