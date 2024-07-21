@@ -1,6 +1,5 @@
 import CartDropdown from "@/components/cart-dropdown/CartDropdown.component";
 import CartIcon from "@/components/icons/cart/CartIcon.component";
-import useHeaderNav from "@global/hooks/useHeaderNav.hook";
 import useUser from "@global/hooks/useUser.hook";
 import { cn } from "@/utils/cn";
 import Logo from "@assets/Logo.tsx";
@@ -8,6 +7,7 @@ import { Loader, MenuIcon, XIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Navigation.styles.css";
 import { signOut } from "@/setup";
+import { useHeaderNav } from "@global/contexts/HeaderNav.context";
 
 interface NavigationProps {}
 

@@ -1,4 +1,4 @@
-import { Dispatch, PropsWithChildren, SetStateAction, createContext, useState } from "react";
+import { Dispatch, PropsWithChildren, SetStateAction, createContext, useContext, useState } from "react";
 
 interface HeaderNavType {
   isHeaderNavOpen: boolean;
@@ -13,6 +13,10 @@ export const HeaderNavContext = createContext<HeaderNavType>({
   openHeaderNav: () => {},
   closeHeaderNav: () => {},
 });
+
+export function useHeaderNav() {
+  return useContext(HeaderNavContext);
+}
 
 interface HeaderNavProviderProps extends PropsWithChildren {}
 
