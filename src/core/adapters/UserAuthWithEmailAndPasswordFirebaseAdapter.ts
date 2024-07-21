@@ -1,24 +1,21 @@
-import {
-  Auth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  UserCredential,
-} from "firebase/auth";
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { User } from "../domain/entities/User";
 import { UserAuthWithEmailAndPassword } from "../ports/UserAuthWithEmailAndPassword.port";
 
-export class UserAuthWithEmailAndPasswordFirebaseAdapter implements UserAuthWithEmailAndPassword<UserCredential> {
+export class UserAuthWithEmailAndPasswordFirebaseAdapter implements UserAuthWithEmailAndPassword {
   constructor(private auth: Auth) {}
 
-  signUp(email: string, password: string): UserCredential | Promise<UserCredential> {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+  async signUp(email: string, password: string): Promise<User> {
+    const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+    return userCredential.user;
   }
 
-  signIn(email: string, password: string): UserCredential | Promise<UserCredential> {
-    return signInWithEmailAndPassword(this.auth, email, password);
+  async signIn(email: string, password: string): Promise<User> {
+    const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+    return userCredential.user;
   }
 
-  signOut(): void | Promise<void> {
+  signOut(): Promise<void> {
     return signOut(this.auth);
   }
 }
