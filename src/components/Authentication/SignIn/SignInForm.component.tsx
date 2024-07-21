@@ -4,7 +4,7 @@ import FormInput from "@/components/Form/FormInput.component";
 import H2 from "@/components/Heading/H2.component";
 import { GlobalError } from "react-hook-form";
 import { Link } from "react-router-dom";
-import useSignInForm from "./useSignInForm.hook";
+import useSignInForm from "../../../hooks/useSignInForm.hook";
 
 function SignInForm() {
   const {
