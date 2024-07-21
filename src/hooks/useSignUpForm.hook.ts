@@ -6,7 +6,7 @@ import { FirebaseError } from "firebase/app";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { SignUpFormFields, schema } from "./sign-up.schema";
+import { SignUpFormFields, schema } from "../components/Authentication/SignUp/sign-up.schema";
 
 interface FieldMessage {
   field: keyof SignUpFormFields;
