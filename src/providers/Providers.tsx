@@ -1,5 +1,5 @@
 import CartProvider from "@global/contexts/Cart.context";
-import { ProductsProvider } from "@global/contexts/Categories.context";
+import { ProductsProvider } from "@global/contexts/Products.context";
 import HeaderNavProvider from "@global/contexts/HeaderNav.context";
 import { UserProvider } from "@global/contexts/User.context";
 import { PropsWithChildren } from "react";
