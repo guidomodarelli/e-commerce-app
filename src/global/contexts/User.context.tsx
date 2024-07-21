@@ -1,4 +1,5 @@
-import { createUserDocumentFromAuth, onAuthStateChangedListener } from "@/utils/firebase/firebase.utils";
+import { saveUser } from "@/setup";
+import { onAuthStateChangedListener } from "@/utils/firebase/firebase.utils";
 import { User } from "firebase/auth";
 import { Dispatch, PropsWithChildren, SetStateAction, createContext, useEffect, useState } from "react";
 
@@ -21,7 +22,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener(async (user: User | null) => {
       if (user) {
-        await createUserDocumentFromAuth(user);
+        await saveUser(user);
       }
       setCurrentUser(user);
     });

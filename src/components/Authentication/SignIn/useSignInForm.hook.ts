@@ -8,17 +8,14 @@ import {
   MESSAGE_INVALID_LOGIN_CREDENTIALS,
   MESSAGE_TOO_MANY_ATTEMPTS_TRY_LATER,
 } from "@utils/firebase/constants/auth-error-messages.constants";
-import {
-  createUserDocumentFromAuth,
-  signInAuthUserWithEmailAndPassword,
-  signInWithGooglePopup,
-} from "@/utils/firebase/firebase.utils";
+import { signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "@/utils/firebase/firebase.utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FirebaseError } from "firebase/app";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { saveUser } from "@/setup";
 
 const schema = z.object({
   email: z.string().email().default(""),
@@ -54,7 +51,7 @@ function useSignInForm() {
 
   const signInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await saveUser(user);
     onSuccessSignIn();
   };
 
