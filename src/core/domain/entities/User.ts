@@ -1,3 +1,5 @@
-import { User as UserAuth } from "firebase/auth";
-
-export type User = UserAuth;
+export interface User {
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+}
