@@ -6,8 +6,8 @@ import { Loader, MenuIcon, XIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Navigation.styles.css";
 import { signOut } from "@/setup";
-import { useHeaderNav } from "@global/contexts/HeaderNav.context";
-import { useUser } from "@global/contexts/User.context";
+import { useHeaderNav } from "@/contexts/HeaderNav.context";
+import { useUser } from "@/contexts/User.context";
 
 interface NavigationProps {}
 

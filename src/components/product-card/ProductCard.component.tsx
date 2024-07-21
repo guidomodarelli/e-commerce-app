@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import Button from "../Button/Button.component";
 import "./product-card.styles.css";
-import { useCart } from "@global/contexts/Cart.context";
+import { useCart } from "@/contexts/Cart.context";
 import { Product } from "@core/domain/entities";
 
 interface ProductCardProps {

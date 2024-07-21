@@ -1,6 +1,6 @@
 import { CartItem as CartItemType } from "@core/domain/entities";
 import "./cart-item.styles.css";
-import { useCart } from "@global/contexts/Cart.context";
+import { useCart } from "@/contexts/Cart.context";
 
 interface CartItemProps {
   cartItem: CartItemType;

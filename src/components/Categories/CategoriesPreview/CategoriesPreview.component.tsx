@@ -1,4 +1,4 @@
-import { useProducts } from "@global/contexts/Products.context";
+import { useProducts } from "@/contexts/Products.context";
 import CategoryPreview from "../CategoryPreview/CategoryPreview.component";
 
 interface CategoriesPreviewProps {}

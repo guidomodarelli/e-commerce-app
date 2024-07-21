@@ -1,4 +1,4 @@
-import { useCart } from "@global/contexts/Cart.context";
+import { useCart } from "@/contexts/Cart.context";
 import "./cart-icon.styles.css";
 
 interface CartIconProps {

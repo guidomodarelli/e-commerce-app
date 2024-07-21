@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button.component";
 import "./cart-dropdown.styles.css";
 import CartItem from "./cart-item/CartItem.component";
-import { useCart } from "@global/contexts/Cart.context";
-import { useHeaderNav } from "@global/contexts/HeaderNav.context";
+import { useCart } from "@/contexts/Cart.context";
+import { useHeaderNav } from "@/contexts/HeaderNav.context";
 
 interface CartDropdownProps {}
 

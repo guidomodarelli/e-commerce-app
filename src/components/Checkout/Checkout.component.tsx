@@ -1,4 +1,4 @@
-import { useCart } from "@global/contexts/Cart.context";
+import { useCart } from "@/contexts/Cart.context";
 import CartItem from "./cart-item/CartItem.component";
 import "./checkout.styles.css";
 

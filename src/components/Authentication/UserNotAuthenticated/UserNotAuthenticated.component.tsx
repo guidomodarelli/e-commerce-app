@@ -1,5 +1,5 @@
 import Loader from "@/components/Loaders/loader/Loader.component";
-import { useUser } from "@global/contexts/User.context";
+import { useUser } from "@/contexts/User.context";
 import { PropsWithChildren, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
