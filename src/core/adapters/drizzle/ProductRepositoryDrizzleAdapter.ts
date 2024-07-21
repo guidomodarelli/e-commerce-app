@@ -4,7 +4,7 @@ import { BatchItem } from "drizzle-orm/batch";
 import { LibSQLDatabase } from "drizzle-orm/libsql";
 import { productTable } from "./schemas/product";
 
-export class ProductRepositoryDrizzleTursoAdapter implements ProductRepository {
+export class ProductRepositoryDrizzleAdapter implements ProductRepository {
   constructor(private readonly db: LibSQLDatabase) {}
 
   async saveAll(products: Product[]): Promise<void> {

@@ -3,7 +3,7 @@ import { User } from "../../domain/entities/User";
 import { InfoExtra, UserRepository } from "../../ports/UserRepository.port";
 import { userTable } from "./schemas/user";
 
-export class UserRepositoryDrizzleTursoAdapter implements UserRepository {
+export class UserRepositoryDrizzleAdapter implements UserRepository {
   constructor(private readonly db: LibSQLDatabase) {}
 
   async save(user: User, extra?: InfoExtra): Promise<void> {
