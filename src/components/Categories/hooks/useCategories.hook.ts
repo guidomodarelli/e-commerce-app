@@ -1,30 +1,30 @@
-import { uniqId } from "../../../utils/id";
+import { ulid } from "ulid";
 import { Category } from "../category.types";
 
 function useCategories() {
   const categories: Category[] = [
     {
-      id: uniqId(),
+      id: ulid(),
       title: "Hats",
       img: "https://i.ibb.co/cvpntL1/hats.png",
     },
     {
-      id: uniqId(),
+      id: ulid(),
       title: "Jackets",
       img: "https://i.ibb.co/px2tCc3/jackets.png",
     },
     {
-      id: uniqId(),
+      id: ulid(),
       title: "Sneakers",
       img: "https://i.ibb.co/0jqHpnp/sneakers.png",
     },
     {
-      id: uniqId(),
+      id: ulid(),
       title: "Women",
       img: "https://i.ibb.co/GCCdy8t/womens.png",
     },
     {
-      id: uniqId(),
+      id: ulid(),
       title: "Men",
       img: "https://i.ibb.co/R70vBrQ/men.png",
     },
