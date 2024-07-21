@@ -1,7 +1,7 @@
 import CategoryItem from "./CategoryItem/CategoryItem.component";
 import styles from "./Categories.module.css";
-import useCategories from "./hooks/useCategories.hook";
 import Layout from "@/layouts/Layout";
+import useCategories from "@/hooks/useCategories.hook";
 
 interface CategoriesProps {}
 

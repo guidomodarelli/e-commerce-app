@@ -1,5 +1,5 @@
+import { Category } from "@core/domain/entities/Category";
 import { ulid } from "ulid";
-import { Category } from "../category.types";
 
 function useCategories() {
   const categories: Category[] = [

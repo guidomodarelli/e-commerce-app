@@ -1,4 +1,4 @@
-import { Category } from "../category.types";
+import { Category } from "@core/domain/entities/Category";
 import styles from "./CategoryItem.module.css";
 
 interface CategoryItemProps {
