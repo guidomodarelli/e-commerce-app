@@ -1,3 +1,5 @@
+// TODO: delete .env and validate env vars with a schema
+
 export const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY as string,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN as string,
