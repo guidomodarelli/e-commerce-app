@@ -1,6 +1,6 @@
 import { CartItem } from "@/core/domain/entities/CartItem";
 import { Product } from "@/core/domain/entities/Product";
-import { Dispatch, PropsWithChildren, SetStateAction, createContext, useState } from "react";
+import { Dispatch, PropsWithChildren, SetStateAction, createContext, useContext, useState } from "react";
 
 interface CartContextType {
   isCartOpen: boolean;
@@ -27,6 +27,10 @@ export const CartContext = createContext<CartContextType>({
   totalItems: 0,
   totalPrice: 0,
 });
+
+export const useCart = () => {
+  return useContext(CartContext);
+};
 
 interface CartProviderProps extends PropsWithChildren {}
 
