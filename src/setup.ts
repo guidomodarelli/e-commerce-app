@@ -1,7 +1,14 @@
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 import { initializeApp } from "firebase/app";
-import { getAuth, NextOrObserver, onAuthStateChanged as onAuthStateChangedFirebase, User } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  NextOrObserver,
+  onAuthStateChanged as onAuthStateChangedFirebase,
+  signInWithPopup,
+  User,
+} from "firebase/auth";
 import { UserRepositoryDrizzleAdapter } from "./core/adapters/drizzle/UserRepositoryDrizzleAdapter";
 import { UserAuthWithEmailAndPasswordFirebaseAdapter } from "./core/adapters/UserAuthWithEmailAndPasswordFirebaseAdapter";
 import { SaveAuthUserUseCase } from "./core/domain/useCases/SaveAuthUserUseCase";
@@ -31,6 +38,12 @@ const db = drizzle(turso);
 const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth);
 const userRepository: UserRepository = new UserRepositoryDrizzleAdapter(db);
 
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  prompt: "select_account",
+});
+
+export const signInWithGoogle = () => signInWithPopup(auth, provider);
 export const onAuthStateChanged = (callback: NextOrObserver<User>) => onAuthStateChangedFirebase(auth, callback);
 export const signInWithEmailAndPassword = signInAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
 export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);

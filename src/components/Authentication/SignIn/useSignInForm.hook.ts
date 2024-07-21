@@ -8,14 +8,13 @@ import {
   MESSAGE_INVALID_LOGIN_CREDENTIALS,
   MESSAGE_TOO_MANY_ATTEMPTS_TRY_LATER,
 } from "@utils/firebase/constants/auth-error-messages.constants";
-import { signInWithGooglePopup } from "@/utils/firebase/firebase.utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FirebaseError } from "firebase/app";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import { saveUser, signInWithEmailAndPassword } from "@/setup";
+import { saveUser, signInWithEmailAndPassword, signInWithGoogle } from "@/setup";
 import { User } from "@/core/domain/entities/User";
 
 const schema = z.object({
@@ -50,8 +49,8 @@ function useSignInForm() {
     navigate("/");
   };
 
-  const signInWithGoogle = async () => {
-    const userCredential = await signInWithGooglePopup();
+  const signInWithGoogleHandler = async () => {
+    const userCredential = await signInWithGoogle();
     const user = new User({
       id: userCredential.user.uid,
       ...userCredential.user,
@@ -78,7 +77,7 @@ function useSignInForm() {
     register,
     onSubmit: handleSubmit(onSubmit),
     formState,
-    signInWithGoogle,
+    signInWithGoogle: signInWithGoogleHandler,
   };
 }
 
