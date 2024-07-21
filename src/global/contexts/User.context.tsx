@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "@/setup";
 import { User } from "firebase/auth";
-import { Dispatch, PropsWithChildren, SetStateAction, createContext, useEffect, useState } from "react";
+import { Dispatch, PropsWithChildren, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 
 interface UserContextType {
   currentUser?: User | null;
@@ -11,6 +11,10 @@ export const UserContext = createContext<UserContextType>({
   currentUser: undefined,
   setCurrentUser: () => undefined,
 });
+
+export function useUser() {
+  return useContext(UserContext);
+}
 
 interface UserProviderProps extends PropsWithChildren {}
 
