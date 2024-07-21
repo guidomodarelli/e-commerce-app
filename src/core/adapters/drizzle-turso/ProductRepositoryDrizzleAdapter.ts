@@ -1,5 +1,5 @@
-import { Product } from "@/core/domain/entities/Product";
-import { ProductRepository } from "@/core/ports/ProductRepository.port";
+import { Product } from "@core/domain/entities/Product";
+import { ProductRepository } from "@core/ports/ProductRepository.port";
 import { BatchItem } from "drizzle-orm/batch";
 import { LibSQLDatabase } from "drizzle-orm/libsql";
 import { productTable } from "./schemas/product";

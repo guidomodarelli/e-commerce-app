@@ -1,5 +1,5 @@
-import { CartItem } from "@/core/domain/entities/CartItem";
-import { Product } from "@/core/domain/entities/Product";
+import { CartItem } from "@core/domain/entities/CartItem";
+import { Product } from "@core/domain/entities/Product";
 import { Dispatch, PropsWithChildren, SetStateAction, createContext, useContext, useState } from "react";
 
 interface CartContextType {

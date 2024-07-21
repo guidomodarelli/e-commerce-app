@@ -15,7 +15,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { saveUser, signInWithEmailAndPassword, signInWithGoogle } from "@/setup";
-import { User } from "@/core/domain/entities/User";
+import { User } from "@core/domain/entities/User";
 
 const schema = z.object({
   email: z.string().email().default(""),
