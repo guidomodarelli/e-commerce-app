@@ -1,6 +1,7 @@
 import { PropsWithChildren, createContext, useContext, useEffect, useState } from "react";
-import { getCategoriesAndDocuments } from "@/utils/firebase/firebase.utils";
 import { Product } from "@/core/domain/entities/Product";
+import { getProductsGroupByCategories } from "@/setup";
+import { useEffectOnce } from "react-use";
 
 interface ProductsContextType {
   products: Record<string, Product[]>;
@@ -19,12 +20,12 @@ interface ProductsProviderProps extends PropsWithChildren {}
 export const ProductsProvider = ({ children }: ProductsProviderProps) => {
   const [products, setProducts] = useState<Record<string, Product[]>>({});
 
-  useEffect(() => {
-    const getCategoriesMap = async () => {
-      const mapped = await getCategoriesAndDocuments();
-      setProducts(mapped);
-    };
+  const getCategoriesMap = async () => {
+    const mapped = await getProductsGroupByCategories();
+    setProducts(mapped);
+  };
 
+  useEffectOnce(() => {
     void getCategoriesMap();
   });
 
