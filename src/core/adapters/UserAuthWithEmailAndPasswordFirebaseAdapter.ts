@@ -7,12 +7,18 @@ export class UserAuthWithEmailAndPasswordFirebaseAdapter implements UserAuthWith
 
   async signUp(email: string, password: string): Promise<User> {
     const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
-    return userCredential.user;
+    return new User({
+      id: userCredential.user.uid,
+      ...userCredential.user,
+    });
   }
 
   async signIn(email: string, password: string): Promise<User> {
     const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
-    return userCredential.user;
+    return new User({
+      id: userCredential.user.uid,
+      ...userCredential.user,
+    });
   }
 
   signOut(): Promise<void> {

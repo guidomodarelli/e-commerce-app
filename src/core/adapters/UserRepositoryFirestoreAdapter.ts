@@ -6,7 +6,7 @@ export class UserRepositoryFirestoreAdapter implements UserRepository {
   constructor(private readonly database: Firestore) {}
 
   async save<Info>(user: User, additionalInformation?: Info | undefined): Promise<void> {
-    const userDocumentReference = doc(this.database, "users", user.uid);
+    const userDocumentReference = doc(this.database, "users", user.id);
 
     const userSnapshot = await getDoc(userDocumentReference);
 

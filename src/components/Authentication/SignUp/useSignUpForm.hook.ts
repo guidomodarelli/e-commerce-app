@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { SignUpFormFields, schema } from "./sign-up.schema";
+import { User } from "@/core/domain/entities/User";
 
 interface FieldMessage {
   field: keyof SignUpFormFields;
@@ -40,7 +41,11 @@ function useSignUp() {
 
   const onSubmit: SubmitHandler<SignUpFormFields> = async (data) => {
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(data.email, data.password);
+      const userCredential = await createAuthUserWithEmailAndPassword(data.email, data.password);
+      const user = new User({
+        id: userCredential.user.uid,
+        ...userCredential.user,
+      });
       await saveUser(user, {
         displayName: getValues("displayName"),
       });
