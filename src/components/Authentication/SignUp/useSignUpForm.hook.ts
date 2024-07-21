@@ -1,5 +1,4 @@
-import { saveUser } from "@/setup";
-import { createAuthUserWithEmailAndPassword } from "@/utils/firebase/firebase.utils";
+import { saveUser, signUpWithEmailAndPassword } from "@/setup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FIREBASE_EMAIL_EXISTS, FIREBASE_WEAK_PASSWORD } from "@utils/firebase/constants/auth-error-codes.constants";
 import { MESSAGE_EMAIL_EXISTS, MESSAGE_WEAK_PASSWORD } from "@utils/firebase/constants/auth-error-messages.constants";
@@ -8,7 +7,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { SignUpFormFields, schema } from "./sign-up.schema";
-import { User } from "@/core/domain/entities/User";
 
 interface FieldMessage {
   field: keyof SignUpFormFields;
@@ -41,11 +39,7 @@ function useSignUp() {
 
   const onSubmit: SubmitHandler<SignUpFormFields> = async (data) => {
     try {
-      const userCredential = await createAuthUserWithEmailAndPassword(data.email, data.password);
-      const user = new User({
-        id: userCredential.user.uid,
-        ...userCredential.user,
-      });
+      const user = await signUpWithEmailAndPassword(data.email, data.password);
       await saveUser(user, {
         displayName: getValues("displayName"),
       });
