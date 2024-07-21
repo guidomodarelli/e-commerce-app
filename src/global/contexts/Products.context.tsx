@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useEffect, useState } from "react";
+import { PropsWithChildren, createContext, useContext, useEffect, useState } from "react";
 import { getCategoriesAndDocuments } from "@/utils/firebase/firebase.utils";
 import { Product } from "@/core/domain/entities/Product";
 
@@ -9,6 +9,10 @@ interface ProductsContextType {
 export const ProductsContext = createContext<ProductsContextType>({
   products: {},
 });
+
+export function useProducts() {
+  return useContext(ProductsContext);
+}
 
 interface ProductsProviderProps extends PropsWithChildren {}
 
