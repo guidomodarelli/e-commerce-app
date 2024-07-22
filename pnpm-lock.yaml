@@ -18,7 +18,7 @@ importers:
         specifier: 0.7.0
         version: 0.7.0
       core-js:
-        specifier: ^3.37.1
+        specifier: 3.37.1
         version: 3.37.1
       drizzle-orm:
         specifier: 0.32.0
@@ -42,7 +42,7 @@ importers:
         specifier: 6.25.1
         version: 6.25.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-use:
-        specifier: ^17.5.1
+        specifier: 17.5.1
         version: 17.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       sonner:
         specifier: 1.5.0
