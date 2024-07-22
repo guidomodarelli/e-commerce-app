@@ -1,3 +1,14 @@
+import { UserAuthWithEmailAndPasswordFirebaseAdapter } from "@core/adapters/auth/firebase";
+import { ProductRepositoryDrizzleAdapter, UserRepositoryDrizzleAdapter } from "@core/adapters/drizzle";
+import {
+  getProductsGroupByCategoriesUseCase,
+  saveAllProductsUseCase,
+  SaveAuthUserUseCase,
+  signInAuthUserWithEmailAndPasswordUseCase,
+  signOutUserUseCase,
+  signUpAuthUserWithEmailAndPasswordUseCase,
+} from "@core/domain/useCases";
+import { ProductRepository, UserRepository } from "@core/ports";
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 import { initializeApp } from "firebase/app";
@@ -9,20 +20,7 @@ import {
   signInWithPopup,
   User,
 } from "firebase/auth";
-import { UserRepositoryDrizzleAdapter } from "@core/adapters/drizzle/UserRepositoryDrizzleAdapter";
-import { UserAuthWithEmailAndPasswordFirebaseAdapter } from "@core/adapters/auth/firebase/UserAuthWithEmailAndPasswordFirebaseAdapter";
-import { UserRepository } from "@core/ports/UserRepository.port";
-import { ProductRepository } from "@core/ports/ProductRepository.port";
-import { ProductRepositoryDrizzleAdapter } from "@core/adapters/drizzle/ProductRepositoryDrizzleAdapter";
-import {
-  saveAllProductsUseCase,
-  SaveAuthUserUseCase,
-  signInAuthUserWithEmailAndPasswordUseCase,
-  signOutUserUseCase,
-  signUpAuthUserWithEmailAndPasswordUseCase,
-} from "@core/domain/useCases";
 import { firebaseConfig, tursoConfig } from "./config";
-import { getProductsGroupByCategoriesUseCase } from "@core/domain/useCases/getProductsGroupByCategoriesUseCase";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
