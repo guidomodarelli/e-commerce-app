@@ -21,18 +21,13 @@ function SignInForm() {
       <form onSubmit={onSubmit}>
         <FormInput
           label="Email"
-          inputAttributes={{
-            ...register("email"),
-          }}
+          inputAttributes={{ ...register("email") }}
           dirty={dirtyFields.email}
           error={(errors.email as GlobalError)?.message}
         />
         <FormInput
           label="Password"
-          inputAttributes={{
-            ...register("password"),
-            type: "password",
-          }}
+          inputAttributes={{ ...register("password"), type: "password" }}
           dirty={dirtyFields.password}
           error={(errors.password as GlobalError)?.message}
         />
