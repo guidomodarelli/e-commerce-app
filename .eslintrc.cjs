@@ -47,7 +47,7 @@ module.exports = {
         ],
         "@typescript-eslint/no-empty-interface": "off",
         "react/prop-types": "off",
-        "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+        "react-refresh/only-export-components": "off",
         "unicorn/prevent-abbreviations": [
           2,
           {
