@@ -21,15 +21,14 @@ import {
   User,
 } from "firebase/auth";
 import { firebaseConfig, tursoConfig } from "./config";
+import * as schema from "@core/adapters/drizzle/schema";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
 const turso = createClient(tursoConfig);
-const db = drizzle(turso);
+const db = drizzle(turso, { schema });
 const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
-  prompt: "select_account",
-});
+provider.setCustomParameters({ prompt: "select_account" });
 
 const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth);
 const userRepository: UserRepository = new UserRepositoryDrizzleAdapter(db);
