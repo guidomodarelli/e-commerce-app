@@ -1,16 +1,19 @@
 import { useProducts } from "@/contexts/Products.context";
 import CategoryPreview from "../CategoryPreview/CategoryPreview.component";
+import useCategories from "@/hooks/useCategories.hook";
 
 interface CategoriesPreviewProps {}
 
 function CategoriesPreview({}: CategoriesPreviewProps) {
-  const { products: categories } = useProducts();
+  const { products } = useProducts();
+  const { categories } = useCategories();
 
   return (
     <>
-      {categories.map(({ title, products = [] }) => (
-        <CategoryPreview key={title} title={title} products={products} />
-      ))}
+      {categories.map(({ id: categoryId, title }) => {
+        const productsFiltered = products.filter((product) => product.categoryId === categoryId);
+        return <CategoryPreview key={title} title={title} products={productsFiltered} />;
+      })}
     </>
   );
 }
