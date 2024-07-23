@@ -1,5 +1,9 @@
 import { UserAuthWithEmailAndPasswordFirebaseAdapter } from "@core/adapters/auth/firebase";
-import { ProductRepositoryDrizzleAdapter, UserRepositoryDrizzleAdapter } from "@core/adapters/drizzle";
+import {
+  CategoryRepositoryDrizzleAdapter,
+  ProductRepositoryDrizzleAdapter,
+  UserRepositoryDrizzleAdapter,
+} from "@core/adapters/drizzle";
 import {
   getProductsGroupByCategoriesUseCase,
   saveAllProductsUseCase,
@@ -7,8 +11,9 @@ import {
   signInAuthUserWithEmailAndPasswordUseCase,
   signOutUserUseCase,
   signUpAuthUserWithEmailAndPasswordUseCase,
+  getCategoriesUseCase,
 } from "@core/domain/useCases";
-import { ProductRepository, UserRepository } from "@core/ports";
+import { CategoryRepository, ProductRepository, UserRepository } from "@core/ports";
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 import { initializeApp } from "firebase/app";
@@ -33,6 +38,7 @@ provider.setCustomParameters({ prompt: "select_account" });
 const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth);
 const userRepository: UserRepository = new UserRepositoryDrizzleAdapter(db);
 const productRepository: ProductRepository = new ProductRepositoryDrizzleAdapter(db);
+const categoryRepository: CategoryRepository = new CategoryRepositoryDrizzleAdapter(db);
 
 export const signInWithGoogle = () => signInWithPopup(auth, provider);
 export const onAuthStateChanged = (callback: NextOrObserver<User>) => onAuthStateChangedFirebase(auth, callback);
@@ -42,3 +48,4 @@ export const signOut = signOutUserUseCase(userAuthWithEmailAndPassword);
 export const saveUser = saveAuthUserUseCase(userRepository);
 export const saveAllProducts = saveAllProductsUseCase(productRepository);
 export const getProductsGroupByCategories = getProductsGroupByCategoriesUseCase(productRepository);
+export const getCategories = getCategoriesUseCase(categoryRepository);
