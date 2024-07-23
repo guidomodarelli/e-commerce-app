@@ -1,4 +1,4 @@
-export * from "./getProductsGroupByCategoriesUseCase";
+export * from "./GetProductsGroupByCategoriesUseCase";
 export * from "./SaveAllProductsUseCase";
 export * from "./SaveAuthUserUseCase";
 export * from "./SignInAuthUserWithEmailAndPasswordUseCase";
