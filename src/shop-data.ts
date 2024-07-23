@@ -2,12 +2,14 @@ import { Product } from "@core/domain/entities/Product";
 
 export interface ShopData {
   title: Capitalize<string>;
+  img: string;
   items: Product[];
 }
 
 const SHOP_DATA: ShopData[] = [
   {
     title: "Hats",
+    img: "https://i.ibb.co/cvpntL1/hats.png",
     items: [
       {
         id: "1",
@@ -67,6 +69,7 @@ const SHOP_DATA: ShopData[] = [
   },
   {
     title: "Sneakers",
+    img: "https://i.ibb.co/px2tCc3/jackets.png",
     items: [
       {
         id: "10",
@@ -120,6 +123,7 @@ const SHOP_DATA: ShopData[] = [
   },
   {
     title: "Jackets",
+    img: "https://i.ibb.co/0jqHpnp/sneakers.png",
     items: [
       {
         id: "18",
@@ -155,6 +159,7 @@ const SHOP_DATA: ShopData[] = [
   },
   {
     title: "Womens",
+    img: "https://i.ibb.co/GCCdy8t/womens.png",
     items: [
       {
         id: "23",
@@ -202,6 +207,7 @@ const SHOP_DATA: ShopData[] = [
   },
   {
     title: "Mens",
+    img: "https://i.ibb.co/R70vBrQ/men.png",
     items: [
       {
         id: "30",

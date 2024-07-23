@@ -17,15 +17,16 @@ export class ProductRepositoryDrizzleAdapter implements ProductRepository {
     const batchItems: BatchItem<"sqlite">[] = [];
 
     for (const data of shopData) {
-      const { title, items } = data;
+      const { title, img, items } = data;
       const category = await this.db.query.category.findFirst({
-        where: eq(categorySchema.name, title.toLowerCase()),
+        where: eq(categorySchema.title, title.toLowerCase()),
       });
       const categoryId: string = category?.id ?? ulid();
       if (!category) {
         await this.db.insert(categorySchema).values({
           id: categoryId,
-          name: title.toLowerCase(),
+          title: title.toLowerCase(),
+          img,
         });
       }
 
