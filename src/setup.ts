@@ -3,7 +3,7 @@ import { ProductRepositoryDrizzleAdapter, UserRepositoryDrizzleAdapter } from "@
 import {
   getProductsGroupByCategoriesUseCase,
   saveAllProductsUseCase,
-  SaveAuthUserUseCase,
+  saveAuthUserUseCase,
   signInAuthUserWithEmailAndPasswordUseCase,
   signOutUserUseCase,
   signUpAuthUserWithEmailAndPasswordUseCase,
@@ -39,6 +39,6 @@ export const onAuthStateChanged = (callback: NextOrObserver<User>) => onAuthStat
 export const signInWithEmailAndPassword = signInAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
 export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
 export const signOut = signOutUserUseCase(userAuthWithEmailAndPassword);
-export const saveUser = SaveAuthUserUseCase(userRepository);
+export const saveUser = saveAuthUserUseCase(userRepository);
 export const saveAllProducts = saveAllProductsUseCase(productRepository);
 export const getProductsGroupByCategories = getProductsGroupByCategoriesUseCase(productRepository);
