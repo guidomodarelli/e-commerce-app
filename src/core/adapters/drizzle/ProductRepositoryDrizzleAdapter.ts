@@ -1,4 +1,3 @@
-import { Product } from "@core/domain/entities/Product";
 import { ProductRepository } from "@core/ports/ProductRepository.port";
 import { BatchItem } from "drizzle-orm/batch";
 import { LibSQLDatabase } from "drizzle-orm/libsql";
@@ -7,6 +6,7 @@ import * as schema from "@core/adapters/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { ulid } from "ulid";
 import { ShopData } from "@/shop-data";
+import { Category } from "@core/domain/entities";
 
 export class ProductRepositoryDrizzleAdapter implements ProductRepository {
   constructor(private readonly db: LibSQLDatabase<typeof schema>) {}
@@ -46,7 +46,11 @@ export class ProductRepositoryDrizzleAdapter implements ProductRepository {
     }
   }
 
-  findAll(): Promise<Product[]> {
-    return this.db.query.products.findMany();
+  findAllGroupByCategory(): Promise<Category[]> {
+    return this.db.query.category.findMany({
+      with: {
+        products: true,
+      },
+    });
   }
 }

@@ -8,7 +8,7 @@ function CategoriesPreview({}: CategoriesPreviewProps) {
 
   return (
     <>
-      {Object.entries(categories).map(([title, products]) => (
+      {categories.map(({ title, products = [] }) => (
         <CategoryPreview key={title} title={title} products={products} />
       ))}
     </>

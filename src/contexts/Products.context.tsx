@@ -1,14 +1,14 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
-import { Product } from "@core/domain/entities/Product";
 import { getProductsGroupByCategories } from "@/setup";
 import { useEffectOnce } from "react-use";
+import { Category } from "@core/domain/entities";
 
 interface ProductsContextType {
-  products: Record<string, Product[]>;
+  products: Category[];
 }
 
 export const ProductsContext = createContext<ProductsContextType>({
-  products: {},
+  products: [],
 });
 
 export function useProducts() {
@@ -18,15 +18,14 @@ export function useProducts() {
 interface ProductsProviderProps extends PropsWithChildren {}
 
 export const ProductsProvider = ({ children }: ProductsProviderProps) => {
-  const [products, setProducts] = useState<Record<string, Product[]>>({});
-
-  const getCategoriesMap = async () => {
-    const mapped = await getProductsGroupByCategories();
-    setProducts(mapped);
-  };
+  const [products, setProducts] = useState<Category[]>([]);
 
   useEffectOnce(() => {
-    void getCategoriesMap();
+    getProductsGroupByCategories()
+      .then((categories) => {
+        setProducts(categories);
+      })
+      .catch(() => {});
   });
 
   const value = { products };
