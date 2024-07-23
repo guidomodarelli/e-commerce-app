@@ -6,7 +6,7 @@ import * as schema from "@core/adapters/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { ulid } from "ulid";
 import { ShopData } from "@/shop-data";
-import { Category } from "@core/domain/entities";
+import { Product } from "@core/domain/entities";
 
 export class ProductRepositoryDrizzleAdapter implements ProductRepository {
   constructor(private readonly db: LibSQLDatabase<typeof schema>) {}
@@ -46,11 +46,22 @@ export class ProductRepositoryDrizzleAdapter implements ProductRepository {
     }
   }
 
-  findAllGroupByCategory(): Promise<Category[]> {
-    return this.db.query.category.findMany({
+  async findAll(): Promise<Product[]> {
+    const products = await this.db.query.products.findMany({
       with: {
-        products: true,
+        category: {
+          columns: {
+            id: true,
+          },
+        },
       },
+    });
+
+    return products.map((product) => {
+      return {
+        ...product,
+        categoryId: product.category.id,
+      };
     });
   }
 }
