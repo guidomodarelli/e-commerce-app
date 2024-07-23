@@ -1,4 +1,4 @@
-import { CartItem as CartItemType } from "@global/types/cart-item.types";
+import { CartItem as CartItemType } from "@core/domain/entities";
 import "./cart-item.styles.css";
 
 interface CartItemProps {
