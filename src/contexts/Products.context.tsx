@@ -1,10 +1,10 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
-import { getProductsGroupByCategories } from "@/setup";
+import { getProducts } from "@/setup";
 import { useEffectOnce } from "react-use";
-import { Category } from "@core/domain/entities";
+import { Product } from "@core/domain/entities";
 
 interface ProductsContextType {
-  products: Category[];
+  products: Product[];
 }
 
 export const ProductsContext = createContext<ProductsContextType>({
@@ -18,7 +18,7 @@ export function useProducts() {
 interface ProductsProviderProps extends PropsWithChildren {}
 
 export const ProductsProvider = ({ children }: ProductsProviderProps) => {
-  const [products, setProducts] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffectOnce(() => {
     getProducts()
