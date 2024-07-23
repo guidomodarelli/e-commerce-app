@@ -5,7 +5,7 @@ import {
   UserRepositoryDrizzleAdapter,
 } from "@core/adapters/drizzle";
 import {
-  getProductsGroupByCategoriesUseCase,
+  getProductsUseCase,
   saveAllProductsUseCase,
   saveAuthUserUseCase,
   signInAuthUserWithEmailAndPasswordUseCase,
@@ -47,5 +47,5 @@ export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseC
 export const signOut = signOutUserUseCase(userAuthWithEmailAndPassword);
 export const saveUser = saveAuthUserUseCase(userRepository);
 export const saveAllProducts = saveAllProductsUseCase(productRepository);
-export const getProductsGroupByCategories = getProductsGroupByCategoriesUseCase(productRepository);
+export const getProducts = getProductsUseCase(productRepository);
 export const getCategories = getCategoriesUseCase(categoryRepository);

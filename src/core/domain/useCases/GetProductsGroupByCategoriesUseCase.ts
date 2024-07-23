@@ -1,7 +1,5 @@
 import { ProductRepository } from "@core/ports/ProductRepository.port";
-import { Category } from "../entities";
 
-export const getProductsGroupByCategoriesUseCase =
-  (productRepository: ProductRepository) => (): Promise<Category[]> => {
-    return productRepository.findAllGroupByCategory();
-  };
+export const getProductsUseCase = (productRepository: ProductRepository) => () => {
+  return productRepository.findAll();
+};
