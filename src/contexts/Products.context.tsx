@@ -21,10 +21,8 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
   const [products, setProducts] = useState<Category[]>([]);
 
   useEffectOnce(() => {
-    getProductsGroupByCategories()
-      .then((categories) => {
-        setProducts(categories);
-      })
+    getProducts()
+      .then(setProducts)
       .catch(() => {});
   });
 

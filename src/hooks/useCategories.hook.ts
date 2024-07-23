@@ -8,9 +8,7 @@ function useCategories() {
 
   useEffectOnce(() => {
     getCategories()
-      .then((categories_) => {
-        setCategories(categories_);
-      })
+      .then(setCategories)
       .catch(() => {});
   });
 
