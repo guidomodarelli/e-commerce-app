@@ -1,6 +1,6 @@
 import { useProducts } from "@/contexts/Products.context";
 import useCategories from "@/hooks/useCategories.hook";
-import ProductCard from "@components/product-card/ProductCard.component";
+import CategoryPreview from "@components/Categories/CategoriesPreview/CategoryPreview/CategoryPreview.component";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -21,13 +21,7 @@ function Category() {
 
   const productsFiltered = products.filter((product) => getCategoryId(categoryTitle) === product.categoryId);
 
-  return (
-    <div>
-      {productsFiltered.map((product) => (
-        <ProductCard key={product.id} product={product}></ProductCard>
-      ))}
-    </div>
-  );
+  return <CategoryPreview center title={categoryTitle ?? ""} products={productsFiltered} />;
 }
 
 export default Category;
