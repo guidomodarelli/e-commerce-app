@@ -1,6 +1,6 @@
 import { cn } from "@/utils/cn";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
-import "./Button.styles.css";
+import styles from "./Button.module.css";
 import Loader from "../Loaders/loader/Loader.component";
 
 const BUTTON_VARIANT = {
@@ -16,7 +16,7 @@ interface ButtonProps extends PropsWithChildren, ButtonHTMLAttributes<HTMLButton
 function Button({ children, variant, loading = false, disabled = false, ...otherProps }: ButtonProps) {
   return (
     <button
-      className={cn("button-container", variant ? BUTTON_VARIANT[variant] : "")}
+      className={cn(styles["button-container"], variant ? BUTTON_VARIANT[variant] : "")}
       disabled={disabled || loading}
       {...otherProps}
     >
