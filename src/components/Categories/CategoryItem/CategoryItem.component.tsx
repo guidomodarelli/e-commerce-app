@@ -1,14 +1,21 @@
 import { Category } from "@core/domain/entities/Category";
 import styles from "./CategoryItem.module.css";
+import { useNavigate } from "react-router-dom";
 
 interface CategoryItemProps {
   category: Category;
 }
 
 function CategoryItem({ category }: CategoryItemProps) {
+  const navigate = useNavigate();
+
+  const onNavigateHandler = () => {
+    navigate(`/shop/${title}`);
+  };
+
   const { title, img } = category;
   return (
-    <div className={styles["category-container"]}>
+    <div onClick={onNavigateHandler} className={styles["category-container"]}>
       <div
         className={styles["background-image"]}
         style={{
