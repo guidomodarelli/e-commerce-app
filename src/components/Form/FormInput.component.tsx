@@ -1,4 +1,4 @@
-import "./FormInput.styles.css";
+import styles from "./FormInput.module.css";
 import { cn } from "@/utils/cn";
 import { InputHTMLAttributes } from "react";
 import FormError from "./FormError/FormError.components";
@@ -12,15 +12,15 @@ interface FormInputProps {
 
 function FormInput({ label, dirty, inputAttributes = {}, error }: FormInputProps) {
   return (
-    <div className="group">
-      <input className="form-input" {...inputAttributes} />
+    <div className={styles.group}>
+      <input className={styles["form-input"]} {...inputAttributes} />
       {label ? (
         <label
           className={cn(
             {
               shrink: dirty,
             },
-            "form-input-label",
+            styles["form-input-label"],
           )}
         >
           {label}
