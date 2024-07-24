@@ -3,18 +3,23 @@ import { ProductsProvider } from "@/contexts/Products.context";
 import HeaderNavProvider from "@/contexts/HeaderNav.context";
 import { UserProvider } from "@/contexts/User.context";
 import { PropsWithChildren } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 interface ProvidersProps extends PropsWithChildren {}
 
 function Providers({ children }: ProvidersProps) {
   return (
-    <UserProvider>
-      <ProductsProvider>
-        <HeaderNavProvider>
-          <CartProvider>{children}</CartProvider>
-        </HeaderNavProvider>
-      </ProductsProvider>
-    </UserProvider>
+    <QueryClientProvider client={queryClient}>
+      <UserProvider>
+        <ProductsProvider>
+          <HeaderNavProvider>
+            <CartProvider>{children}</CartProvider>
+          </HeaderNavProvider>
+        </ProductsProvider>
+      </UserProvider>
+    </QueryClientProvider>
   );
 }
 

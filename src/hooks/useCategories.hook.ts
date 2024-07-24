@@ -1,7 +1,6 @@
 import { getCategories } from "@/setup";
 import { Category } from "@core/domain/entities";
-import { useState } from "react";
-import { useEffectOnce } from "react-use";
+import { useQuery } from "@tanstack/react-query";
 
 interface CategoriesOutput {
   categories: Category[];
@@ -10,25 +9,15 @@ interface CategoriesOutput {
 }
 
 function useCategories(): CategoriesOutput {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [fetched, setFetched] = useState(false);
-
-  useEffectOnce(() => {
-    getCategories()
-      .then(setCategories)
-      .then(() => {
-        setFetched(true);
-      })
-      .catch(() => {});
-  });
+  const { isFetched, data: categories = [] } = useQuery({ queryKey: ["categories"], queryFn: getCategories });
 
   const getCategoryId = (categoryTitle?: Category["title"]) => {
-    return categories.find((category) => category.title === categoryTitle)?.id;
+    return categories?.find((category) => category.title === categoryTitle)?.id;
   };
 
   return {
     categories,
-    hasBeenFetched: fetched,
+    hasBeenFetched: isFetched,
     getCategoryId,
   };
 }
