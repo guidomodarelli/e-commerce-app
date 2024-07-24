@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn";
 import Logo from "@assets/Logo.tsx";
 import { Loader, MenuIcon, XIcon } from "lucide-react";
 import { Link } from "react-router-dom";
-import "./Navigation.styles.css";
+import styles from "./Navigation.module.css";
 import { signOut } from "@/setup";
 import { useHeaderNav } from "@/contexts/HeaderNav.context";
 import { useUser } from "@/contexts/User.context";
@@ -17,27 +17,27 @@ function Navigation({}: NavigationProps) {
 
   return (
     <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-[--px] h-[--nav-height]">
-      <Link className="logo-container" to={"/"}>
+      <Link className={styles["logo-container"]} to={"/"}>
         <Logo />
       </Link>
-      <nav className={cn("navigation", { flex: isHeaderNavOpen })}>
-        <ul className="nav-links-container">
+      <nav className={cn(styles.navigation, { flex: isHeaderNavOpen })}>
+        <ul className={styles["nav-links-container"]}>
           <li>
-            <Link onClick={closeHeaderNav} className="nav-link" to={"/shop"}>
+            <Link onClick={closeHeaderNav} className={styles["nav-link"]} to={"/shop"}>
               SHOP
             </Link>
           </li>
           <li>
             {currentUser === undefined ? (
-              <div className="nav-link">
+              <div className={styles["nav-link"]}>
                 <Loader />
               </div>
             ) : currentUser === null ? (
-              <Link onClick={closeHeaderNav} className="nav-link" to={"/signIn"}>
+              <Link onClick={closeHeaderNav} className={styles["nav-link"]} to={"/signIn"}>
                 SIGN IN
               </Link>
             ) : (
-              <span className="nav-link" onClick={signOut}>
+              <span className={styles["nav-link"]} onClick={signOut}>
                 SIGN OUT
               </span>
             )}
