@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 import Button from "../Button/Button.component";
-import "./product-card.styles.css";
+import styles from "./product-card.module.css";
 import { useCart } from "@/contexts/Cart.context";
 import { Product } from "@core/domain/entities";
 
@@ -23,16 +23,16 @@ function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="product-card-container">
-      <div className="img-container">
+    <div className={styles["product-card-container"]}>
+      <div className={styles["img-container"]}>
         <img src={imageUrl} alt={name} />
         <Button variant="inverted" onClick={addProductToCart}>
           Add to card
         </Button>
       </div>
-      <div className="footer">
-        <span className="name">{name}</span>
-        <span className="price">
+      <div className={styles.footer}>
+        <span className={styles.name}>{name}</span>
+        <span className={styles.price}>
           {Intl.NumberFormat("EN-en", {
             style: "currency",
             currency: "USD",
