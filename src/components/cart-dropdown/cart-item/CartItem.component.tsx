@@ -1,5 +1,5 @@
 import { CartItem as CartItemType } from "@core/domain/entities";
-import "./cart-item.styles.css";
+import styles from "./cart-item.module.css";
 
 interface CartItemProps {
   cartItem: CartItemType;
@@ -8,11 +8,11 @@ interface CartItemProps {
 function CartItem({ cartItem }: CartItemProps) {
   const { name, quantity, imageUrl, price } = cartItem;
   return (
-    <div className="cart-item-container">
+    <div className={styles["cart-item-container"]}>
       <img src={imageUrl} alt={name} />
-      <div className="item-details">
-        <span className="name">{name}</span>
-        <span className="price">
+      <div className={styles["item-details"]}>
+        <span className={styles.name}>{name}</span>
+        <span className={styles.price}>
           {quantity} x{" "}
           {Intl.NumberFormat("EN-en", {
             style: "currency",
