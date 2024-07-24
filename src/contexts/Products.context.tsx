@@ -1,7 +1,7 @@
-import { PropsWithChildren, createContext, useContext, useState } from "react";
+import { PropsWithChildren, createContext, useContext } from "react";
 import { getProducts } from "@/setup";
-import { useEffectOnce } from "react-use";
 import { Product } from "@core/domain/entities";
+import { useQuery } from "@tanstack/react-query";
 
 interface ProductsContextType {
   products: Product[];
@@ -18,13 +18,7 @@ export function useProducts() {
 interface ProductsProviderProps extends PropsWithChildren {}
 
 export const ProductsProvider = ({ children }: ProductsProviderProps) => {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffectOnce(() => {
-    getProducts()
-      .then(setProducts)
-      .catch(() => {});
-  });
+  const { data: products = [] } = useQuery({ queryKey: ["products"], queryFn: getProducts });
 
   const value = { products };
 
