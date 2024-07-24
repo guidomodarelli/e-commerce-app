@@ -1,5 +1,6 @@
 import { useCart } from "@/contexts/Cart.context";
-import "./cart-icon.styles.css";
+import styles from "./cart-icon.module.css";
+import { cn } from "@utils/cn";
 
 interface CartIconProps {
   fill?: string;
@@ -9,9 +10,9 @@ function CartIcon({ fill = "#010002" }: CartIconProps) {
   const { openCart, totalItems } = useCart();
 
   return (
-    <div onClick={openCart} className="cart-icon-container">
+    <div onClick={openCart} className={styles["cart-icon-container"]}>
       <svg
-        className="shopping-icon"
+        className={styles["shopping-icon"]}
         xmlns="http://www.w3.org/2000/svg"
         xmlSpace="preserve"
         viewBox="0 0 407.453 407.453"
@@ -35,7 +36,7 @@ function CartIcon({ fill = "#010002" }: CartIconProps) {
           }}
         />
       </svg>
-      <span className="item-count select-none">{totalItems}</span>
+      <span className={cn("select-none", styles["item-count"])}>{totalItems}</span>
     </div>
   );
 }
