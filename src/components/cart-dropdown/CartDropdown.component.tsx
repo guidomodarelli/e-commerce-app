@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button.component";
-import "./cart-dropdown.styles.css";
+import styles from "./cart-dropdown.module.css";
 import CartItem from "./cart-item/CartItem.component";
 import { useCart } from "@/contexts/Cart.context";
 import { useHeaderNav } from "@/contexts/HeaderNav.context";
@@ -23,8 +23,8 @@ function CartDropdown({}: CartDropdownProps) {
   };
 
   return (
-    <div ref={ref} data-active={isCartOpen} className="cart-dropdown-container">
-      <div className="cart-items">
+    <div ref={ref} data-active={isCartOpen} className={styles["cart-dropdown-container"]}>
+      <div className={styles["cart-items"]}>
         {cartItems.map((cartItem) => (
           <CartItem key={cartItem.id} cartItem={cartItem} />
         ))}
