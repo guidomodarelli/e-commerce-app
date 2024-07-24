@@ -16,7 +16,6 @@ function CategoryItem({ category }: CategoryItemProps) {
         }}
       ></div>
       <div className={styles["category-body-container"]}>
-        {/* img */}
         <h2>{title}</h2>
         <p>Shop now</p>
       </div>
