@@ -1,5 +1,5 @@
 import { CartItem as CartItemType } from "@core/domain/entities";
-import "./cart-item.styles.css";
+import styles from "./cart-item.module.css";
 import { useCart } from "@/contexts/Cart.context";
 
 interface CartItemProps {
@@ -23,33 +23,33 @@ function CartItem({ cartItem }: CartItemProps) {
   };
 
   return (
-    <article className="checkout-item-container">
-      <picture className="image-container">
+    <article className={styles["checkout-item-container"]}>
+      <picture className={styles["image-container"]}>
         <img src={imageUrl} alt={name} />
       </picture>
-      <span className="name">{name}</span>
-      <div className="quantity">
-        <div className="arrow" onClick={removeItemHandler}>
+      <span className={styles.name}>{name}</span>
+      <div className={styles.quantity}>
+        <div className={styles.arrow} onClick={removeItemHandler}>
           &#10094;
         </div>
-        <span className="value">{quantity}</span>
-        <div className="arrow" onClick={addItemHandler}>
+        <span className={styles.value}>{quantity}</span>
+        <div className={styles.arrow} onClick={addItemHandler}>
           &#10095;
         </div>
       </div>
-      <span className="price">
+      <span className={styles.price}>
         {Intl.NumberFormat("EN-en", {
           style: "currency",
           currency: "USD",
         }).format(price)}
       </span>
-      <span className="price">
+      <span className={styles.price}>
         {Intl.NumberFormat("EN-en", {
           style: "currency",
           currency: "USD",
         }).format(price * quantity)}
       </span>
-      <div className="remove-button" onClick={clearItemHandler}>
+      <div className={styles["remove-button"]} onClick={clearItemHandler}>
         &#10005;
       </div>
     </article>
