@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import "./Loader.styles.css";
+import styles from "./Loader.module.css";
 
 interface LoaderProps {
   size?: number;
@@ -11,7 +11,7 @@ function Loader({ size = 30 }: LoaderProps) {
   } as CSSProperties;
 
   return (
-    <div className="lds-ring" style={style}>
+    <div className={styles["lds-ring"]} style={style}>
       <div></div>
       <div></div>
       <div></div>
