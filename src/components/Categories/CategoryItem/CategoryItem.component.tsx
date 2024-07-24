@@ -1,21 +1,15 @@
 import { Category } from "@core/domain/entities/Category";
 import styles from "./CategoryItem.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface CategoryItemProps {
   category: Category;
 }
 
 function CategoryItem({ category }: CategoryItemProps) {
-  const navigate = useNavigate();
-
-  const onNavigateHandler = () => {
-    navigate(`/shop/${title}`);
-  };
-
   const { title, img } = category;
   return (
-    <div onClick={onNavigateHandler} className={styles["category-container"]}>
+    <Link to={`/shop/${title}`} className={styles["category-container"]}>
       <div
         className={styles["background-image"]}
         style={{
@@ -26,7 +20,7 @@ function CategoryItem({ category }: CategoryItemProps) {
         <h2>{title}</h2>
         <p>Shop now</p>
       </div>
-    </div>
+    </Link>
   );
 }
 
