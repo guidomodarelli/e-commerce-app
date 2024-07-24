@@ -1,5 +1,5 @@
 import { useProducts } from "@/contexts/Products.context";
-import CategoryPreview from "../CategoryPreview/CategoryPreview.component";
+import CategoryPreview from "./CategoryPreview/CategoryPreview.component";
 import useCategories from "@/hooks/useCategories.hook";
 
 interface CategoriesPreviewProps {}
