@@ -51,11 +51,11 @@ module.exports = {
         "unicorn/prevent-abbreviations": [
           2,
           {
-            checkProperties: true,
+            checkProperties: false,
             checkVariables: true,
             checkDefaultAndNamespaceImports: "internal",
             checkShorthandImports: "internal",
-            checkShorthandProperties: true,
+            checkShorthandProperties: false,
             checkFilenames: true,
             extendDefaultReplacements: true,
             extendDefaultAllowList: true,
