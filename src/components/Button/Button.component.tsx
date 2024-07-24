@@ -16,7 +16,7 @@ interface ButtonProps extends PropsWithChildren, ButtonHTMLAttributes<HTMLButton
 function Button({ children, variant, loading = false, disabled = false, ...otherProps }: ButtonProps) {
   return (
     <button
-      className={cn(styles["button-container"], variant ? BUTTON_VARIANT[variant] : "")}
+      className={cn(styles["button-container"], variant ? styles[BUTTON_VARIANT[variant]] : "")}
       disabled={disabled || loading}
       {...otherProps}
     >
