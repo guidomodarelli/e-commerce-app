@@ -18,7 +18,9 @@ export const cartReducer: Reducer<CartState, CartAction> = (state, action) => {
     case SET_CART_ITEMS:
       return {
         ...state,
-        ...action.payload,
+        cartItems: action.payload,
+        totalItems: action.payload.reduce((previous, current) => previous + current.quantity, 0),
+        totalPrice: action.payload.reduce((previous, current) => previous + current.price * current.quantity, 0),
       };
     default:
       throw new Error(`Unhandled type of ${type} in cartReducer`);

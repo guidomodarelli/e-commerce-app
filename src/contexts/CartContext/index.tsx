@@ -74,20 +74,6 @@ interface CartProviderProps extends PropsWithChildren {}
 function CartProvider({ children }: CartProviderProps) {
   const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
 
-  const updateCartItems = (newCartItems: CartItem[]) => {
-    const newTotalItems = newCartItems.reduce((previous, current) => previous + current.quantity, 0);
-    const newTotalPrice = newCartItems.reduce((previous, current) => previous + current.price * current.quantity, 0);
-
-    dispatch({
-      type: SET_CART_ITEMS,
-      payload: {
-        cartItems: newCartItems,
-        totalItems: newTotalItems,
-        totalPrice: newTotalPrice,
-      },
-    });
-  };
-
   const value: CartContextType = {
     ...state,
     openCart() {
@@ -97,16 +83,13 @@ function CartProvider({ children }: CartProviderProps) {
       dispatch({ type: SET_CART_IS_CLOSE });
     },
     addItemToCart(productToAdd: Product) {
-      const newCartItems = addCartItem(state.cartItems, productToAdd);
-      updateCartItems(newCartItems);
+      dispatch({ type: SET_CART_ITEMS, payload: addCartItem(state.cartItems, productToAdd) });
     },
     removeItemFromCart(cartItemToRemove: Product) {
-      const newCartItems = removeCartItem(state.cartItems, cartItemToRemove);
-      updateCartItems(newCartItems);
+      dispatch({ type: SET_CART_ITEMS, payload: removeCartItem(state.cartItems, cartItemToRemove) });
     },
     clearItemFromCart(cartItemToClear: Product) {
-      const newCartItems = clearCartItem(state.cartItems, cartItemToClear);
-      updateCartItems(newCartItems);
+      dispatch({ type: SET_CART_ITEMS, payload: clearCartItem(state.cartItems, cartItemToClear) });
     },
   };
 

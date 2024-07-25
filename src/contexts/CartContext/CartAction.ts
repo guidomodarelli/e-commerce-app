@@ -7,4 +7,4 @@ export const SET_CART_ITEMS = "SET_CART_ITEMS";
 export type CartAction =
   | Action<typeof SET_CART_IS_OPEN>
   | Action<typeof SET_CART_IS_CLOSE>
-  | ActionPayload<typeof SET_CART_ITEMS, Pick<CartState, "cartItems" | "totalPrice" | "totalItems">>;
+  | Action<typeof SET_CART_ITEMS, CartState["cartItems"]>;
