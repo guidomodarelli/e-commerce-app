@@ -1,8 +1,9 @@
 import { CartItem } from "@core/domain/entities/CartItem";
 import { Product } from "@core/domain/entities/Product";
-import { PropsWithChildren, Reducer, createContext, useContext, useReducer } from "react";
-import { CartState, INITIAL_STATE } from "./CartState";
-import { CartAction, SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./CartAction";
+import { PropsWithChildren, createContext, useContext, useReducer } from "react";
+import { INITIAL_STATE } from "./CartState";
+import { SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./CartAction";
+import { cartReducer } from "./CartReducer";
 
 interface CartContextType {
   isCartOpen: boolean;
@@ -66,29 +67,6 @@ const removeCartItem = (cartItems: CartItem[], cartItemToRemove: Product): CartI
 
 const clearCartItem = (cartItems: CartItem[], cartItemToClear: Product): CartItem[] => {
   return cartItems.filter((item) => item.id !== cartItemToClear.id);
-};
-
-const cartReducer: Reducer<CartState, CartAction> = (state, action) => {
-  const { type } = action;
-  switch (type) {
-    case SET_CART_IS_OPEN:
-      return {
-        ...state,
-        isCartOpen: true,
-      };
-    case SET_CART_IS_CLOSE:
-      return {
-        ...state,
-        isCartOpen: false,
-      };
-    case SET_CART_ITEMS:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    default:
-      throw new Error(`Unhandled type of ${type} in cartReducer`);
-  }
 };
 
 interface CartProviderProps extends PropsWithChildren {}
