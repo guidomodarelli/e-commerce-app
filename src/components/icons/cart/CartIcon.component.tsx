@@ -1,4 +1,4 @@
-import { useCart } from "@/contexts/Cart.context";
+import { useCart } from "@/contexts/CartContext";
 import styles from "./cart-icon.module.css";
 import { cn } from "@utils/cn";
 

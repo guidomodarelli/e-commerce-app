@@ -1,4 +1,4 @@
-import CartProvider from "@/contexts/Cart.context";
+import CartProvider from "@/contexts/CartContext";
 import { ProductsProvider } from "@/contexts/Products.context";
 import HeaderNavProvider from "@/contexts/HeaderNav.context";
 import { UserProvider } from "@/contexts/User.context";

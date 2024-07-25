@@ -1,6 +1,7 @@
 import { CartItem } from "@core/domain/entities/CartItem";
 import { Product } from "@core/domain/entities/Product";
 import { PropsWithChildren, Reducer, createContext, useContext, useReducer } from "react";
+import { CartState, INITIAL_STATE } from "./CartState";
 
 interface CartContextType {
   isCartOpen: boolean;
@@ -66,15 +67,6 @@ const clearCartItem = (cartItems: CartItem[], cartItemToClear: Product): CartIte
   return cartItems.filter((item) => item.id !== cartItemToClear.id);
 };
 
-const INITIAL_STATE = {
-  isCartOpen: false,
-  cartItems: [] as CartItem[],
-  totalItems: 0,
-  totalPrice: 0,
-};
-
-type CartState = typeof INITIAL_STATE;
-
 const SET_CART_IS_OPEN = "SET_CART_IS_OPEN";
 const SET_CART_IS_CLOSE = "SET_CART_IS_CLOSE";
 const SET_CART_ITEMS = "SET_CART_ITEMS";
@@ -84,7 +76,7 @@ type CartAction =
   | Action<typeof SET_CART_IS_CLOSE>
   | ActionPayload<typeof SET_CART_ITEMS, Pick<CartState, "cartItems" | "totalPrice" | "totalItems">>;
 
-const cartReducer: Reducer<CartState, CartAction> = (state: typeof INITIAL_STATE, action: CartAction) => {
+const cartReducer: Reducer<CartState, CartAction> = (state, action) => {
   const { type } = action;
   switch (type) {
     case SET_CART_IS_OPEN:

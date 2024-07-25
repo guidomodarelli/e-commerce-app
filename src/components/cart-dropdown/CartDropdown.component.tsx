@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button.component";
 import styles from "./cart-dropdown.module.css";
 import CartItem from "./cart-item/CartItem.component";
-import { useCart } from "@/contexts/Cart.context";
+import { useCart } from "@/contexts/CartContext";
 import { useHeaderNav } from "@/contexts/HeaderNav.context";
 import { useClickAway } from "react-use";
 import { useRef } from "react";
