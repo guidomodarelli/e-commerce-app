@@ -31,6 +31,8 @@ module.exports = {
       ],
       plugins: ["react-refresh", "unicorn"],
       rules: {
+        "@typescript-eslint/no-extraneous-class": "off",
+        "unicorn/no-static-only-class": "off",
         "@typescript-eslint/restrict-template-expressions": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-empty-function": "off",

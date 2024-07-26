@@ -1,6 +1,7 @@
 import { Reducer } from "react";
 import { CartState } from "./CartState";
 import { CartAction, SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./CartAction";
+import { Cart } from "@core/domain/entities/Cart";
 
 export const cartReducer: Reducer<CartState, CartAction> = (state, action) => {
   const { type } = action;
@@ -19,8 +20,8 @@ export const cartReducer: Reducer<CartState, CartAction> = (state, action) => {
       return {
         ...state,
         cartItems: action.payload,
-        totalItems: action.payload.reduce((previous, current) => previous + current.quantity, 0),
-        totalPrice: action.payload.reduce((previous, current) => previous + current.price * current.quantity, 0),
+        totalItems: Cart.getTotalItems(action.payload),
+        totalPrice: Cart.getTotalPrice(action.payload),
       };
     default:
       throw new Error(`Unhandled type of ${type} in cartReducer`);
