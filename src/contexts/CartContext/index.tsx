@@ -1,9 +1,10 @@
+import { Cart } from "@core/domain/entities/Cart";
 import { CartItem } from "@core/domain/entities/CartItem";
 import { Product } from "@core/domain/entities/Product";
 import { PropsWithChildren, createContext, useContext, useReducer } from "react";
-import { INITIAL_STATE } from "./CartState";
 import { SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./CartAction";
 import { cartReducer } from "./CartReducer";
+import { INITIAL_STATE } from "./CartState";
 
 interface CartContextType {
   isCartOpen: boolean;
@@ -33,42 +34,6 @@ export const useCart = () => {
   return useContext(CartContext);
 };
 
-const addCartItem = (cartItems: CartItem[], productToAdd: Product): CartItem[] => {
-  const cartItem = cartItems.find((item) => item.id === productToAdd.id);
-
-  if (cartItem) {
-    cartItem.quantity += 1;
-
-    return [...cartItems];
-  }
-
-  return [
-    ...cartItems,
-    {
-      ...productToAdd,
-      quantity: 1,
-    },
-  ];
-};
-
-const removeCartItem = (cartItems: CartItem[], cartItemToRemove: Product): CartItem[] => {
-  const cartItem = cartItems.find((item) => item.id === cartItemToRemove.id);
-
-  if (cartItem) {
-    cartItem.quantity -= 1;
-
-    if (cartItem.quantity === 0) {
-      return cartItems.filter((item) => item.id !== cartItemToRemove.id);
-    }
-  }
-
-  return [...cartItems];
-};
-
-const clearCartItem = (cartItems: CartItem[], cartItemToClear: Product): CartItem[] => {
-  return cartItems.filter((item) => item.id !== cartItemToClear.id);
-};
-
 interface CartProviderProps extends PropsWithChildren {}
 
 function CartProvider({ children }: CartProviderProps) {
@@ -83,13 +48,13 @@ function CartProvider({ children }: CartProviderProps) {
       dispatch({ type: SET_CART_IS_CLOSE });
     },
     addItemToCart(productToAdd: Product) {
-      dispatch({ type: SET_CART_ITEMS, payload: addCartItem(state.cartItems, productToAdd) });
+      dispatch({ type: SET_CART_ITEMS, payload: Cart.add(state.cartItems, productToAdd) });
     },
-    removeItemFromCart(cartItemToRemove: Product) {
-      dispatch({ type: SET_CART_ITEMS, payload: removeCartItem(state.cartItems, cartItemToRemove) });
+    removeItemFromCart(cartItemToUpdate: Product) {
+      dispatch({ type: SET_CART_ITEMS, payload: Cart.updateOrRemove(state.cartItems, cartItemToUpdate) });
     },
-    clearItemFromCart(cartItemToClear: Product) {
-      dispatch({ type: SET_CART_ITEMS, payload: clearCartItem(state.cartItems, cartItemToClear) });
+    clearItemFromCart(cartItemToRemove: Product) {
+      dispatch({ type: SET_CART_ITEMS, payload: Cart.remove(state.cartItems, cartItemToRemove) });
     },
   };
 
