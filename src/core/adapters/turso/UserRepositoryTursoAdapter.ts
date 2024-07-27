@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prevent-abbreviations */
 import { Client } from "@libsql/client";
 import { User } from "@core/domain/entities";
 import { InfoExtra, UserRepository } from "@core/ports";
