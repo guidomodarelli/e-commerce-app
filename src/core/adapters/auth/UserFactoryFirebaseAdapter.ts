@@ -1,5 +1,5 @@
 import { User } from "@core/domain/entities";
-import { Factory } from "@core/ports/factories/UserFactory";
+import { Factory } from "@core/types/Factory";
 import { UserInfo } from "firebase/auth";
 
 export const UserFactoryFirebaseAdapter: Factory<UserInfo, User> = {
