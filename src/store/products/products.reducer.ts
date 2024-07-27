@@ -1,6 +1,7 @@
 import { Reducer } from "redux";
-import { ProductAction, SET_PRODUCTS } from "./products.actions";
+import { ProductAction } from "./products.actions";
 import { INITIAL_STATE, ProductState } from "./products.state";
+import { SET_PRODUCTS } from "./products.types";
 
 export const productReducer: Reducer<ProductState, ProductAction> = (state = INITIAL_STATE, action): ProductState => {
   const { type, payload } = action;

@@ -1,7 +1,6 @@
 import { Product } from "@core/domain/entities";
 import { Dispatch } from "redux";
-
-export const SET_PRODUCTS = "products/SET_PRODUCTS";
+import { SET_PRODUCTS } from "./products.types";
 
 export const ProductAction = (dispatch: Dispatch<ProductAction>) => {
   return {

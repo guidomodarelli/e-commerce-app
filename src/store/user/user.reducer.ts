@@ -1,6 +1,7 @@
 import { Reducer } from "redux";
 import { INITIAL_STATE, UserState } from "./user.state";
-import { SET_CURRENT_USER, UserAction } from "./user.actions";
+import { UserAction } from "./user.actions";
+import { SET_CURRENT_USER } from "./user.types";
 
 export const userReducer: Reducer<UserState, UserAction> = (state = INITIAL_STATE, action): UserState => {
   const { type, payload } = action;
