@@ -1,6 +1,5 @@
 import { User } from "@core/domain/entities";
 
-export interface UserAuthWithEmailAndPassword {
-  signUp(email: string, password: string): Promise<User>;
+export interface UserAuthSignInWithEmailAndPassword {
   signIn(email: string, password: string): Promise<User>;
 }

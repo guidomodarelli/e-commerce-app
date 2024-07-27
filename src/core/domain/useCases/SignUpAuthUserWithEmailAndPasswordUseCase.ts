@@ -1,6 +1,6 @@
-import { UserAuthWithEmailAndPassword } from "@core/ports";
+import { UserAuthSignUpWithEmailAndPassword } from "@core/ports";
 
 export const signUpAuthUserWithEmailAndPasswordUseCase =
-  (userAuth: UserAuthWithEmailAndPassword) => (email: string, password: string) => {
-    return userAuth.signUp(email, password);
+  (userAuth: UserAuthSignUpWithEmailAndPassword) => (email: string, password: string, displayName: string) => {
+    return userAuth.signUp(email, password, displayName);
   };
