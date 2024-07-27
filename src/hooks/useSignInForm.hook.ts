@@ -15,7 +15,6 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { saveUser, signInWithEmailAndPassword, signInWithGoogle } from "@/setup";
-import { User } from "@core/domain/entities";
 const schema = z.object({
   email: z.string().email().default(""),
   password: z.string().min(8).default(""),
@@ -49,11 +48,7 @@ function useSignInForm() {
   };
 
   const signInWithGoogleHandler = async () => {
-    const userCredential = await signInWithGoogle();
-    const user = new User({
-      id: userCredential.user.uid,
-      ...userCredential.user,
-    });
+    const user = await signInWithGoogle();
     await saveUser(user);
     onSuccessSignIn();
   };

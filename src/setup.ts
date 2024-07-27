@@ -28,6 +28,7 @@ import {
   User,
 } from "firebase/auth";
 import { firebaseConfig, tursoConfig } from "./config";
+import { UserFactoryFirebaseAdapter } from "@core/adapters/auth/UserFactoryFirebaseAdapter";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -42,7 +43,10 @@ const userRepository: UserRepository = new UserRepositoryDrizzleAdapter(db);
 const productRepository: ProductRepository = new ProductRepositoryDrizzleAdapter(db);
 const categoryRepository: CategoryRepository = new CategoryRepositoryDrizzleAdapter(db);
 
-export const signInWithGoogle = () => signInWithPopup(auth, provider);
+export const signInWithGoogle = async () => {
+  const { user } = await signInWithPopup(auth, provider);
+  return UserFactoryFirebaseAdapter.create(user);
+};
 export const onAuthStateChanged = (callback: NextOrObserver<User>) => onAuthStateChangedFirebase(auth, callback);
 export const signInWithEmailAndPassword = signInAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
 export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
