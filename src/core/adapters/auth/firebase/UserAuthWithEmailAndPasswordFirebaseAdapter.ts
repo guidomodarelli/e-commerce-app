@@ -11,8 +11,8 @@ export class UserAuthWithEmailAndPasswordFirebaseAdapter
     const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
     return new User({
       id: userCredential.user.uid,
-      ...userCredential.user,
       displayName,
+      email: userCredential.user.email,
     });
   }
 

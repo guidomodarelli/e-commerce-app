@@ -39,10 +39,8 @@ function useSignUp() {
 
   const onSubmit: SubmitHandler<SignUpFormFields> = async (data) => {
     try {
-      const user = await signUpWithEmailAndPassword(data.email, data.password);
-      await saveUser(user, {
-        displayName: getValues("displayName"),
-      });
+      const user = await signUpWithEmailAndPassword(data.email, data.password, getValues("displayName"));
+      await saveUser(user);
       onSuccessSignUp();
     } catch (error) {
       if (error instanceof FirebaseError) {
