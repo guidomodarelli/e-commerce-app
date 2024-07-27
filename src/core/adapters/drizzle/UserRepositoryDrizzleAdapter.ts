@@ -1,6 +1,6 @@
 import { LibSQLDatabase } from "drizzle-orm/libsql";
-import { User } from "../../domain/entities/User";
-import { InfoExtra, UserRepository } from "../../ports/UserRepository.port";
+import { User } from "@core/domain/entities";
+import { InfoExtra, UserRepository } from "@core/ports";
 import * as schema from "./schema";
 
 export class UserRepositoryDrizzleAdapter implements UserRepository {

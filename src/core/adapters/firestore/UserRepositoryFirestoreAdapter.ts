@@ -1,5 +1,5 @@
-import { User } from "../../domain/entities/User";
-import { UserRepository } from "../../ports/UserRepository.port";
+import { User } from "@core/domain/entities";
+import { UserRepository } from "@core/ports";
 import { doc, Firestore, getDoc, setDoc } from "firebase/firestore";
 
 export class UserRepositoryFirestoreAdapter implements UserRepository {

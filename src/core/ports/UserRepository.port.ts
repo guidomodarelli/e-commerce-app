@@ -1,5 +1,4 @@
-import { User } from "../domain/entities/User";
-
+import { User } from "@core/domain/entities";
 export interface InfoExtra {
   displayName: string;
 }

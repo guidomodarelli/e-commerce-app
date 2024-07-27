@@ -1,4 +1,4 @@
-import { UserAuthWithEmailAndPassword } from "@core/ports/UserAuthWithEmailAndPassword.port";
+import { UserAuthWithEmailAndPassword } from "@core/ports";
 
 export const signInAuthUserWithEmailAndPasswordUseCase =
   (userAuth: UserAuthWithEmailAndPassword) => (email: string, password: string) => {
