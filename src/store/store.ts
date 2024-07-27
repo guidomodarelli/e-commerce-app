@@ -7,3 +7,5 @@ const middleWares = [logger] as Middleware[];
 const composedEnhancers = compose(applyMiddleware(...middleWares));
 
 export const store = createStore(rootReducer, undefined, composedEnhancers);
+
+export type AppRootState = ReturnType<typeof store.getState>;

@@ -1,5 +1,5 @@
 import Loader from "@/components/Loaders/loader/Loader.component";
-import { useUser } from "@/contexts/User.context";
+import { useUserSelector } from "@store/user";
 import { PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffectOnce } from "react-use";
@@ -7,7 +7,7 @@ import { useEffectOnce } from "react-use";
 interface UserNotAuthenticatedProps extends PropsWithChildren {}
 
 function UserNotAuthenticated({ children }: UserNotAuthenticatedProps) {
-  const { currentUser } = useUser();
+  const { currentUser } = useUserSelector();
   const navigate = useNavigate();
 
   useEffectOnce(() => {

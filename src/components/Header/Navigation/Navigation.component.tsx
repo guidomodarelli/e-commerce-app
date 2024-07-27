@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import { signOut } from "@/setup";
 import { useHeaderNav } from "@/contexts/HeaderNav.context";
-import { useUser } from "@/contexts/User.context";
+import { useUserSelector } from "@store/user";
 
 interface NavigationProps {}
 
 function Navigation({}: NavigationProps) {
-  const { currentUser } = useUser();
+  const { currentUser } = useUserSelector();
   const { isHeaderNavOpen, closeHeaderNav, openHeaderNav } = useHeaderNav();
 
   return (
