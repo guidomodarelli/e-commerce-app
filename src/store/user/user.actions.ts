@@ -1,7 +1,7 @@
 import { User } from "@core/domain/entities";
 import { Dispatch } from "redux";
 
-export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const SET_CURRENT_USER = "user/SET_CURRENT_USER";
 
 export const UserAction = (dispatch: Dispatch<UserAction>) => {
   return {
