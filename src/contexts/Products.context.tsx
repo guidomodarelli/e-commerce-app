@@ -1,26 +1,23 @@
-import { PropsWithChildren, createContext, useContext } from "react";
 import { getProducts } from "@/setup";
-import { Product } from "@core/domain/entities";
+import { ProductAction, useProductSelector } from "@store/products";
 import { useQuery } from "@tanstack/react-query";
-
-interface ProductsContextType {
-  products: Product[];
-}
-
-export const ProductsContext = createContext<ProductsContextType>({
-  products: [],
-});
+import { useDispatch } from "react-redux";
 
 export function useProducts() {
-  return useContext(ProductsContext);
+  const dispatch = useDispatch();
+  const productAction = ProductAction(dispatch);
+  const { list } = useProductSelector();
+
+  useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const products = await getProducts();
+      productAction.setProducts(products);
+      return products;
+    },
+  });
+
+  return {
+    products: list,
+  };
 }
-
-interface ProductsProviderProps extends PropsWithChildren {}
-
-export const ProductsProvider = ({ children }: ProductsProviderProps) => {
-  const { data: products = [] } = useQuery({ queryKey: ["products"], queryFn: getProducts });
-
-  const value = { products };
-
-  return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
-};
