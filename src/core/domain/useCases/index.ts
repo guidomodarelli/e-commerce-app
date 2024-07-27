@@ -3,5 +3,6 @@ export * from "./GetProductsGroupByCategoriesUseCase";
 export * from "./SaveAllProductsUseCase";
 export * from "./SaveAuthUserUseCase";
 export * from "./SignInAuthUserWithEmailAndPasswordUseCase";
+export * from "./SignInWithGoogleUseCase";
 export * from "./SignOutUserUseCase";
 export * from "./SignUpAuthUserWithEmailAndPasswordUseCase";

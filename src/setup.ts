@@ -1,9 +1,9 @@
 import {
   CategoryRepositoryDrizzleAdapter,
   ProductRepositoryDrizzleAdapter,
+  UserAuthSignInProviderFirebaseAdapter,
   UserAuthSignOutFirebaseAdapter,
   UserAuthWithEmailAndPasswordFirebaseAdapter,
-  UserFactoryFirebaseAdapter,
   UserRepositoryDrizzleAdapter,
 } from "@core/adapters";
 import * as schema from "@core/adapters/drizzle/schema";
@@ -13,6 +13,7 @@ import {
   saveAllProductsUseCase,
   saveAuthUserUseCase,
   signInAuthUserWithEmailAndPasswordUseCase,
+  signInWithGoogleUseCase,
   signOutUserUseCase,
   signUpAuthUserWithEmailAndPasswordUseCase,
 } from "@core/domain/useCases";
@@ -25,7 +26,6 @@ import {
   GoogleAuthProvider,
   NextOrObserver,
   onAuthStateChanged as onAuthStateChangedFirebase,
-  signInWithPopup,
   User,
 } from "firebase/auth";
 import { firebaseConfig, tursoConfig } from "./config";
@@ -38,15 +38,13 @@ const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 
 const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth);
+const userAuthSignInProvider = new UserAuthSignInProviderFirebaseAdapter(auth, provider);
 const userAuthSignOut = new UserAuthSignOutFirebaseAdapter(auth);
 const userRepository: UserRepository = new UserRepositoryDrizzleAdapter(db);
 const productRepository: ProductRepository = new ProductRepositoryDrizzleAdapter(db);
 const categoryRepository: CategoryRepository = new CategoryRepositoryDrizzleAdapter(db);
 
-export const signInWithGoogle = async () => {
-  const { user } = await signInWithPopup(auth, provider);
-  return UserFactoryFirebaseAdapter.create(user);
-};
+export const signInWithGoogle = signInWithGoogleUseCase(userAuthSignInProvider);
 export const onAuthStateChanged = (callback: NextOrObserver<User>) => onAuthStateChangedFirebase(auth, callback);
 export const signInWithEmailAndPassword = signInAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
 export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
