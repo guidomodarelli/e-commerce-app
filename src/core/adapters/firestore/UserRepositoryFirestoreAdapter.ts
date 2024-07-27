@@ -5,7 +5,7 @@ import { doc, Firestore, getDoc, setDoc } from "firebase/firestore";
 export class UserRepositoryFirestoreAdapter implements UserRepository {
   constructor(private readonly database: Firestore) {}
 
-  async save<Info>(user: User, additionalInformation?: Info | undefined): Promise<void> {
+  async save<Info>(user: User, extra?: Info | undefined): Promise<void> {
     const userDocumentReference = doc(this.database, "users", user.id);
 
     const userSnapshot = await getDoc(userDocumentReference);
@@ -18,7 +18,7 @@ export class UserRepositoryFirestoreAdapter implements UserRepository {
           displayName,
           email,
           createdAt,
-          ...additionalInformation,
+          ...extra,
         });
       } catch (error) {
         const _error = error as Error;
