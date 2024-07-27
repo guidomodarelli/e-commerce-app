@@ -10,6 +10,7 @@ export class UserRepositoryDrizzleAdapter implements UserRepository {
     const displayName = user.displayName ?? extra?.displayName ?? "";
     try {
       await this.db.insert(schema.users).values({
+        id: user.id,
         email: user.email,
         displayName,
       });
