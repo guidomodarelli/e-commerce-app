@@ -1,6 +1,7 @@
 import {
   CategoryRepositoryDrizzleAdapter,
   ProductRepositoryDrizzleAdapter,
+  UserAuthSignOutFirebaseAdapter,
   UserAuthWithEmailAndPasswordFirebaseAdapter,
   UserRepositoryDrizzleAdapter,
 } from "@core/adapters";
@@ -36,6 +37,7 @@ const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 
 const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth);
+const userAuthSignOut = new UserAuthSignOutFirebaseAdapter(auth);
 const userRepository: UserRepository = new UserRepositoryDrizzleAdapter(db);
 const productRepository: ProductRepository = new ProductRepositoryDrizzleAdapter(db);
 const categoryRepository: CategoryRepository = new CategoryRepositoryDrizzleAdapter(db);
@@ -44,7 +46,7 @@ export const signInWithGoogle = () => signInWithPopup(auth, provider);
 export const onAuthStateChanged = (callback: NextOrObserver<User>) => onAuthStateChangedFirebase(auth, callback);
 export const signInWithEmailAndPassword = signInAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
 export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword);
-export const signOut = signOutUserUseCase(userAuthWithEmailAndPassword);
+export const signOut = signOutUserUseCase(userAuthSignOut);
 export const saveUser = saveAuthUserUseCase(userRepository);
 export const saveAllProducts = saveAllProductsUseCase(productRepository);
 export const getProducts = getProductsUseCase(productRepository);

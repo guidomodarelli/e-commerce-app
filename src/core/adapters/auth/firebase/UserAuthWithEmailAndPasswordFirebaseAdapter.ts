@@ -1,4 +1,4 @@
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { User } from "@core/domain/entities";
 import { UserAuthWithEmailAndPassword } from "@core/ports";
 
@@ -19,9 +19,5 @@ export class UserAuthWithEmailAndPasswordFirebaseAdapter implements UserAuthWith
       id: userCredential.user.uid,
       ...userCredential.user,
     });
-  }
-
-  signOut(): Promise<void> {
-    return signOut(this.auth);
   }
 }
