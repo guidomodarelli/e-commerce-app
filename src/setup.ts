@@ -3,6 +3,7 @@ import {
   ProductRepositoryDrizzleAdapter,
   UserAuthSignOutFirebaseAdapter,
   UserAuthWithEmailAndPasswordFirebaseAdapter,
+  UserFactoryFirebaseAdapter,
   UserRepositoryDrizzleAdapter,
 } from "@core/adapters";
 import * as schema from "@core/adapters/drizzle/schema";
@@ -28,7 +29,6 @@ import {
   User,
 } from "firebase/auth";
 import { firebaseConfig, tursoConfig } from "./config";
-import { UserFactoryFirebaseAdapter } from "@core/adapters/auth/UserFactoryFirebaseAdapter";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
