@@ -1,4 +1,4 @@
-import { Category } from "@core/domain/entities/Category";
+import { Category } from "@core/domain/entities";
 import styles from "./CategoryItem.module.css";
 import { Link } from "react-router-dom";
 

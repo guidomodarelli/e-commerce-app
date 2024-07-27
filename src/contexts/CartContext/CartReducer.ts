@@ -1,8 +1,7 @@
 import { Reducer } from "react";
 import { CartState } from "./CartState";
 import { CartAction, SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./CartAction";
-import { Cart } from "@core/domain/entities/Cart";
-
+import { Cart } from "@core/domain/entities";
 export const cartReducer: Reducer<CartState, CartAction> = (state, action) => {
   const { type } = action;
   switch (type) {

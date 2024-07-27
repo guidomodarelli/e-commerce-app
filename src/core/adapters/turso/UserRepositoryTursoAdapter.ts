@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/prevent-abbreviations */
 import { Client } from "@libsql/client";
-import { User } from "../../domain/entities/User";
-import { InfoExtra, UserRepository } from "../../ports/UserRepository.port";
+import { User } from "@core/domain/entities";
+import { InfoExtra, UserRepository } from "@core/ports";
 
 export class UserRepositoryTursoAdapter implements UserRepository {
   constructor(private readonly turso: Client) {}

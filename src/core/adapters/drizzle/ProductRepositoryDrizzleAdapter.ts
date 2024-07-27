@@ -1,4 +1,4 @@
-import { ProductRepository } from "@core/ports/ProductRepository.port";
+import { ProductRepository } from "@core/ports";
 import { BatchItem } from "drizzle-orm/batch";
 import { LibSQLDatabase } from "drizzle-orm/libsql";
 import { category as categorySchema, products as productsSchema } from "./schema";

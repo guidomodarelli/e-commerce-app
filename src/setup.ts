@@ -1,17 +1,18 @@
-import { UserAuthWithEmailAndPasswordFirebaseAdapter } from "@core/adapters/auth/firebase";
 import {
   CategoryRepositoryDrizzleAdapter,
   ProductRepositoryDrizzleAdapter,
+  UserAuthWithEmailAndPasswordFirebaseAdapter,
   UserRepositoryDrizzleAdapter,
-} from "@core/adapters/drizzle";
+} from "@core/adapters";
+import * as schema from "@core/adapters/drizzle/schema";
 import {
+  getCategoriesUseCase,
   getProductsUseCase,
   saveAllProductsUseCase,
   saveAuthUserUseCase,
   signInAuthUserWithEmailAndPasswordUseCase,
   signOutUserUseCase,
   signUpAuthUserWithEmailAndPasswordUseCase,
-  getCategoriesUseCase,
 } from "@core/domain/useCases";
 import { CategoryRepository, ProductRepository, UserRepository } from "@core/ports";
 import { createClient } from "@libsql/client";
@@ -26,7 +27,6 @@ import {
   User,
 } from "firebase/auth";
 import { firebaseConfig, tursoConfig } from "./config";
-import * as schema from "@core/adapters/drizzle/schema";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();

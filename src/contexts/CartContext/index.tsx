@@ -1,6 +1,4 @@
-import { Cart } from "@core/domain/entities/Cart";
-import { CartItem } from "@core/domain/entities/CartItem";
-import { Product } from "@core/domain/entities/Product";
+import { Cart, CartItem, Product } from "@core/domain/entities";
 import { PropsWithChildren, createContext, useContext, useReducer } from "react";
 import { SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./CartAction";
 import { cartReducer } from "./CartReducer";

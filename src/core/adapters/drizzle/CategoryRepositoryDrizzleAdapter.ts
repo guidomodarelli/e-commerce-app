@@ -1,5 +1,5 @@
 import { Category } from "@core/domain/entities";
-import { CategoryRepository } from "@core/ports/CategoryRepository.port";
+import { CategoryRepository } from "@core/ports";
 import { LibSQLDatabase } from "drizzle-orm/libsql";
 import * as schema from "@core/adapters/drizzle/schema";
 
