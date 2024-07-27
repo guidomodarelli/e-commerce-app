@@ -1,4 +1,4 @@
-import { useProducts } from "@/contexts/Products.context";
+import { useProducts } from "@/hooks/useProducts.hook";
 import useCategories from "@/hooks/useCategories.hook";
 import CategoryPreview from "@components/Categories/CategoriesPreview/CategoryPreview/CategoryPreview.component";
 import { useEffect } from "react";

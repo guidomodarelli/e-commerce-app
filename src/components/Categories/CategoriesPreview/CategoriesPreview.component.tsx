@@ -1,4 +1,4 @@
-import { useProducts } from "@/contexts/Products.context";
+import { useProducts } from "@/hooks/useProducts.hook";
 import CategoryPreview from "./CategoryPreview/CategoryPreview.component";
 import useCategories from "@/hooks/useCategories.hook";
 
