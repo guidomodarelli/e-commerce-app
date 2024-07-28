@@ -1,6 +1,6 @@
 import styles from "./FormInput.module.css";
 import { cn } from "@/utils/cn";
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, ReactNode } from "react";
 import FormError from "./FormError/FormError.components";
 
 interface FormInputProps {
@@ -11,24 +11,21 @@ interface FormInputProps {
 }
 
 function FormInput({ label, dirty, inputAttributes = {}, error }: FormInputProps) {
+  let labelRender: ReactNode;
+  if (label) {
+    labelRender = <label className={cn({ shrink: dirty }, styles["form-input-label"])}>{label}</label>;
+  }
+
+  let errorRender: ReactNode;
+  if (error) {
+    errorRender = <FormError>{error}</FormError>;
+  }
+
   return (
     <div className={styles.group}>
       <input className={styles["form-input"]} {...inputAttributes} />
-      {label ? (
-        <label
-          className={cn(
-            {
-              shrink: dirty,
-            },
-            styles["form-input-label"],
-          )}
-        >
-          {label}
-        </label>
-      ) : (
-        <></>
-      )}
-      {error ? <FormError>{error}</FormError> : <></>}
+      {labelRender}
+      {errorRender}
     </div>
   );
 }
