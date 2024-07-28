@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 function Category() {
   const { categories, getCategoryId, hasBeenFetched } = useCategories();
   const { products } = useProducts();
-  const { categoryTitle } = useParams();
+  const { categoryTitle = "" } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {

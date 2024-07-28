@@ -1,13 +1,13 @@
 import { getCategories } from "@/setup";
 import { Category } from "@core/domain/entities";
-import { CategoryAction, useCategorySelector } from "@store/categories";
+import { CategoryAction, getCategoryIdSelector, useCategorySelector } from "@store/categories";
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 
 interface CategoriesOutput {
   categories: Category[];
   hasBeenFetched: boolean;
-  getCategoryId: (categoryTitle?: Category["title"]) => Category["id"] | undefined;
+  getCategoryId: (categoryTitle: Category["title"]) => Category["id"] | undefined;
 }
 
 function useCategories(): CategoriesOutput {
@@ -25,8 +25,8 @@ function useCategories(): CategoriesOutput {
     return categories;
   }
 
-  const getCategoryId = (categoryTitle?: Category["title"]) => {
-    return list?.find((category) => category.title === categoryTitle)?.id;
+  const getCategoryId = (categoryTitle: Category["title"]) => {
+    return getCategoryIdSelector(list, categoryTitle);
   };
 
   return {
