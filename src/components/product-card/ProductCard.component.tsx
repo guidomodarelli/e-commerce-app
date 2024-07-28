@@ -3,6 +3,7 @@ import Button from "../Button/Button.component";
 import styles from "./product-card.module.css";
 import { useCart } from "@/contexts/CartContext";
 import { Product } from "@core/domain/entities";
+import { formatCurrency } from "@utils/format-currency";
 
 interface ProductCardProps {
   product: Product;
@@ -32,12 +33,7 @@ function ProductCard({ product }: ProductCardProps) {
       </div>
       <div className={styles.footer}>
         <span className={styles.name}>{name}</span>
-        <span className={styles.price}>
-          {Intl.NumberFormat("EN-en", {
-            style: "currency",
-            currency: "USD",
-          }).format(price)}
-        </span>
+        <span className={styles.price}>{formatCurrency(price)}</span>
       </div>
     </div>
   );

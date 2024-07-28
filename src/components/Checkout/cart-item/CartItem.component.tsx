@@ -1,6 +1,7 @@
 import { CartItem as CartItemType } from "@core/domain/entities";
 import styles from "./cart-item.module.css";
 import { useCart } from "@/contexts/CartContext";
+import { formatCurrency } from "@utils/format-currency";
 
 interface CartItemProps {
   cartItem: CartItemType;
@@ -37,18 +38,8 @@ function CartItem({ cartItem }: CartItemProps) {
           &#10095;
         </div>
       </div>
-      <span className={styles.price}>
-        {Intl.NumberFormat("EN-en", {
-          style: "currency",
-          currency: "USD",
-        }).format(price)}
-      </span>
-      <span className={styles.price}>
-        {Intl.NumberFormat("EN-en", {
-          style: "currency",
-          currency: "USD",
-        }).format(price * quantity)}
-      </span>
+      <span className={styles.price}>{formatCurrency(price)}</span>
+      <span className={styles.price}>{formatCurrency(price * quantity)}</span>
       <div className={styles["remove-button"]} onClick={clearItemHandler}>
         &#10005;
       </div>

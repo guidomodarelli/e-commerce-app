@@ -1,6 +1,7 @@
 import { useCart } from "@/contexts/CartContext";
 import CartItem from "./cart-item/CartItem.component";
 import styles from "./checkout.module.css";
+import { formatCurrency } from "@utils/format-currency";
 
 interface Header {
   key: React.Key;
@@ -31,13 +32,7 @@ function Checkout({}: CheckoutProps) {
       {cartItems.map((cartItem) => (
         <CartItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <span className={styles.total}>
-        Total:{" "}
-        {Intl.NumberFormat("EN-en", {
-          style: "currency",
-          currency: "USD",
-        }).format(totalPrice)}
-      </span>
+      <span className={styles.total}>Total: {formatCurrency(totalPrice)}</span>
     </section>
   );
 }
