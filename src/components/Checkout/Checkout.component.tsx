@@ -2,19 +2,29 @@ import { useCart } from "@/contexts/CartContext";
 import CartItem from "./cart-item/CartItem.component";
 import styles from "./checkout.module.css";
 
+interface Header {
+  key: React.Key;
+  title: string;
+}
+
 interface CheckoutProps {}
 
 function Checkout({}: CheckoutProps) {
   const { cartItems, totalPrice } = useCart();
 
-  const headers: string[] = ["Product", "Description", "Quantity", "Unit", "SubTotal", "Remove"];
+  const headers: Header[] = ["Product", "Description", "Quantity", "Unit", "SubTotal", "Remove"].map(
+    (header, index) => ({
+      title: header,
+      key: `${header}-${index}`,
+    }),
+  );
 
   return (
     <section className={styles["checkout-container"]}>
       <div className={styles["checkout-header"]}>
-        {headers.map((header, index) => (
-          <div key={`${header}-${index.toString()}`} className={styles["header-block"]}>
-            <span>{header}</span>
+        {headers.map(({ title, key }) => (
+          <div key={key} className={styles["header-block"]}>
+            <span>{title}</span>
           </div>
         ))}
       </div>
