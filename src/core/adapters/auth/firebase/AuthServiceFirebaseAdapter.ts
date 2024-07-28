@@ -5,7 +5,7 @@ import { Auth, onAuthStateChanged } from "firebase/auth";
 import { UserFactoryFirebaseAdapter } from "../UserFactoryFirebaseAdapter";
 
 export class AuthServiceFirebaseAdapter implements AuthService {
-  private readonly authStateSubject = new Subject<User | null>();
+  private readonly authState$ = new Subject<User | null>();
 
   constructor(auth: Auth) {
     onAuthStateChanged(auth, (user) => {
@@ -18,15 +18,15 @@ export class AuthServiceFirebaseAdapter implements AuthService {
   }
 
   loggedIn(user: User): void {
-    this.authStateSubject.next(user);
+    this.authState$.next(user);
   }
 
   loggedOut(): void {
-    this.authStateSubject.next(null);
+    this.authState$.next(null);
   }
 
   onAuthStateChange(callback: (user: User | null) => void): () => void {
-    const subscription = this.authStateSubject.pipe(debounceTime(50)).subscribe(callback);
+    const subscription = this.authState$.pipe(debounceTime(50)).subscribe(callback);
 
     return () => {
       subscription.unsubscribe();
