@@ -9,6 +9,7 @@ import { signOut } from "@/setup";
 import { useHeaderNav } from "@/contexts/HeaderNav.context";
 import { useUserSelector } from "@store/user";
 import { toast } from "sonner";
+import NavItem from "./NavItem.component";
 
 interface NavigationProps {}
 
@@ -19,7 +20,6 @@ function Navigation({}: NavigationProps) {
   const signOutHandler = async () => {
     toast.success("You are logged out successfully!");
     await signOut();
-    closeHeaderNav();
   };
 
   return (
@@ -30,27 +30,23 @@ function Navigation({}: NavigationProps) {
       <nav className={cn(styles.navigation, { flex: isHeaderNavOpen })}>
         <ul className={styles["nav-links-container"]}>
           <li>
-            <Link onClick={closeHeaderNav} className={styles["nav-link"]} to={"/shop"}>
-              SHOP
-            </Link>
+            <NavItem to="/shop">SHOP</NavItem>
           </li>
           <li>
             {currentUser === undefined ? (
-              <div className={styles["nav-link"]}>
+              <NavItem to="/signIn">
                 <Loader />
-              </div>
+              </NavItem>
             ) : currentUser === null ? (
-              <Link onClick={closeHeaderNav} className={styles["nav-link"]} to={"/signIn"}>
-                SIGN IN
-              </Link>
+              <NavItem to="/signIn">SIGN IN</NavItem>
             ) : (
-              <span className={styles["nav-link"]} onClick={signOutHandler}>
-                SIGN OUT
-              </span>
+              <NavItem onClick={signOutHandler}>SIGN OUT</NavItem>
             )}
           </li>
           <li>
-            <CartIcon />
+            <NavItem>
+              <CartIcon />
+            </NavItem>
           </li>
         </ul>
         <CartDropdown />
