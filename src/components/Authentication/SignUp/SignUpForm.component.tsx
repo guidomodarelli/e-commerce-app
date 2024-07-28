@@ -6,7 +6,7 @@ import { InputHTMLAttributes } from "react";
 import { GlobalError } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { SignUpFormFields } from "./sign-up.schema";
-import useSignUpForm from "../../../hooks/useSignUpForm.hook";
+import useSignUpForm from "@/hooks/useSignUpForm.hook";
 
 interface FormFields {
   label: string;
