@@ -42,7 +42,7 @@ importers:
         specifier: 7.52.1
         version: 7.52.1(react@18.3.1)
       react-redux:
-        specifier: ^9.1.2
+        specifier: 9.1.2
         version: 9.1.2(@types/react@18.3.3)(react@18.3.1)(redux@5.0.1)
       react-router-dom:
         specifier: 6.25.1
@@ -51,11 +51,14 @@ importers:
         specifier: 17.5.1
         version: 17.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       redux:
-        specifier: ^5.0.1
+        specifier: 5.0.1
         version: 5.0.1
       redux-logger:
-        specifier: ^3.0.6
+        specifier: 3.0.6
         version: 3.0.6
+      rxjs:
+        specifier: 7.8.1
+        version: 7.8.1
       sonner:
         specifier: 1.5.0
         version: 1.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -73,7 +76,7 @@ importers:
         specifier: 18.3.0
         version: 18.3.0
       '@types/redux-logger':
-        specifier: ^3.0.13
+        specifier: 3.0.13
         version: 3.0.13
       '@typescript-eslint/eslint-plugin':
         specifier: 7.16.1
@@ -2740,6 +2743,9 @@ packages:
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
+
+  rxjs@7.8.1:
+    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
 
   safe-array-concat@1.1.2:
     resolution: {integrity: sha512-vj6RsCsWBCf19jIeHEfkRMw8DPiBb+DMXklQ/1SGDHOMlHdPUkZXFQ2YdplS23zESTijAcurb1aSgJA3AgMu1Q==}
@@ -5908,6 +5914,10 @@ snapshots:
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
+
+  rxjs@7.8.1:
+    dependencies:
+      tslib: 2.6.3
 
   safe-array-concat@1.1.2:
     dependencies:

@@ -1,5 +1,6 @@
 export * from "./GetCategoriesUseCase";
 export * from "./GetProductsGroupByCategoriesUseCase";
+export * from "./OnAuthStateChangeUseCase";
 export * from "./SaveAllProductsUseCase";
 export * from "./SaveAuthUserUseCase";
 export * from "./SignInAuthUserWithEmailAndPasswordUseCase";

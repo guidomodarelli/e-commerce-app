@@ -1,6 +1,9 @@
-import { UserAuthSignUpWithEmailAndPassword } from "@core/ports";
+import { AuthService, UserAuthSignUpWithEmailAndPassword } from "@core/ports";
 
 export const signUpAuthUserWithEmailAndPasswordUseCase =
-  (userAuth: UserAuthSignUpWithEmailAndPassword) => (email: string, password: string, displayName: string) => {
-    return userAuth.signUp(email, password, displayName);
+  (userAuth: UserAuthSignUpWithEmailAndPassword, authService: AuthService) =>
+  async (email: string, password: string, displayName: string) => {
+    const user = await userAuth.signUp(email, password, displayName);
+    authService.loggedIn(user);
+    return user;
   };

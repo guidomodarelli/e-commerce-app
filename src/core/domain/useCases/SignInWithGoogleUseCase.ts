@@ -1,5 +1,8 @@
-import { UserAuthSignInProvider } from "@core/ports";
+import { AuthService, UserAuthSignInProvider } from "@core/ports";
 
-export const signInWithGoogleUseCase = (userAuthSignInProvider: UserAuthSignInProvider) => () => {
-  return userAuthSignInProvider.signIn();
-};
+export const signInWithGoogleUseCase =
+  (userAuthSignInProvider: UserAuthSignInProvider, authService: AuthService) => async () => {
+    const user = await userAuthSignInProvider.signIn();
+    authService.loggedIn(user);
+    return user;
+  };
