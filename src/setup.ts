@@ -18,7 +18,7 @@ import {
   signInWithGoogleUseCase,
   signOutUserUseCase,
   signUpAuthUserWithEmailAndPasswordUseCase,
-} from "@core/domain/useCases";
+} from "@core/application/useCases";
 import { CategoryRepository, ProductRepository, UserRepository } from "@core/ports";
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
