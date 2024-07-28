@@ -19,6 +19,7 @@ function Navigation({}: NavigationProps) {
   const signOutHandler = async () => {
     toast.success("You are logged out successfully!");
     await signOut();
+    closeHeaderNav();
   };
 
   return (
