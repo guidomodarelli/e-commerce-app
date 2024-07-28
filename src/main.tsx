@@ -10,7 +10,7 @@ const root = document.querySelector("#root") as unknown as Element;
 
 ReactDOM.createRoot(root).render(
   <BrowserRouter>
-    <Toaster closeButton richColors />
+    <Toaster closeButton richColors position="top-center" />
     <Providers>
       <App />
     </Providers>
