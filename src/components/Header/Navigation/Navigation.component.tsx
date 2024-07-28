@@ -8,12 +8,18 @@ import styles from "./Navigation.module.css";
 import { signOut } from "@/setup";
 import { useHeaderNav } from "@/contexts/HeaderNav.context";
 import { useUserSelector } from "@store/user";
+import { toast } from "sonner";
 
 interface NavigationProps {}
 
 function Navigation({}: NavigationProps) {
   const { currentUser } = useUserSelector();
   const { isHeaderNavOpen, closeHeaderNav, openHeaderNav } = useHeaderNav();
+
+  const signOutHandler = async () => {
+    toast.success("You are logged out successfully!");
+    await signOut();
+  };
 
   return (
     <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-[--px] h-[--nav-height]">
@@ -37,7 +43,7 @@ function Navigation({}: NavigationProps) {
                 SIGN IN
               </Link>
             ) : (
-              <span className={styles["nav-link"]} onClick={signOut}>
+              <span className={styles["nav-link"]} onClick={signOutHandler}>
                 SIGN OUT
               </span>
             )}

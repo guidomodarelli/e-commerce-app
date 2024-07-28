@@ -31,6 +31,7 @@ module.exports = {
       ],
       plugins: ["react-refresh", "unicorn"],
       rules: {
+        "unicorn/consistent-function-scoping": "off",
         "@typescript-eslint/no-extraneous-class": "off",
         "unicorn/no-static-only-class": "off",
         "@typescript-eslint/restrict-template-expressions": "off",
