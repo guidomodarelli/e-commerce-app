@@ -21,18 +21,6 @@
   @apply bg-white/80 fixed w-full h-dvh backdrop-blur-md inset-0 hidden flex-col items-center pt-8 gap-4;
 
   animation: slideDown 200ms ease-in-out;
-
-  .nav-links-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    @media (min-width: 768px) {
-      flex-direction: row;
-    }
-  }
 }
 
 @media (min-width: 768px) {

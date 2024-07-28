@@ -8,11 +8,23 @@ import styles from "./Navigation.module.css";
 import { useHeaderNav } from "@/contexts/HeaderNav.context";
 import NavItem from "./NavItem.component";
 import NavItemUserSignIn from "./NavItemUserSignIn.component";
+import NavItemsContainer from "./NavItemsContainer.component";
+import { ulid } from "ulid";
 
 interface NavigationProps {}
 
 function Navigation({}: NavigationProps) {
   const { isHeaderNavOpen, closeHeaderNav, openHeaderNav } = useHeaderNav();
+
+  const navItems = [
+    <NavItem key={ulid()} to="/shop">
+      SHOP
+    </NavItem>,
+    <NavItemUserSignIn key={ulid()} />,
+    <NavItem key={ulid()}>
+      <CartIcon />
+    </NavItem>,
+  ];
 
   return (
     <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-[--px] h-[--nav-height]">
@@ -20,19 +32,7 @@ function Navigation({}: NavigationProps) {
         <Logo />
       </Link>
       <nav className={cn(styles.navigation, { flex: isHeaderNavOpen })}>
-        <ul className={styles["nav-links-container"]}>
-          <li>
-            <NavItem to="/shop">SHOP</NavItem>
-          </li>
-          <li>
-            <NavItemUserSignIn />
-          </li>
-          <li>
-            <NavItem>
-              <CartIcon />
-            </NavItem>
-          </li>
-        </ul>
+        <NavItemsContainer items={navItems} />
         <CartDropdown />
         <a className="md:hidden absolute top-6 right-8 cursor-pointer" onClick={closeHeaderNav}>
           <XIcon />
