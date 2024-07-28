@@ -10,18 +10,13 @@ import { useDispatch } from "react-redux";
 import { UserAction } from "@store/user";
 import { useEffectOnce } from "react-use";
 import { onAuthStateChanged } from "./setup";
-import { UserFactoryFirebaseAdapter } from "@core/adapters";
 
 function App() {
   const dispatch = useDispatch();
   const userAction = UserAction(dispatch);
 
   useEffectOnce(() => {
-    const unsubscribe = onAuthStateChanged((userFirebase) => {
-      let user = null;
-      if (userFirebase) {
-        user = UserFactoryFirebaseAdapter.create(userFirebase);
-      }
+    const unsubscribe = onAuthStateChanged((user) => {
       userAction.setCurrentUser(user);
     });
 
