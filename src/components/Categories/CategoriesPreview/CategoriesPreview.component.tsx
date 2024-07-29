@@ -5,15 +5,14 @@ import useCategories from "@/hooks/useCategories.hook";
 interface CategoriesPreviewProps {}
 
 function CategoriesPreview({}: CategoriesPreviewProps) {
-  const { products } = useProducts();
-  const { categories } = useCategories();
+  useProducts();
+  const { categoriesMap } = useCategories();
 
   return (
     <>
-      {categories.map(({ id: categoryId, title }) => {
-        const productsFiltered = products.filter((product) => product.categoryId === categoryId);
-        return <CategoryPreview key={title} title={title} products={productsFiltered} />;
-      })}
+      {Object.entries(categoriesMap).map(([categoryTitle, products]) => (
+        <CategoryPreview key={categoryTitle} title={categoryTitle} products={products} />
+      ))}
     </>
   );
 }

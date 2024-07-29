@@ -5,23 +5,18 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Category() {
-  const { categories, getCategoryId, hasBeenFetched } = useCategories();
-  const { products } = useProducts();
+  const { categoriesMap, hasBeenFetched, categoryExists } = useCategories();
+  useProducts();
   const { categoryTitle = "" } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (
-      hasBeenFetched &&
-      !categories.some((category) => category.title.toLowerCase() === categoryTitle?.toLowerCase())
-    ) {
+    if (hasBeenFetched && !categoryExists(categoryTitle)) {
       navigate("/404");
     }
-  }, [hasBeenFetched, navigate, categoryTitle, categories]);
+  }, [hasBeenFetched, navigate, categoryTitle, categoryExists]);
 
-  const productsFiltered = products.filter((product) => getCategoryId(categoryTitle) === product.categoryId);
-
-  return <CategoryPreview center title={categoryTitle ?? ""} products={productsFiltered} />;
+  return <CategoryPreview center title={categoryTitle} products={categoriesMap[categoryTitle]} />;
 }
 
 export default Category;

@@ -1,38 +1,41 @@
 import { getCategories } from "@/setup";
 import { Category } from "@core/domain/entities";
-import { CategoryAction, getCategoryIdSelector, useCategorySelector } from "@store/categories";
+import { CategoryAction, selectCategoriesList, selectCategoriesMap } from "@store/categories";
 import { useQuery } from "@tanstack/react-query";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 interface CategoriesOutput {
   categories: Category[];
+  categoriesMap: ReturnType<typeof selectCategoriesMap>;
   hasBeenFetched: boolean;
-  getCategoryId: (categoryTitle: Category["title"]) => Category["id"] | undefined;
+  categoryExists: (title: string) => boolean;
 }
 
 function useCategories(): CategoriesOutput {
   const dispatch = useDispatch();
   const categoryAction = CategoryAction(dispatch);
-  const { list } = useCategorySelector();
+  const categoriesMap = useSelector(selectCategoriesMap);
+  const categoriesList = useSelector(selectCategoriesList);
   const { isFetched } = useQuery({ queryKey: ["categories"], queryFn: queryCategories });
 
   async function queryCategories() {
     let categories: Category[] = [];
-    if (list.length === 0) {
+    if (categoriesList.length === 0) {
       categories = await getCategories();
       categoryAction.setCategories(categories);
     }
     return categories;
   }
 
-  const getCategoryId = (categoryTitle: Category["title"]) => {
-    return getCategoryIdSelector(list, categoryTitle);
+  const categoryExists = (title = "") => {
+    return categoriesList.some((category) => category.title.toLowerCase() === title?.toLowerCase());
   };
 
   return {
-    categories: list,
+    categories: categoriesList,
+    categoriesMap,
     hasBeenFetched: isFetched,
-    getCategoryId,
+    categoryExists,
   };
 }
 
