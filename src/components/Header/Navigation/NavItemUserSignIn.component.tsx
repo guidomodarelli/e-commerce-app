@@ -1,13 +1,14 @@
-import { useUserSelector } from "@store/user";
+import { selectUser } from "@store/user";
 import NavItem from "./NavItem.component";
 import Loader from "@components/Loaders/loader/Loader.component";
 import { toast } from "sonner";
 import { signOut } from "@/setup";
+import { useSelector } from "react-redux";
 
 interface NavItemUserSignInProps {}
 
 const NavItemUserSignIn = ({}: NavItemUserSignInProps) => {
-  const { currentUser } = useUserSelector();
+  const { currentUser } = useSelector(selectUser);
 
   const signOutHandler = async () => {
     toast.success("You are logged out successfully!");
