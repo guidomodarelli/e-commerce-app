@@ -3,21 +3,29 @@ import { debounceTime, Subject } from "rxjs";
 import { User } from "../../../domain/entities";
 import { Auth, onAuthStateChanged } from "firebase/auth";
 import { UserFactoryFirebaseAdapter } from "../UserFactoryFirebaseAdapter";
+import { UserRepository } from "@core/ports";
 
 export class AuthServiceFirebaseAdapter implements AuthService {
   private readonly authState$ = new Subject<User | null>();
 
-  constructor(auth: Auth) {
-    onAuthStateChanged(auth, (user) => {
+  constructor(
+    auth: Auth,
+    private userRepository: UserRepository,
+  ) {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        this.loggedIn(UserFactoryFirebaseAdapter.create(user));
+        await this.loggedIn(UserFactoryFirebaseAdapter.create(user));
       } else {
         this.loggedOut();
       }
     });
   }
 
-  loggedIn(user: User): void {
+  async loggedIn(user: User): Promise<void> {
+    const userFromRepository = await this.userRepository.findByEmail(user.email);
+    if (userFromRepository) {
+      user.displayName = userFromRepository.displayName;
+    }
     this.authState$.next(user);
   }
 

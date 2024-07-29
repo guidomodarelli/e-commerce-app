@@ -4,6 +4,6 @@ export const signUpAuthUserWithEmailAndPasswordUseCase =
   (userAuth: UserAuthSignUpWithEmailAndPassword, authService: AuthService) =>
   async (email: string, password: string, displayName: string) => {
     const user = await userAuth.signUp(email, password, displayName);
-    authService.loggedIn(user);
+    await authService.loggedIn(user);
     return user;
   };

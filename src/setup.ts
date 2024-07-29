@@ -33,11 +33,11 @@ const db = drizzle(turso, { schema });
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 
-const authService = new AuthServiceFirebaseAdapter(auth);
 const userAuthSignInProvider = new UserAuthSignInProviderFirebaseAdapter(auth, provider);
 const userAuthSignOut = new UserAuthSignOutFirebaseAdapter(auth);
 const userRepository: UserRepository = new UserRepositoryDrizzleAdapter(db);
 const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth, userRepository);
+const authService = new AuthServiceFirebaseAdapter(auth, userRepository);
 const productRepository: ProductRepository = new ProductRepositoryDrizzleAdapter(db);
 const categoryRepository: CategoryRepository = new CategoryRepositoryDrizzleAdapter(db);
 
