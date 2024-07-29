@@ -36,8 +36,8 @@ provider.setCustomParameters({ prompt: "select_account" });
 const userAuthSignInProvider = new UserAuthSignInProviderFirebaseAdapter(auth, provider);
 const userAuthSignOut = new UserAuthSignOutFirebaseAdapter(auth);
 const userRepository: UserRepository = new UserRepositoryDrizzleAdapter(db);
-const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth, userRepository);
 const authService = new AuthServiceFirebaseAdapter(auth, userRepository);
+const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth);
 const productRepository: ProductRepository = new ProductRepositoryDrizzleAdapter(db);
 const categoryRepository: CategoryRepository = new CategoryRepositoryDrizzleAdapter(db);
 
