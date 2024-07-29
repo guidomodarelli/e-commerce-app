@@ -8,7 +8,7 @@ export const selectCategories = (state: AppRootState) => state.categories;
 export const selectCategoriesList = createSelector([selectCategories], ({ list }) => list);
 
 export const selectCategoriesMap = createSelector([selectCategoriesList, selectProductsList], (categories, products) =>
-  categories.reduce<Record<string, Product[]>>((previousValue, currentCategory) => {
+  categories.reduce<Record<string, Product[] | undefined>>((previousValue, currentCategory) => {
     const { id, title } = currentCategory;
     previousValue[title.toLowerCase()] = products.filter((product) => product.categoryId === id);
     return previousValue;

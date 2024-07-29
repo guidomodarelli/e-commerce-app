@@ -6,11 +6,11 @@ import { cn } from "@utils/cn";
 
 interface CategoryPreviewProps {
   title: string;
-  products: Product[];
+  products?: Product[];
   center?: boolean;
 }
 
-function CategoryPreview({ title, products, center }: CategoryPreviewProps) {
+function CategoryPreview({ title, products = [], center }: CategoryPreviewProps) {
   return (
     <div className={styles["category-preview-container"]}>
       <Link to={`/shop/${title.toLowerCase()}`}>
