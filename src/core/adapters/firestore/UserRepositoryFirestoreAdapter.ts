@@ -26,4 +26,8 @@ export class UserRepositoryFirestoreAdapter implements UserRepository {
       }
     }
   }
+
+  findByEmail(email: string): Promise<User | undefined> {
+    throw new Error("Method not implemented.");
+  }
 }

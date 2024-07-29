@@ -5,4 +5,5 @@ export interface InfoExtra {
 
 export interface UserRepository {
   save(user: User, extra?: InfoExtra): Promise<void>;
+  findByEmail(email: string): Promise<User | undefined>;
 }

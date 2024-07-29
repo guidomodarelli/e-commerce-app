@@ -18,4 +18,10 @@ export class UserRepositoryDrizzleAdapter implements UserRepository {
       console.error(error);
     }
   }
+
+  findByEmail(email: string): Promise<User | undefined> {
+    return this.db.query.users.findFirst({
+      where: (users, { eq }) => eq(users.email, email),
+    });
+  }
 }

@@ -16,4 +16,8 @@ export class UserRepositoryTursoAdapter implements UserRepository {
       console.error(error);
     }
   }
+
+  findByEmail(email: string): Promise<User | undefined> {
+    throw new Error("Method not implemented.");
+  }
 }
