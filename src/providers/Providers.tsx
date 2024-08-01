@@ -1,4 +1,3 @@
-import CartProvider from "@/contexts/CartContext";
 import HeaderNavProvider from "@/contexts/HeaderNav.context";
 import { PropsWithChildren } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -13,9 +12,7 @@ function Providers({ children }: ProvidersProps) {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <HeaderNavProvider>
-          <CartProvider>{children}</CartProvider>
-        </HeaderNavProvider>
+        <HeaderNavProvider>{children}</HeaderNavProvider>
       </QueryClientProvider>
     </Provider>
   );

@@ -2,15 +2,17 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button.component";
 import styles from "./cart-dropdown.module.css";
 import CartItem from "./cart-item/CartItem.component";
-import { useCart } from "@/contexts/CartContext";
 import { useHeaderNav } from "@/contexts/HeaderNav.context";
 import { useClickAway } from "react-use";
 import { useRef } from "react";
+import { useCart } from "@store/cart";
+import { useDispatch } from "react-redux";
 
 interface CartDropdownProps {}
 
 function CartDropdown({}: CartDropdownProps) {
-  const { isCartOpen, closeCart, cartItems } = useCart();
+  const dispatch = useDispatch();
+  const { isCartOpen, closeCart, cartItems } = useCart(dispatch);
   const { closeHeaderNav } = useHeaderNav();
   const navigate = useNavigate();
   const ref = useRef(null);

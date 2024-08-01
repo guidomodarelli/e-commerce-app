@@ -1,42 +1,50 @@
+import { CartState } from "@store/cart";
 import { CartItem } from "./CartItem";
 import { Product } from "./Product";
 
 export class Cart {
-  static add(cartItems: CartItem[], productToAdd: Product): CartItem[] {
-    const cartItem = cartItems.find((item) => item.id === productToAdd.id);
+  static add(cart: CartState["cart"], productToAdd: Product): CartState["cart"] {
+    const cartItem = cart[productToAdd.id];
 
     if (cartItem) {
       cartItem.increment();
 
-      return [...cartItems];
+      return { ...cart };
     }
 
-    return [...cartItems, new CartItem(productToAdd)];
+    return { ...cart, [productToAdd.id]: new CartItem(productToAdd) };
   }
 
-  static updateOrRemove(cartItems: CartItem[], cartItemToUpdate: Product): CartItem[] {
-    const cartItem = cartItems.find((item) => item.id === cartItemToUpdate.id);
+  static remove(cart: CartState["cart"], cartItemToUpdate: Product): CartState["cart"] {
+    const cartItem = cart[cartItemToUpdate.id];
 
     if (cartItem) {
       cartItem.decrement();
 
       if (cartItem.quantity === 0) {
-        return Cart.remove(cartItems, cartItemToUpdate);
+        return Cart.drop(cart, cartItemToUpdate);
       }
     }
 
-    return [...cartItems];
+    return { ...cart };
   }
 
-  static remove(cartItems: CartItem[], cartItemToRemove: Product): CartItem[] {
-    return cartItems.filter((item) => item.id !== cartItemToRemove.id);
+  static drop(cart: CartState["cart"], cartItemToRemove: Product): CartState["cart"] {
+    const { id } = cartItemToRemove;
+    return {
+      ...cart,
+      [id]: undefined,
+    };
   }
 
-  static getTotalItems(cartItems: CartItem[]) {
-    return cartItems.reduce((previous, current) => previous + current.quantity, 0);
+  static getTotalItems(cart: CartState["cart"]) {
+    return Object.values(cart).reduce((previous, current) => previous + (current?.quantity ?? 0), 0);
   }
 
-  static getTotalPrice(cartItems: CartItem[]) {
-    return cartItems.reduce((previous, current) => previous + current.price * current.quantity, 0);
+  static getTotalPrice(cart: CartState["cart"]) {
+    return Object.values(cart).reduce(
+      (previous, current) => previous + (current?.price ?? 0) * (current?.quantity ?? 0),
+      0,
+    );
   }
 }

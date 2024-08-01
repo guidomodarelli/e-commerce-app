@@ -1,7 +1,8 @@
 import { CartItem as CartItemType } from "@core/domain/entities";
 import styles from "./cart-item.module.css";
-import { useCart } from "@/contexts/CartContext";
 import { formatCurrency } from "@utils/format-currency";
+import { useDispatch } from "react-redux";
+import { useCart } from "@store/cart";
 
 interface CartItemProps {
   cartItem: CartItemType;
@@ -9,10 +10,11 @@ interface CartItemProps {
 
 function CartItem({ cartItem }: CartItemProps) {
   const { name, price, quantity, imageUrl } = cartItem;
-  const { addItemToCart, removeItemFromCart, clearItemFromCart } = useCart();
+  const dispatch = useDispatch();
+  const { addItemToCart, removeItemFromCart, dropItemFromCart } = useCart(dispatch);
 
   const clearItemHandler = () => {
-    clearItemFromCart(cartItem);
+    dropItemFromCart(cartItem);
   };
 
   const addItemHandler = () => {

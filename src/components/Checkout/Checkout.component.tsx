@@ -1,7 +1,8 @@
-import { useCart } from "@/contexts/CartContext";
+import { useDispatch } from "react-redux";
 import CartItem from "./cart-item/CartItem.component";
 import styles from "./checkout.module.css";
 import { formatCurrency } from "@utils/format-currency";
+import { useCart } from "@store/cart";
 
 interface Header {
   key: React.Key;
@@ -11,7 +12,8 @@ interface Header {
 interface CheckoutProps {}
 
 function Checkout({}: CheckoutProps) {
-  const { cartItems, totalPrice } = useCart();
+  const dispatch = useDispatch();
+  const { cartItems, totalPrice } = useCart(dispatch);
 
   const headers: Header[] = ["Product", "Description", "Quantity", "Unit", "SubTotal", "Remove"].map(
     (header, index) => ({

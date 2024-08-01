@@ -1,13 +1,15 @@
-import { useCart } from "@/contexts/CartContext";
+import { useCart } from "@store/cart";
 import styles from "./cart-icon.module.css";
 import { cn } from "@utils/cn";
+import { useDispatch } from "react-redux";
 
 interface CartIconProps {
   fill?: string;
 }
 
 function CartIcon({ fill = "#010002" }: CartIconProps) {
-  const { openCart, totalItems } = useCart();
+  const dispatch = useDispatch();
+  const { openCart, totalItems } = useCart(dispatch);
 
   return (
     <div onClick={openCart} className={styles["cart-icon-container"]}>

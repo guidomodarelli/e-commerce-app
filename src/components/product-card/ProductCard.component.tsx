@@ -1,9 +1,10 @@
 import { toast } from "sonner";
 import Button from "../Button/Button.component";
 import styles from "./product-card.module.css";
-import { useCart } from "@/contexts/CartContext";
 import { Product } from "@core/domain/entities";
 import { formatCurrency } from "@utils/format-currency";
+import { useCart } from "@store/cart";
+import { useDispatch } from "react-redux";
 
 interface ProductCardProps {
   product: Product;
@@ -11,7 +12,8 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
   const { name, price, imageUrl } = product;
-  const { addItemToCart, cartItems } = useCart();
+  const dispatch = useDispatch();
+  const { addItemToCart, cartItems } = useCart(dispatch);
 
   const currentCartItem = cartItems.find((item) => item.id === product.id);
   const quantity = (currentCartItem?.quantity ?? 0) + 1;
