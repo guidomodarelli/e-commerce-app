@@ -14,7 +14,11 @@ function CartDropdown({}: CartDropdownProps) {
   const { closeHeaderNav } = useHeaderNav();
   const navigate = useNavigate();
   const ref = useRef(null);
-  useClickAway(ref, closeCart);
+  useClickAway(ref, () => {
+    if (isCartOpen) {
+      closeCart();
+    }
+  });
 
   const goToCheckoutHandler = () => {
     navigate("/checkout");
