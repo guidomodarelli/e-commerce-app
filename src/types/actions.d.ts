@@ -1,4 +1,3 @@
-interface Action<T extends string, P = undefined> {
+type Action<T extends string, P = undefined> = {
   type: T;
-  payload: P extends undefined ? undefined : P;
-}
+} & (P extends undefined ? object : { payload: P });
