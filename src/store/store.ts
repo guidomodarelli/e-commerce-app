@@ -20,7 +20,7 @@ const persistedReducer = persistReducer<AppRootState, Actions>(
   rootReducer as unknown as Reducer<AppRootState, Actions>,
 );
 
-const middleWares = [customLogger] as Middleware[];
+const middleWares = [import.meta.env.DEV && customLogger].filter(Boolean) as Middleware[];
 
 const composedEnhancers = compose(applyMiddleware(...middleWares));
 
