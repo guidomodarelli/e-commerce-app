@@ -1,6 +1,6 @@
-import { CartItem, Product } from "@core/domain/entities";
+import { Cart, CartItem, Product } from "@core/domain/entities";
 import { Dispatch } from "redux";
-import { ADD_ITEM, DROP_ITEM, REMOVE_ITEM, SET_CART_IS_CLOSE, SET_CART_IS_OPEN } from "./cart.types";
+import { SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./cart.types";
 import { useSelector } from "react-redux";
 import { selectCart, selectCartItems, selectTotalItems, selectTotalPrice } from "./cart.selector";
 
@@ -22,19 +22,18 @@ export const useCart = (dispatch: Dispatch<CartAction>) => {
       dispatch({ type: SET_CART_IS_CLOSE });
     },
     addItemToCart: (productToAdd: Product) => {
-      dispatch({ type: ADD_ITEM, payload: productToAdd });
+      dispatch({ type: SET_CART_ITEMS, payload: Cart.add(cart, productToAdd) });
     },
     removeItemFromCart: (cartItemToUpdate: CartItem) => {
-      const { id } = cartItemToUpdate;
-      if (!cart[id]) return;
-      if (cart[id].quantity > 1) {
-        dispatch({ type: REMOVE_ITEM, payload: cartItemToUpdate });
+      const cartItem = cart.find((item) => item.id === cartItemToUpdate.id);
+      if (cartItem && cartItem.quantity > 1) {
+        dispatch({ type: SET_CART_ITEMS, payload: Cart.remove(cartItems, cartItemToUpdate) });
       } else {
-        dispatch({ type: DROP_ITEM, payload: cartItemToUpdate });
+        dispatch({ type: SET_CART_ITEMS, payload: Cart.drop(cartItems, cartItemToUpdate) });
       }
     },
     dropItemFromCart: (cartItemToRemove: CartItem) => {
-      dispatch({ type: DROP_ITEM, payload: cartItemToRemove });
+      dispatch({ type: SET_CART_ITEMS, payload: Cart.drop(cartItems, cartItemToRemove) });
     },
   };
 };
@@ -42,6 +41,4 @@ export const useCart = (dispatch: Dispatch<CartAction>) => {
 export type CartAction =
   | Action<typeof SET_CART_IS_OPEN>
   | Action<typeof SET_CART_IS_CLOSE>
-  | Action<typeof ADD_ITEM, Product>
-  | Action<typeof REMOVE_ITEM, CartItem>
-  | Action<typeof DROP_ITEM, CartItem>;
+  | Action<typeof SET_CART_ITEMS, CartItem[]>;
