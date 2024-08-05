@@ -1,11 +1,14 @@
-import { selectUser } from "@store/user";
-import { useSelector } from "react-redux";
+import { selectUser, UserAction } from "@store/user";
+import { useDispatch, useSelector } from "react-redux";
 
 const useUser = () => {
+  const dispatch = useDispatch();
+  const userAction = UserAction(dispatch);
   const { currentUser } = useSelector(selectUser);
 
   return {
     currentUser,
+    ...userAction,
   };
 };
 

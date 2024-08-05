@@ -4,7 +4,7 @@ import { SET_CURRENT_USER } from "./user.types";
 
 export const UserAction = (dispatch: Dispatch<UserAction>) => {
   return {
-    setCurrentUser(user: User | null) {
+    setCurrentUser: (user: User | null) => {
       dispatch({ type: SET_CURRENT_USER, payload: user });
     },
   };

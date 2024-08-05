@@ -6,18 +6,16 @@ import ShopPage from "./pages/Shop.page";
 import SignUp from "./pages/SignUp.page";
 import Page404 from "./pages/404.page";
 import CheckoutPage from "./pages/Checkout.page";
-import { useDispatch } from "react-redux";
-import { UserAction } from "@store/user";
 import { useEffectOnce } from "react-use";
 import { onAuthStateChanged } from "./setup";
+import useUser from "./hooks/useUser.hook";
 
 function App() {
-  const dispatch = useDispatch();
-  const userAction = UserAction(dispatch);
+  const { setCurrentUser } = useUser();
 
   useEffectOnce(() => {
     const unsubscribe = onAuthStateChanged((user) => {
-      userAction.setCurrentUser(user);
+      setCurrentUser(user);
     });
 
     return unsubscribe;
