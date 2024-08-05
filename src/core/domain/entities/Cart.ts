@@ -7,7 +7,7 @@ export class Cart {
     const cartItem = cart.find((item) => item.id === productToAdd.id);
 
     if (cartItem) {
-      cartItem.increment();
+      cartItem.quantity += 1;
 
       return [...cart];
     }
@@ -19,7 +19,7 @@ export class Cart {
     const cartItem = cart.find((item) => item.id === cartItemToUpdate.id);
 
     if (cartItem) {
-      cartItem.decrement();
+      cartItem.quantity -= 1;
 
       if (cartItem.quantity === 0) {
         return Cart.drop(cart, cartItemToUpdate);

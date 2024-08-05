@@ -16,12 +16,4 @@ export class CartItem implements Product {
     this.categoryId = product.categoryId;
     this.quantity = quantity;
   }
-
-  increment() {
-    this.quantity += 1;
-  }
-
-  decrement() {
-    this.quantity -= 1;
-  }
 }
