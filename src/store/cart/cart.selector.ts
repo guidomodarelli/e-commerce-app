@@ -4,9 +4,7 @@ import { AppRootState } from "../store";
 
 export const selectCart = (state: AppRootState) => state.cart;
 
-export const selectCartItems = createSelector([selectCart], ({ cart }): CartItem[] =>
-  Object.values(cart).filter((item) => !!item),
-);
+export const selectCartItems = createSelector([selectCart], ({ cart }): CartItem[] => cart);
 
 export const selectTotalItems = createSelector([selectCart], ({ cart: cartItems }) => Cart.getTotalItems(cartItems));
 
