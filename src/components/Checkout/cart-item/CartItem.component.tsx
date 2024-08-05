@@ -1,7 +1,7 @@
 import { CartItem as CartItemType } from "@core/domain/entities";
 import styles from "./cart-item.module.css";
 import { formatCurrency } from "@utils/format-currency";
-import { useCart } from "@store/cart";
+import { useCart } from "@/hooks/useCart.hook";
 
 interface CartItemProps {
   cartItem: CartItemType;

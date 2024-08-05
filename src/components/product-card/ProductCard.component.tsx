@@ -3,7 +3,7 @@ import Button from "../Button/Button.component";
 import styles from "./product-card.module.css";
 import { Product } from "@core/domain/entities";
 import { formatCurrency } from "@utils/format-currency";
-import { useCart } from "@store/cart";
+import { useCart } from "@/hooks/useCart.hook";
 
 interface ProductCardProps {
   product: Product;

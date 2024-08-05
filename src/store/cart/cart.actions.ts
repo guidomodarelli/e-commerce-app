@@ -1,21 +1,13 @@
 import { Cart, CartItem, Product } from "@core/domain/entities";
 import { Dispatch } from "redux";
 import { SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./cart.types";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCart, selectCartItems, selectTotalItems, selectTotalPrice } from "./cart.selector";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "./cart.selector";
 
-export const useCart = () => {
-  const dispatch = useDispatch<Dispatch<CartAction>>();
-  const { cart, isCartOpen } = useSelector(selectCart);
+export const CartAction = (dispatch: Dispatch<CartAction>) => {
   const cartItems = useSelector(selectCartItems);
-  const totalPrice = useSelector(selectTotalPrice);
-  const totalItems = useSelector(selectTotalItems);
 
   return {
-    isCartOpen,
-    cartItems,
-    totalPrice,
-    totalItems,
     openCart: () => {
       dispatch({ type: SET_CART_IS_OPEN });
     },
@@ -23,10 +15,10 @@ export const useCart = () => {
       dispatch({ type: SET_CART_IS_CLOSE });
     },
     addItemToCart: (productToAdd: Product) => {
-      dispatch({ type: SET_CART_ITEMS, payload: Cart.add(cart, productToAdd) });
+      dispatch({ type: SET_CART_ITEMS, payload: Cart.add(cartItems, productToAdd) });
     },
     removeItemFromCart: (cartItemToUpdate: CartItem) => {
-      const cartItem = cart.find((item) => item.id === cartItemToUpdate.id);
+      const cartItem = cartItems.find((item) => item.id === cartItemToUpdate.id);
       if (cartItem && cartItem.quantity > 1) {
         dispatch({ type: SET_CART_ITEMS, payload: Cart.remove(cartItems, cartItemToUpdate) });
       } else {

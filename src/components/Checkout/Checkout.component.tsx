@@ -1,7 +1,7 @@
 import CartItem from "./cart-item/CartItem.component";
 import styles from "./checkout.module.css";
 import { formatCurrency } from "@utils/format-currency";
-import { useCart } from "@store/cart";
+import { useCart } from "@/hooks/useCart.hook";
 
 interface Header {
   key: React.Key;

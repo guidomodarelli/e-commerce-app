@@ -5,7 +5,7 @@ import CartItem from "./cart-item/CartItem.component";
 import { useHeaderNav } from "@/contexts/HeaderNav.context";
 import { useClickAway } from "react-use";
 import { useRef } from "react";
-import { useCart } from "@store/cart";
+import { useCart } from "@/hooks/useCart.hook";
 
 interface CartDropdownProps {}
 
