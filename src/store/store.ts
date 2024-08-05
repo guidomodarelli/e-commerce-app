@@ -1,6 +1,6 @@
 import { compose, legacy_createStore as createStore, applyMiddleware, Middleware, Reducer } from "redux";
 import { rootReducer } from "./root-reducer";
-import { customLogger } from "./middlewares";
+import { customLogger } from "./middleware/logger";
 import storage from "redux-persist/lib/storage";
 import { PersistConfig, persistReducer, persistStore } from "redux-persist";
 import { CartAction } from "./cart";
