@@ -1,10 +1,11 @@
 import { Cart, CartItem, Product } from "@core/domain/entities";
 import { Dispatch } from "redux";
 import { SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./cart.types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCart, selectCartItems, selectTotalItems, selectTotalPrice } from "./cart.selector";
 
-export const useCart = (dispatch: Dispatch<CartAction>) => {
+export const useCart = () => {
+  const dispatch = useDispatch<Dispatch<CartAction>>();
   const { cart, isCartOpen } = useSelector(selectCart);
   const cartItems = useSelector(selectCartItems);
   const totalPrice = useSelector(selectTotalPrice);

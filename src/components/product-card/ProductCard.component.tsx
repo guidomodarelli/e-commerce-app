@@ -4,7 +4,6 @@ import styles from "./product-card.module.css";
 import { Product } from "@core/domain/entities";
 import { formatCurrency } from "@utils/format-currency";
 import { useCart } from "@store/cart";
-import { useDispatch } from "react-redux";
 
 interface ProductCardProps {
   product: Product;
@@ -12,8 +11,7 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
   const { name, price, imageUrl } = product;
-  const dispatch = useDispatch();
-  const { addItemToCart, cartItems } = useCart(dispatch);
+  const { addItemToCart, cartItems } = useCart();
 
   const currentCartItem = cartItems.find((item) => item.id === product.id);
   const quantity = (currentCartItem?.quantity ?? 0) + 1;

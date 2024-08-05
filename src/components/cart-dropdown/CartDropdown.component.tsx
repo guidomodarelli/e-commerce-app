@@ -6,13 +6,11 @@ import { useHeaderNav } from "@/contexts/HeaderNav.context";
 import { useClickAway } from "react-use";
 import { useRef } from "react";
 import { useCart } from "@store/cart";
-import { useDispatch } from "react-redux";
 
 interface CartDropdownProps {}
 
 function CartDropdown({}: CartDropdownProps) {
-  const dispatch = useDispatch();
-  const { isCartOpen, closeCart, cartItems } = useCart(dispatch);
+  const { isCartOpen, closeCart, cartItems } = useCart();
   const { closeHeaderNav } = useHeaderNav();
   const navigate = useNavigate();
   const ref = useRef(null);
