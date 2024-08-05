@@ -2,13 +2,12 @@ import Loader from "@components/Loaders/loader/Loader.component";
 import { PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffectOnce } from "react-use";
-import { selectUser } from "@store/user";
-import { useSelector } from "react-redux";
+import useUser from "@/hooks/useUser.hook";
 
 interface UserAuthenticatedProps extends PropsWithChildren {}
 
 function UserAuthenticated({ children }: UserAuthenticatedProps) {
-  const { currentUser } = useSelector(selectUser);
+  const { currentUser } = useUser();
   const navigate = useNavigate();
 
   useEffectOnce(() => {
