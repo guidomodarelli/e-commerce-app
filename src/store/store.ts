@@ -6,6 +6,7 @@ import { PersistConfig, persistReducer, persistStore } from "redux-persist";
 import { CartAction } from "./cart";
 import { CategoryAction } from "./categories";
 import { ProductAction } from "./products";
+import { composeWithDevTools } from "@redux-devtools/extension";
 
 type Actions = ProductAction | CategoryAction | CartAction;
 
@@ -22,7 +23,9 @@ const persistedReducer = persistReducer<AppRootState, Actions>(
 
 const middleWares = [!import.meta.env.PROD && customLogger].filter(Boolean) as Middleware[];
 
-const composedEnhancers = compose(applyMiddleware(...middleWares));
+export const composeEnhancer = ((!import.meta.env.PROD && composeWithDevTools) || compose) as typeof compose;
+
+const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
 export const store = createStore(persistedReducer, undefined, composedEnhancers);
 
