@@ -8,7 +8,7 @@ export function useProducts() {
   const dispatch = useDispatch();
   const productAction = ProductAction(dispatch);
   const { list } = useSelector(selectProducts);
-  useQuery({ queryKey: ["products"], queryFn: queryProducts });
+  const { isLoading } = useQuery({ queryKey: ["products"], queryFn: queryProducts });
 
   async function queryProducts() {
     let products: Product[] = [];
@@ -21,5 +21,6 @@ export function useProducts() {
 
   return {
     products: list,
+    isLoading,
   };
 }
