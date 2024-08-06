@@ -11,11 +11,8 @@ function Loader({ size = 30 }: LoaderProps) {
   } as CSSProperties;
 
   return (
-    <div className={styles["lds-ring"]} style={style}>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <div className={styles.SpinnerOverlay} style={style}>
+      <div className={styles.SpinnerContainer}></div>
     </div>
   );
 }
