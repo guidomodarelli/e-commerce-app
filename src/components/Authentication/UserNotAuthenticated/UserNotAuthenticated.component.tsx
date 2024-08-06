@@ -1,4 +1,4 @@
-import Loader from "@/components/Loaders/loader/Loader.component";
+import Loader from "@components/spinner/Spinner.component";
 import useUser from "@/hooks/useUser.hook";
 import { PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";

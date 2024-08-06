@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import styles from "./Button.module.css";
-import Loader from "../Loaders/loader/Loader.component";
+import Loader from "../spinner/Spinner.component";
 
 const BUTTON_VARIANT = {
   google: "google-sign-in",

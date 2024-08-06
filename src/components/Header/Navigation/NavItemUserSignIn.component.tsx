@@ -1,5 +1,5 @@
 import NavItem from "./NavItem.component";
-import Loader from "@components/Loaders/loader/Loader.component";
+import Loader from "@components/spinner/Spinner.component";
 import { toast } from "sonner";
 import { signOut } from "@/setup";
 import useUser from "@/hooks/useUser.hook";
