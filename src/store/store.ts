@@ -13,7 +13,7 @@ type Actions = ProductAction | CategoryAction | CartAction;
 const persistConfig: PersistConfig<AppRootState> = {
   key: "root",
   storage,
-  blacklist: ["user"],
+  whitelist: ["cart"],
 };
 
 const persistedReducer = persistReducer<AppRootState, Actions>(
