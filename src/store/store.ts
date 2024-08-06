@@ -31,4 +31,4 @@ export const store = createStore(persistedReducer, undefined, composedEnhancers)
 
 export type AppRootState = ReturnType<typeof rootReducer>;
 
-export const persistor = persistStore(store);
+export const persister = persistStore(store);
