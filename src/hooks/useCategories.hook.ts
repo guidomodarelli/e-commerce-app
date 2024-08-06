@@ -8,6 +8,7 @@ interface CategoriesOutput {
   categories: Category[];
   categoriesMap: ReturnType<typeof selectCategoriesMap>;
   hasBeenFetched: boolean;
+  isLoading: boolean;
   categoryExists: (title: string) => boolean;
 }
 
@@ -16,7 +17,7 @@ function useCategories(): CategoriesOutput {
   const categoryAction = CategoryAction(dispatch);
   const categoriesMap = useSelector(selectCategoriesMap);
   const categoriesList = useSelector(selectCategoriesList);
-  const { isFetched } = useQuery({ queryKey: ["categories"], queryFn: queryCategories });
+  const { isFetched, isLoading } = useQuery({ queryKey: ["categories"], queryFn: queryCategories });
 
   async function queryCategories() {
     let categories: Category[] = [];
@@ -35,6 +36,7 @@ function useCategories(): CategoriesOutput {
     categories: categoriesList,
     categoriesMap,
     hasBeenFetched: isFetched,
+    isLoading,
     categoryExists,
   };
 }
