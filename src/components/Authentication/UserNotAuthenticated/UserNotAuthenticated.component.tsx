@@ -1,4 +1,4 @@
-import Loader from "@components/spinner/Spinner.component";
+import Spinner from "@components/spinner/Spinner.component";
 import useUser from "@/hooks/useUser.hook";
 import { PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ function UserNotAuthenticated({ children }: UserNotAuthenticatedProps) {
   if (currentUser === undefined) {
     return (
       <div className="flex justify-center">
-        <Loader />
+        <Spinner />
       </div>
     );
   }

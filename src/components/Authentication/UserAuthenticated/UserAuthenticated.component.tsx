@@ -1,4 +1,4 @@
-import Loader from "@components/spinner/Spinner.component";
+import Spinner from "@components/spinner/Spinner.component";
 import { PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffectOnce } from "react-use";
@@ -20,7 +20,7 @@ function UserAuthenticated({ children }: UserAuthenticatedProps) {
     return children;
   }
 
-  return <Loader />;
+  return <Spinner />;
 }
 
 export default UserAuthenticated;

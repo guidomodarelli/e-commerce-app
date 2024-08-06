@@ -1,5 +1,5 @@
 import NavItem from "./NavItem.component";
-import Loader from "@components/spinner/Spinner.component";
+import Spinner from "@components/spinner/Spinner.component";
 import { toast } from "sonner";
 import { signOut } from "@/setup";
 import useUser from "@/hooks/useUser.hook";
@@ -17,7 +17,7 @@ const NavItemUserSignIn = ({}: NavItemUserSignInProps) => {
   if (currentUser === undefined) {
     return (
       <NavItem to="/signIn">
-        <Loader />
+        <Spinner />
       </NavItem>
     );
   } else if (currentUser === null) {

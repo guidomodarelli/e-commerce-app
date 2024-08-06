@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import styles from "./Button.module.css";
-import Loader from "../spinner/Spinner.component";
+import Spinner from "../spinner/Spinner.component";
 
 const BUTTON_VARIANT = {
   google: "google-sign-in",
@@ -20,7 +20,7 @@ function Button({ children, variant, loading = false, disabled = false, ...other
       disabled={disabled || loading}
       {...otherProps}
     >
-      {loading ? <Loader /> : children}
+      {loading ? <Spinner /> : children}
     </button>
   );
 }

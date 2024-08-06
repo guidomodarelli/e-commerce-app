@@ -1,11 +1,11 @@
 import { CSSProperties } from "react";
-import styles from "./Loader.module.css";
+import styles from "./Spinner.module.css";
 
-interface LoaderProps {
+interface SpinnerProps {
   size?: number;
 }
 
-function Loader({ size = 30 }: LoaderProps) {
+function Spinner({ size = 30 }: SpinnerProps) {
   const style = {
     "--size": `${size.toString()}px`,
   } as CSSProperties;
@@ -17,4 +17,4 @@ function Loader({ size = 30 }: LoaderProps) {
   );
 }
 
-export default Loader;
+export default Spinner;
