@@ -1,31 +1,12 @@
 import { Category } from "@core/domain/entities";
 import { FETCH_CATEGORIES_FAILED, FETCH_CATEGORIES_START, FETCH_CATEGORIES_SUCCESS } from "./categories.types";
-import { getCategories } from "@/setup";
-import { AppDispatch } from "@store/store";
+import { createAction } from "@store/utils/reducer.utils";
 
-export const CategoryAction = (dispatch: AppDispatch) => {
-  const fetchCategoriesStart = () => dispatch({ type: FETCH_CATEGORIES_START });
+export const fetchCategoriesStart = () => createAction(FETCH_CATEGORIES_START);
 
-  const fetchCategoriesSuccess = (categories: Category[]) =>
-    dispatch({ type: FETCH_CATEGORIES_SUCCESS, payload: categories });
+export const fetchCategoriesSuccess = (categories: Category[]) => createAction(FETCH_CATEGORIES_SUCCESS, categories);
 
-  const fetchCategoriesFailure = (error: Error) => dispatch({ type: FETCH_CATEGORIES_FAILED, payload: error });
-
-  return {
-    fetchCategoriesStart,
-    fetchCategoriesSuccess,
-    fetchCategoriesFailure,
-    fetchCategories: async () => {
-      fetchCategoriesStart();
-      try {
-        const categories = await getCategories();
-        fetchCategoriesSuccess(categories);
-      } catch (error) {
-        fetchCategoriesFailure(error as Error);
-      }
-    },
-  };
-};
+export const fetchCategoriesFailure = (error: Error) => createAction(FETCH_CATEGORIES_FAILED, error);
 
 export type CategoryAction =
   | Action<typeof FETCH_CATEGORIES_START>

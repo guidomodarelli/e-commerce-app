@@ -1,5 +1,5 @@
 import { Category } from "@core/domain/entities";
-import { CategoryAction, selectCategories, selectCategoriesList, selectCategoriesMap } from "@store/categories";
+import { fetchCategoriesStart, selectCategories, selectCategoriesList, selectCategoriesMap } from "@store/categories";
 import { useAppDispatch, useAppSelector } from "@store/store";
 import { useEffectOnce } from "react-use";
 
@@ -13,19 +13,14 @@ interface CategoriesOutput {
 
 function useCategories(): CategoriesOutput {
   const dispatch = useAppDispatch();
-  const categoryAction = CategoryAction(dispatch);
   const categoriesMap = useAppSelector(selectCategoriesMap);
   const categoriesList = useAppSelector(selectCategoriesList);
   const { isFetched, isLoading } = useAppSelector(selectCategories);
 
-  async function queryCategories() {
-    if (categoriesList.length === 0) {
-      await categoryAction.fetchCategories();
-    }
-  }
-
   useEffectOnce(() => {
-    void queryCategories();
+    if (categoriesList.length === 0) {
+      dispatch(fetchCategoriesStart());
+    }
   });
 
   const categoryExists = (title = "") => {
