@@ -8,8 +8,9 @@ import { CategoryAction } from "./categories";
 import { ProductAction } from "./products";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import { useDispatch, useSelector } from "react-redux";
+import { UserAction } from "./user";
 
-type Actions = ProductAction | CategoryAction | CartAction;
+type Actions = ProductAction | CategoryAction | CartAction | UserAction;
 
 const persistConfig: PersistConfig<AppRootState> = {
   key: "root",

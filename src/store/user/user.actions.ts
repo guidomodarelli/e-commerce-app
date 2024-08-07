@@ -1,8 +1,8 @@
 import { User } from "@core/domain/entities";
-import { Dispatch } from "redux";
 import { SET_CURRENT_USER } from "./user.types";
+import { AppDispatch } from "@store/store";
 
-export const UserAction = (dispatch: Dispatch<UserAction>) => {
+export const UserAction = (dispatch: AppDispatch) => {
   return {
     setCurrentUser: (user: User | null) => {
       dispatch({ type: SET_CURRENT_USER, payload: user });
