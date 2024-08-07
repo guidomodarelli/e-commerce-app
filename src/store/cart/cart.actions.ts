@@ -1,10 +1,11 @@
 import { Cart, CartItem, Product } from "@core/domain/entities";
 import { SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./cart.types";
 import { selectCartItems } from "./cart.selector";
-import { AppDispatch, useAppSelector } from "@store/store";
+import { AppDispatch } from "@store/store";
+import { useSelector } from "react-redux";
 
 export const CartAction = (dispatch: AppDispatch) => {
-  const cartItems = useAppSelector(selectCartItems);
+  const cartItems = useSelector(selectCartItems);
 
   return {
     openCart: () => {
