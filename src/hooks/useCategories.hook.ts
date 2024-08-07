@@ -1,8 +1,7 @@
-import { getCategories } from "@/setup";
 import { Category } from "@core/domain/entities";
-import { CategoryAction, selectCategoriesList, selectCategoriesMap } from "@store/categories";
-import { useQuery } from "@tanstack/react-query";
-import { useDispatch, useSelector } from "react-redux";
+import { CategoryAction, selectCategories, selectCategoriesList, selectCategoriesMap } from "@store/categories";
+import { useAppDispatch, useAppSelector } from "@store/store";
+import { useEffectOnce } from "react-use";
 
 interface CategoriesOutput {
   categories: Category[];
@@ -13,20 +12,21 @@ interface CategoriesOutput {
 }
 
 function useCategories(): CategoriesOutput {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const categoryAction = CategoryAction(dispatch);
-  const categoriesMap = useSelector(selectCategoriesMap);
-  const categoriesList = useSelector(selectCategoriesList);
-  const { isFetched, isLoading } = useQuery({ queryKey: ["categories"], queryFn: queryCategories });
+  const categoriesMap = useAppSelector(selectCategoriesMap);
+  const categoriesList = useAppSelector(selectCategoriesList);
+  const { isFetched, isLoading } = useAppSelector(selectCategories);
 
   async function queryCategories() {
-    let categories: Category[] = [];
     if (categoriesList.length === 0) {
-      categories = await getCategories();
-      categoryAction.setCategories(categories);
+      await categoryAction.fetchCategories();
     }
-    return categories;
   }
+
+  useEffectOnce(() => {
+    void queryCategories();
+  });
 
   const categoryExists = (title = "") => {
     return categoriesList.some((category) => category.title.toLowerCase() === title?.toLowerCase());

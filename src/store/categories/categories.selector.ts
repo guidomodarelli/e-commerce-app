@@ -5,7 +5,7 @@ import { selectProductsList } from "@store/products";
 
 export const selectCategories = (state: AppRootState) => state.categories;
 
-export const selectCategoriesList = createSelector([selectCategories], ({ list }) => list);
+export const selectCategoriesList = createSelector([selectCategories], ({ categories }) => categories);
 
 export const selectCategoriesMap = createSelector([selectCategoriesList, selectProductsList], (categories, products) =>
   categories.reduce<Record<string, Product[] | undefined>>((previousValue, currentCategory) => {
