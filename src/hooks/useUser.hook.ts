@@ -1,10 +1,11 @@
+import { useAppSelector } from "@store/store";
 import { selectUser, UserAction } from "@store/user";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const useUser = () => {
   const dispatch = useDispatch();
   const userAction = UserAction(dispatch);
-  const { currentUser } = useSelector(selectUser);
+  const { currentUser } = useAppSelector(selectUser);
 
   return {
     currentUser,

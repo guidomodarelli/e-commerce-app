@@ -1,13 +1,14 @@
 import { getProducts } from "@/setup";
 import { Product } from "@core/domain/entities";
 import { ProductAction, selectProducts } from "@store/products";
+import { useAppSelector } from "@store/store";
 import { useQuery } from "@tanstack/react-query";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export function useProducts() {
   const dispatch = useDispatch();
   const productAction = ProductAction(dispatch);
-  const { list } = useSelector(selectProducts);
+  const { list } = useAppSelector(selectProducts);
   const { isLoading } = useQuery({ queryKey: ["products"], queryFn: queryProducts });
 
   async function queryProducts() {
