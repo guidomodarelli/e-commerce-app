@@ -24,9 +24,8 @@ export class AuthServiceFirebaseAdapter implements AuthService {
   async loggedIn(user: User): Promise<void> {
     const userFromRepository = await this.userRepository.findByEmail(user.email);
     if (userFromRepository) {
-      user.displayName = userFromRepository.displayName;
+      this.authState$.next(userFromRepository);
     }
-    this.authState$.next(user);
   }
 
   loggedOut(): void {
