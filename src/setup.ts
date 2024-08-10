@@ -11,7 +11,6 @@ import * as schema from "@core/adapters/drizzle/schema";
 import {
   getCategoriesUseCase,
   getProductsUseCase,
-  onAuthStateChangeUseCase,
   saveAllProductsUseCase,
   saveAuthUserUseCase,
   signInAuthUserWithEmailAndPasswordUseCase,
@@ -25,6 +24,7 @@ import { drizzle } from "drizzle-orm/libsql";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig, tursoConfig } from "./config";
+import { getCurrentUserUseCase } from "@core/application/useCases/GetCurrentUserUseCase";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -42,7 +42,7 @@ const productRepository: ProductRepository = new ProductRepositoryDrizzleAdapter
 const categoryRepository: CategoryRepository = new CategoryRepositoryDrizzleAdapter(db);
 
 export const signInWithGoogle = signInWithGoogleUseCase(userAuthSignInProvider, authService);
-export const onAuthStateChanged = onAuthStateChangeUseCase(authService);
+export const getCurrentUser = getCurrentUserUseCase(authService);
 export const signInWithEmailAndPassword = signInAuthUserWithEmailAndPasswordUseCase(
   userAuthWithEmailAndPassword,
   authService,
@@ -52,7 +52,7 @@ export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseC
   authService,
 );
 export const signOut = signOutUserUseCase(userAuthSignOut, authService);
-export const saveUser = saveAuthUserUseCase(userRepository);
+export const saveUserInRepository = saveAuthUserUseCase(userRepository);
 export const saveAllProducts = saveAllProductsUseCase(productRepository);
 export const getProducts = getProductsUseCase(productRepository);
 export const getCategories = getCategoriesUseCase(categoryRepository);
