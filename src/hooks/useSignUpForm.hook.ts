@@ -1,4 +1,3 @@
-import { saveUser, signUpWithEmailAndPassword } from "@/setup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FIREBASE_EMAIL_EXISTS, FIREBASE_WEAK_PASSWORD } from "@utils/firebase/constants/auth-error-codes.constants";
 import { MESSAGE_EMAIL_EXISTS, MESSAGE_WEAK_PASSWORD } from "@utils/firebase/constants/auth-error-messages.constants";
@@ -7,6 +6,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { SignUpFormFields, schema } from "../components/Authentication/SignUp/sign-up.schema";
+import { selectUser, signUpStart } from "@store/user";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@store/store";
 
 interface FieldMessage {
   field: keyof SignUpFormFields;
@@ -27,21 +29,24 @@ const handleSignUpError = (error: FirebaseError): FieldMessage | null => {
 
 function useSignUp() {
   const navigate = useNavigate();
-  const { register, handleSubmit, formState, reset, setError, getValues } = useForm<SignUpFormFields>({
+  const dispatch = useAppDispatch();
+  const { currentUser } = useAppSelector(selectUser);
+  const { register, handleSubmit, formState, setError, getValues } = useForm<SignUpFormFields>({
     resolver: zodResolver(schema),
   });
 
-  const onSuccessSignUp = () => {
-    reset();
-    toast.success("User has been created successfully!");
-    navigate("/");
-  };
+  useEffect(() => {
+    if (currentUser) {
+      toast.success("User has been created successfully!");
+      navigate("/");
+    }
+  }, [currentUser, navigate]);
 
-  const onSubmit: SubmitHandler<SignUpFormFields> = async (data) => {
+  const onSubmit: SubmitHandler<SignUpFormFields> = ({ email, password }) => {
     try {
-      const user = await signUpWithEmailAndPassword(data.email, data.password, getValues("displayName"));
-      await saveUser(user);
-      onSuccessSignUp();
+      const displayName = getValues("displayName");
+      dispatch(signUpStart(email, password, displayName));
+      // FIXME don't catch errors
     } catch (error) {
       if (error instanceof FirebaseError) {
         const errorInfo = handleSignUpError(error);

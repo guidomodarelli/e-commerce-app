@@ -14,7 +14,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import { saveUser, signInWithEmailAndPassword, signInWithGoogle } from "@/setup";
+import { emailSignInStart, googleSignInStart, selectUser } from "@store/user";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@store/store";
+
 const schema = z.object({
   email: z.string().email().default(""),
   password: z.string().min(8).default(""),
@@ -36,27 +39,28 @@ const handleFirebaseError = (error: FirebaseError) => {
 };
 
 function useSignInForm() {
+  const dispatch = useAppDispatch();
+  const { currentUser } = useAppSelector(selectUser);
   const navigate = useNavigate();
-  const { register, reset, setError, handleSubmit, formState } = useForm<SignInFormFields>({
+  const { register, setError, handleSubmit, formState } = useForm<SignInFormFields>({
     resolver: zodResolver(schema),
   });
 
-  const onSuccessSignIn = () => {
-    reset();
-    toast.success("You are logged in successfully!");
-    navigate("/");
+  useEffect(() => {
+    if (currentUser) {
+      toast.success("You are logged in successfully!");
+      navigate("/");
+    }
+  }, [currentUser, navigate]);
+
+  const signInWithGoogleHandler = () => {
+    dispatch(googleSignInStart());
   };
 
-  const signInWithGoogleHandler = async () => {
-    const user = await signInWithGoogle();
-    await saveUser(user);
-    onSuccessSignIn();
-  };
-
-  const onSubmit: SubmitHandler<SignInFormFields> = async (data) => {
+  const onSubmit: SubmitHandler<SignInFormFields> = ({ email, password }) => {
     try {
-      await signInWithEmailAndPassword(data.email, data.password);
-      onSuccessSignIn();
+      dispatch(emailSignInStart(email, password));
+      // FIXME don't catch errors
     } catch (error) {
       if (error instanceof FirebaseError) {
         const errorMessage = handleFirebaseError(error);

@@ -7,18 +7,14 @@ import SignUp from "./pages/SignUp.page";
 import Page404 from "./pages/404.page";
 import CheckoutPage from "./pages/Checkout.page";
 import { useEffectOnce } from "react-use";
-import { onAuthStateChanged } from "./setup";
-import useUser from "./hooks/useUser.hook";
+import { checkUserSession } from "@store/user";
+import { useAppDispatch } from "@store/store";
 
 function App() {
-  const { setCurrentUser } = useUser();
+  const dispatch = useAppDispatch();
 
   useEffectOnce(() => {
-    const unsubscribe = onAuthStateChanged((user) => {
-      setCurrentUser(user);
-    });
-
-    return unsubscribe;
+    dispatch(checkUserSession());
   });
 
   return (

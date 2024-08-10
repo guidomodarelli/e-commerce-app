@@ -1,17 +1,17 @@
-import NavItem from "./NavItem.component";
-import Spinner from "@components/spinner/Spinner.component";
-import { toast } from "sonner";
-import { signOut } from "@/setup";
 import useUser from "@/hooks/useUser.hook";
+import Spinner from "@components/spinner/Spinner.component";
+import { useAppDispatch } from "@store/store";
+import { signOutStart } from "@store/user";
+import NavItem from "./NavItem.component";
 
 interface NavItemUserSignInProps {}
 
 const NavItemUserSignIn = ({}: NavItemUserSignInProps) => {
+  const dispatch = useAppDispatch();
   const { currentUser } = useUser();
 
-  const signOutHandler = async () => {
-    toast.success("You are logged out successfully!");
-    await signOut();
+  const signOutHandler = () => {
+    dispatch(signOutStart());
   };
 
   if (currentUser === undefined) {

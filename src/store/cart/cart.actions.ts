@@ -5,6 +5,7 @@ import { AppDispatch } from "@store/store";
 import { useSelector } from "react-redux";
 
 export const CartAction = (dispatch: AppDispatch) => {
+  //! Using "useAppSelector": Cannot access 'cartReducer' before initialization
   const cartItems = useSelector(selectCartItems);
 
   return {
