@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { ProductAction } from "./products.actions";
-import { INITIAL_STATE, ProductState } from "./products.state";
+import { INITIAL_STATE, ProductState } from "../products.state";
 import { SET_PRODUCTS } from "./products.types";
 
 export const legacy_productReducer: Reducer<ProductState, ProductAction> = (
