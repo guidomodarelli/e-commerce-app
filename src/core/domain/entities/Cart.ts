@@ -1,18 +1,22 @@
 import { CartState } from "@store/cart";
-import { CartItem } from "./CartItem";
 import { Product } from "./Product";
 
 export class Cart {
   static add(cart: CartState["cart"], productToAdd: Product): CartState["cart"] {
-    const cartItem = cart.find((item) => item.id === productToAdd.id);
+    let cartItem = cart.find((item) => item.id === productToAdd.id);
 
     if (cartItem) {
       cartItem.quantity += 1;
 
       return [...cart];
+    } else {
+      cartItem = {
+        ...productToAdd,
+        quantity: 1,
+      };
     }
 
-    return [...cart, new CartItem(productToAdd)];
+    return [...cart, cartItem];
   }
 
   static remove(cart: CartState["cart"], cartItemToUpdate: Product): CartState["cart"] {
