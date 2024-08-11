@@ -1,15 +1,20 @@
 import { Route, Routes } from "react-router-dom";
-import CategoriesPreview from "../Categories/CategoriesPreview/CategoriesPreview.component";
-import Category from "@/pages/Category.page";
+import { lazy, Suspense } from "react";
+import Spinner from "@components/spinner/Spinner.component";
+
+const CategoriesPreview = lazy(() => import("../Categories/CategoriesPreview/CategoriesPreview.component"));
+const Category = lazy(() => import("@/pages/Category.page"));
 
 interface ShopProps {}
 
 function Shop({}: ShopProps) {
   return (
-    <Routes>
-      <Route index element={<CategoriesPreview />} />
-      <Route path=":categoryTitle" element={<Category />} />
-    </Routes>
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        <Route index element={<CategoriesPreview />} />
+        <Route path=":categoryTitle" element={<Category />} />
+      </Routes>
+    </Suspense>
   );
 }
 
