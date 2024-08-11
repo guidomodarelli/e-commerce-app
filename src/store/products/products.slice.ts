@@ -7,8 +7,8 @@ export const productSlice = createSlice({
   name: "product",
   initialState: INITIAL_STATE,
   reducers: {
-    setProducts(state, action: Payload<Product[]>) {
-      state.list = action.payload;
+    setProducts(draft, action: Payload<Product[]>) {
+      draft.list = action.payload;
     },
   },
 });
