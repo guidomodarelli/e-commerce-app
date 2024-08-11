@@ -1,12 +1,12 @@
 import { getProducts } from "@/setup";
 import { Product } from "@core/domain/entities";
-import { ProductAction, selectProducts } from "@store/products";
+import { selectProducts, setProducts } from "@store/products";
 import { useAppDispatch, useAppSelector } from "@store/store";
 import { useQuery } from "@tanstack/react-query";
 
 export function useProducts() {
   const dispatch = useAppDispatch();
-  const productAction = ProductAction(dispatch);
+  // const productAction = ProductAction(dispatch);
   const { list } = useAppSelector(selectProducts);
   const { isLoading } = useQuery({ queryKey: ["products"], queryFn: queryProducts });
 
@@ -14,7 +14,8 @@ export function useProducts() {
     let products: Product[] = [];
     if (list.length === 0) {
       products = await getProducts();
-      productAction.setProducts(products);
+      // productAction.setProducts(products);
+      dispatch(setProducts(products));
     }
     return products;
   }
