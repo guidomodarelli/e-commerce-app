@@ -1,4 +1,4 @@
-import CartItem from "./cart-item/CartItem.component";
+import CartItem from "./checkout-item/CheckoutItem.component";
 import styles from "./checkout.module.css";
 import { formatCurrency } from "@utils/format-currency";
 import { useCart } from "@/hooks/useCart.hook";

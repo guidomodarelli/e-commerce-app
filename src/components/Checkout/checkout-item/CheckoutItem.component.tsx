@@ -1,13 +1,14 @@
 import { CartItem as CartItemType } from "@core/domain/entities";
-import styles from "./cart-item.module.css";
+import styles from "./checkout-item.module.css";
 import { formatCurrency } from "@utils/format-currency";
 import { useCart } from "@/hooks/useCart.hook";
+import { memo } from "react";
 
 interface CartItemProps {
   cartItem: CartItemType;
 }
 
-function CartItem({ cartItem }: CartItemProps) {
+const CheckoutItem = memo(function CheckoutItem({ cartItem }: CartItemProps) {
   const { name, price, quantity, imageUrl } = cartItem;
   const { addItemToCart, removeItemFromCart, dropItemFromCart } = useCart();
 
@@ -45,6 +46,6 @@ function CartItem({ cartItem }: CartItemProps) {
       </div>
     </article>
   );
-}
+});
 
-export default CartItem;
+export default CheckoutItem;
