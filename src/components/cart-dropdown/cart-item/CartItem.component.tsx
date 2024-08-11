@@ -1,12 +1,13 @@
 import { CartItem as CartItemType } from "@core/domain/entities";
 import styles from "./cart-item.module.css";
 import { formatCurrency } from "@utils/format-currency";
+import { memo } from "react";
 
 interface CartItemProps {
   cartItem: CartItemType;
 }
 
-function CartItem({ cartItem }: CartItemProps) {
+const CartItem = memo(function CartItem({ cartItem }: CartItemProps) {
   const { name, quantity, imageUrl, price } = cartItem;
   return (
     <div className={styles["cart-item-container"]}>
@@ -19,6 +20,6 @@ function CartItem({ cartItem }: CartItemProps) {
       </div>
     </div>
   );
-}
+});
 
 export default CartItem;
