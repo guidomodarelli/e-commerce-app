@@ -1,6 +1,6 @@
 import { Reducer } from "react";
 import { CartAction } from "./cart.actions";
-import { CartState, INITIAL_STATE } from "./cart.state";
+import { CartState, INITIAL_STATE } from "../cart.state";
 import { SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./cart.types";
 
 export const cartReducer: Reducer<CartState, CartAction> = (state = INITIAL_STATE, action) => {
