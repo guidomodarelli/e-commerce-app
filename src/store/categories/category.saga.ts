@@ -1,8 +1,7 @@
 import { getCategories } from "@/setup";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchCategoriesFailure, fetchCategoriesSuccess } from ".";
+import { fetchCategoriesFailure, fetchCategoriesStart, fetchCategoriesSuccess } from ".";
 import { Category } from "@core/domain/entities";
-import { FETCH_CATEGORIES_START } from "./categories.types";
 
 export function* fetchCategories() {
   try {
@@ -13,7 +12,7 @@ export function* fetchCategories() {
   }
 }
 export function* onFetchCategories() {
-  yield takeLatest(FETCH_CATEGORIES_START, fetchCategories);
+  yield takeLatest(fetchCategoriesStart, fetchCategories);
 }
 
 export function* categoriesSaga() {

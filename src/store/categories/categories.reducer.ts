@@ -3,7 +3,7 @@ import { CategoryState, INITIAL_STATE } from "./categories.state";
 import { CategoryAction } from "./categories.actions";
 import { FETCH_CATEGORIES_FAILED, FETCH_CATEGORIES_START, FETCH_CATEGORIES_SUCCESS } from "./categories.types";
 
-export const categoryReducer: Reducer<CategoryState, CategoryAction> = (
+export const legacy_categoryReducer: Reducer<CategoryState, CategoryAction> = (
   state = INITIAL_STATE,
   action,
 ): CategoryState => {
