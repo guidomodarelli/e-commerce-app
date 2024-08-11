@@ -12,10 +12,10 @@ import {
   MESSAGE_TOO_MANY_ATTEMPTS_TRY_LATER,
   MESSAGE_WEAK_PASSWORD,
 } from "@/constants/auth-error-messages.constants";
-import { HandleError } from "@core/ports/UserAuth/HandleError.port";
+import { ErrorHandler } from "@core/ports/UserAuth/HandleError.port";
 import { FirebaseError } from "firebase/app";
 
-export class HandleAuthErrorFirebaseAdapter implements HandleError<"password" | "email"> {
+export class ErrorHandlerAuthFirebaseAdapter implements ErrorHandler<"password" | "email"> {
   handle(error: Error): FieldMessage<"password" | "email"> | null {
     if (!(error instanceof FirebaseError)) return null;
 

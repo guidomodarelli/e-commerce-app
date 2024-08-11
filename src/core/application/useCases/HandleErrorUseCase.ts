@@ -1,7 +1,7 @@
-import { HandleError } from "@core/ports/UserAuth/HandleError.port";
+import { ErrorHandler } from "@core/ports/UserAuth/HandleError.port";
 
-export const handleErrorUseCase =
-  <T extends string>(handleError: HandleError<T>) =>
+export const errorAuthHandlerUseCase =
+  <T extends string>(errorHandler: ErrorHandler<T>) =>
   (error: Error) => {
-    return handleError.handle(error);
+    return errorHandler.handle(error);
   };

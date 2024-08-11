@@ -25,8 +25,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig, tursoConfig } from "./config";
 import { getCurrentUserUseCase } from "@core/application/useCases/GetCurrentUserUseCase";
-import { handleErrorUseCase } from "@core/application/useCases/HandleErrorUseCase";
-import { HandleAuthErrorFirebaseAdapter } from "@core/adapters/auth/firebase/HandleAuthErrorFirebaseAdapter";
+import { errorAuthHandlerUseCase } from "@core/application/useCases/HandleErrorUseCase";
+import { ErrorHandlerAuthFirebaseAdapter } from "@core/adapters/auth/firebase/HandleAuthErrorFirebaseAdapter";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -42,7 +42,7 @@ const authService = new AuthServiceFirebaseAdapter(auth, userRepository);
 const userAuthWithEmailAndPassword = new UserAuthWithEmailAndPasswordFirebaseAdapter(auth);
 const productRepository: ProductRepository = new ProductRepositoryDrizzleAdapter(db);
 const categoryRepository: CategoryRepository = new CategoryRepositoryDrizzleAdapter(db);
-const errorHandler = new HandleAuthErrorFirebaseAdapter();
+const errorHandler = new ErrorHandlerAuthFirebaseAdapter();
 
 export const signInWithGoogle = signInWithGoogleUseCase(userAuthSignInProvider, authService);
 export const getCurrentUser = getCurrentUserUseCase(authService);
@@ -59,4 +59,4 @@ export const saveUserInRepository = saveAuthUserUseCase(userRepository);
 export const saveAllProducts = saveAllProductsUseCase(productRepository);
 export const getProducts = getProductsUseCase(productRepository);
 export const getCategories = getCategoriesUseCase(categoryRepository);
-export const handleAuthError = handleErrorUseCase(errorHandler);
+export const errorAuthHandler = errorAuthHandlerUseCase(errorHandler);

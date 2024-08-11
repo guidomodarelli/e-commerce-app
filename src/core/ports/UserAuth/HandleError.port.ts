@@ -1,3 +1,3 @@
-export interface HandleError<T extends string> {
+export interface ErrorHandler<T extends string> {
   handle(error: Error): FieldMessage<T> | null;
 }

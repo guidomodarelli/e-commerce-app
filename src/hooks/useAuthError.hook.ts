@@ -1,4 +1,4 @@
-import { handleAuthError } from "@/setup";
+import { errorAuthHandler } from "@/setup";
 import { useEffect } from "react";
 
 interface AuthErrorProps {
@@ -9,7 +9,7 @@ interface AuthErrorProps {
 export function useAuthError({ error, setError }: AuthErrorProps) {
   useEffect(() => {
     if (!error) return;
-    const errorInfo = handleAuthError(error);
+    const errorInfo = errorAuthHandler(error);
     if (errorInfo) {
       setError(errorInfo.field, errorInfo.message);
     }
