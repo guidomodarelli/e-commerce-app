@@ -31,6 +31,7 @@ module.exports = {
       ],
       plugins: ["react-refresh", "unicorn"],
       rules: {
+        "unicorn/prefer-spread": "off",
         "unicorn/no-negated-condition": "off",
         "@typescript-eslint/no-unused-vars": "warn",
         "unicorn/consistent-function-scoping": "off",
