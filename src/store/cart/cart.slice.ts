@@ -20,11 +20,7 @@ export const cartSlice = createSlice({
     },
 
     removeItemFromCart(draft, action: Payload<Product>) {
-      const cartItem = draft.cart.find((item) => item.id === action.payload.id);
-      draft.cart =
-        cartItem && cartItem.quantity > 1
-          ? Cart.remove(draft.cart, action.payload)
-          : Cart.drop(draft.cart, action.payload);
+      draft.cart = Cart.remove(draft.cart, action.payload);
     },
 
     dropItemFromCart(draft, action: Payload<Product>) {
