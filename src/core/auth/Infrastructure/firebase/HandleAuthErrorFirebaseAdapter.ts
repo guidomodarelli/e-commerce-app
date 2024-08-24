@@ -12,7 +12,7 @@ import {
   MESSAGE_TOO_MANY_ATTEMPTS_TRY_LATER,
   MESSAGE_WEAK_PASSWORD,
 } from "@/constants/auth-error-messages.constants";
-import { ErrorHandler, FieldMessage } from "@core/Shared/Domain";
+import { ErrorHandler, FieldMessage } from "@core/common/Domain";
 import { FirebaseError } from "firebase/app";
 
 export class ErrorHandlerAuthFirebaseAdapter implements ErrorHandler<"password" | "email"> {

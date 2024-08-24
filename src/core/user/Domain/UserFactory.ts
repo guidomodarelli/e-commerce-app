@@ -1,4 +1,4 @@
-import { Factory, User } from "@core/Shared/Domain";
+import { Factory, User } from "@core/common/Domain";
 import { UserInfo } from "firebase/auth";
 
 export const UserFactory: Factory<UserInfo, User> = {

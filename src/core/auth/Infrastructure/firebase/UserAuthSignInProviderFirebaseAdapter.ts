@@ -1,5 +1,5 @@
 import { UserAuthSignInProvider } from "@core/auth/Domain";
-import { User } from "@core/Shared/Domain";
+import { User } from "@core/common/Domain";
 import { UserFactory } from "@core/user/Domain";
 import { Auth, AuthProvider, signInWithPopup } from "firebase/auth";
 

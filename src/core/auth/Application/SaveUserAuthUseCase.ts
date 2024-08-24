@@ -1,4 +1,4 @@
-import { User } from "@core/Shared/Domain";
+import { User } from "@core/common/Domain";
 import { UserRepository } from "@core/user/Domain";
 
 export const saveUserAuthUseCase = (userRepository: UserRepository) => (user: User) => {

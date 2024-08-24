@@ -1,4 +1,4 @@
-import { AuthService, User } from "@core/Shared/Domain";
+import { AuthService, User } from "@core/common/Domain";
 import { UserFactory, UserRepository } from "@core/user/Domain";
 import { Auth, onAuthStateChanged } from "firebase/auth";
 import { debounceTime, Subject } from "rxjs";

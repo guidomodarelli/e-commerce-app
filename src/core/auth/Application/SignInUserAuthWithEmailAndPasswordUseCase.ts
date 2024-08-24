@@ -1,5 +1,5 @@
 import { UserAuthSignInWithEmailAndPassword } from "@core/auth/Domain";
-import { AuthService } from "@core/Shared/Domain";
+import { AuthService } from "@core/common/Domain";
 
 export const signInWithEmailAndPasswordUseCase =
   (userAuth: UserAuthSignInWithEmailAndPassword, authService: AuthService) =>

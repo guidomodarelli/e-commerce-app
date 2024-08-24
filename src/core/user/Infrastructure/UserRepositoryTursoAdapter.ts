@@ -1,4 +1,4 @@
-import { User } from "@core/Shared/Domain";
+import { User } from "@core/common/Domain";
 import { UserRepository } from "@core/user/Domain";
 import { Client } from "@libsql/client";
 

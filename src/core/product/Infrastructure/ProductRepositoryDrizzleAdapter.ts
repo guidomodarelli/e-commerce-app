@@ -1,7 +1,7 @@
 import { ShopData } from "@/shop-data";
 import { Product, ProductRepository } from "@core/product/Domain";
-import * as schema from "@core/Shared/Infrastructure/drizzle/schema";
-import { category as categorySchema, products as productsSchema } from "@core/Shared/Infrastructure/drizzle/schema";
+import * as schema from "@core/common/Infrastructure/drizzle/schema";
+import { category as categorySchema, products as productsSchema } from "@core/common/Infrastructure/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { BatchItem } from "drizzle-orm/batch";
 import { LibSQLDatabase } from "drizzle-orm/libsql";

@@ -6,7 +6,7 @@ import {
   signOut,
   signUpWithEmailAndPassword,
 } from "@/setup";
-import { User } from "@core/Shared/Domain";
+import { User } from "@core/common/Domain";
 import { Payload } from "@store/utils/payload.utils";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import {

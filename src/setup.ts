@@ -19,7 +19,7 @@ import { CategoryRepositoryDrizzleAdapter } from "@core/category/Infrastructure"
 import { getProductsUseCase, saveAllProductsUseCase } from "@core/product/Application";
 import { ProductRepository } from "@core/product/Domain";
 import { ProductRepositoryDrizzleAdapter } from "@core/product/Infrastructure";
-import { schema } from "@core/Shared/Infrastructure/drizzle";
+import { schema } from "@core/common/Infrastructure/drizzle";
 import { getCurrentUserUseCase } from "@core/user/Application";
 import { UserRepository } from "@core/user/Domain";
 import { UserRepositoryDrizzleAdapter } from "@core/user/Infrastructure";
