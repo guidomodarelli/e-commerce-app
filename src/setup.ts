@@ -6,20 +6,20 @@ import {
   signOutUserUseCase,
   signUpAuthUserWithEmailAndPasswordUseCase,
 } from "@core/auth/Application";
-import { getCategoriesUseCase } from "@core/category/Application/GetCategoriesUseCase";
-import { CategoryRepository } from "@core/category/Domain";
-import { CategoryRepositoryDrizzleAdapter } from "@core/category/Infrastructure";
-import { getProductsUseCase, saveAllProductsUseCase } from "@core/product/Application";
-import { ProductRepository } from "@core/product/Domain";
-import { ProductRepositoryDrizzleAdapter } from "@core/product/Infrastructure";
-import { schema } from "@core/Shared/Infrastructure/drizzle";
 import {
   AuthServiceFirebaseAdapter,
   ErrorHandlerAuthFirebaseAdapter,
   UserAuthSignInProviderFirebaseAdapter,
   UserAuthSignOutFirebaseAdapter,
   UserAuthWithEmailAndPasswordFirebaseAdapter,
-} from "@core/Shared/Infrastructure/firebase";
+} from "@core/auth/Infrastructure/firebase";
+import { getCategoriesUseCase } from "@core/category/Application";
+import { CategoryRepository } from "@core/category/Domain";
+import { CategoryRepositoryDrizzleAdapter } from "@core/category/Infrastructure";
+import { getProductsUseCase, saveAllProductsUseCase } from "@core/product/Application";
+import { ProductRepository } from "@core/product/Domain";
+import { ProductRepositoryDrizzleAdapter } from "@core/product/Infrastructure";
+import { schema } from "@core/Shared/Infrastructure/drizzle";
 import { getCurrentUserUseCase } from "@core/user/Application";
 import { UserRepository } from "@core/user/Domain";
 import { UserRepositoryDrizzleAdapter } from "@core/user/Infrastructure";
