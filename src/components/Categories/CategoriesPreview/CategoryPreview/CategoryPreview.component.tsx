@@ -1,4 +1,4 @@
-import { Product } from "@core/domain/entities";
+import { Product } from "@core/product/Domain";
 import styles from "./category-preview.module.css";
 import ProductCard from "@/components/product-card/ProductCard.component";
 import { Link } from "react-router-dom";

@@ -1,4 +1,5 @@
-import { Cart, CartItem, Product } from "@core/domain/entities";
+import { Cart, CartItem } from "@core/cart/Domain";
+import { Product } from "@core/product/Domain";
 import { SET_CART_IS_CLOSE, SET_CART_IS_OPEN, SET_CART_ITEMS } from "./cart.types";
 import { selectCartItems } from "../cart.selector";
 import { AppDispatch } from "@store/store";

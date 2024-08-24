@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { INITIAL_STATE } from "./categories.state";
-import { Category } from "@core/domain/entities";
+import { Category } from "@core/category/Domain";
 import { Payload } from "@store/utils/payload.utils";
 
 export const categorySlice = createSlice({

@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import Button from "../Button/Button.component";
 import styles from "./product-card.module.css";
-import { Product } from "@core/domain/entities";
+import { Product } from "@core/product/Domain";
 import { formatCurrency } from "@utils/format-currency";
 import { useCart } from "@/hooks/useCart.hook";
 

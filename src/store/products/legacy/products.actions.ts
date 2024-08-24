@@ -1,4 +1,4 @@
-import { Product } from "@core/domain/entities";
+import { Product } from "@core/product/Domain";
 import { SET_PRODUCTS } from "./products.types";
 import { AppDispatch } from "@store/store";
 

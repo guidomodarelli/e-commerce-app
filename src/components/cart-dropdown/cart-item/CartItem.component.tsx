@@ -1,4 +1,4 @@
-import { CartItem as CartItemType } from "@core/domain/entities";
+import { CartItem as CartItemType } from "@core/cart/Domain";
 import styles from "./cart-item.module.css";
 import { formatCurrency } from "@utils/format-currency";
 import { memo } from "react";

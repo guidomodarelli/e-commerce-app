@@ -1,4 +1,4 @@
-import { Product } from "@core/domain/entities";
+import { Product } from "@core/product/Domain";
 
 export const INITIAL_STATE = {
   list: [] as Product[],

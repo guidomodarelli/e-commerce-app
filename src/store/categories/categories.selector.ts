@@ -1,5 +1,5 @@
 import { AppRootState } from "../store";
-import { Product } from "@core/domain/entities";
+import { Product } from "@core/product/Domain";
 import { createSelector } from "reselect";
 import { selectProductsList } from "@store/products";
 

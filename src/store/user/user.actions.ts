@@ -1,4 +1,4 @@
-import { User } from "@core/domain/entities";
+import { User } from "@core/Shared/Domain";
 import {
   CHECK_USER_SESSION,
   EMAIL_SIGN_IN_START,

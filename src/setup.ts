@@ -1,32 +1,33 @@
 import {
-  AuthServiceFirebaseAdapter,
-  CategoryRepositoryDrizzleAdapter,
-  ProductRepositoryDrizzleAdapter,
-  UserAuthSignInProviderFirebaseAdapter,
-  UserAuthSignOutFirebaseAdapter,
-  UserAuthWithEmailAndPasswordFirebaseAdapter,
-  UserRepositoryDrizzleAdapter,
-} from "@core/adapters";
-import * as schema from "@core/adapters/drizzle/schema";
-import {
-  getCategoriesUseCase,
-  getProductsUseCase,
-  saveAllProductsUseCase,
-  saveAuthUserUseCase,
-  signInAuthUserWithEmailAndPasswordUseCase,
+  errorAuthHandlerUseCase,
+  saveUserAuthUseCase,
+  signInWithEmailAndPasswordUseCase,
   signInWithGoogleUseCase,
   signOutUserUseCase,
   signUpAuthUserWithEmailAndPasswordUseCase,
-} from "@core/application/useCases";
-import { CategoryRepository, ProductRepository, UserRepository } from "@core/ports";
+} from "@core/auth/Application";
+import { getCategoriesUseCase } from "@core/category/Application/GetCategoriesUseCase";
+import { CategoryRepository } from "@core/category/Domain";
+import { CategoryRepositoryDrizzleAdapter } from "@core/category/Infrastructure";
+import { getProductsUseCase, saveAllProductsUseCase } from "@core/product/Application";
+import { ProductRepository } from "@core/product/Domain";
+import { ProductRepositoryDrizzleAdapter } from "@core/product/Infrastructure";
+import { schema } from "@core/Shared/Infrastructure/drizzle";
+import {
+  AuthServiceFirebaseAdapter,
+  ErrorHandlerAuthFirebaseAdapter,
+  UserAuthSignInProviderFirebaseAdapter,
+  UserAuthSignOutFirebaseAdapter,
+  UserAuthWithEmailAndPasswordFirebaseAdapter,
+} from "@core/Shared/Infrastructure/firebase";
+import { getCurrentUserUseCase } from "@core/user/Application";
+import { UserRepository } from "@core/user/Domain";
+import { UserRepositoryDrizzleAdapter } from "@core/user/Infrastructure";
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig, tursoConfig } from "./config";
-import { getCurrentUserUseCase } from "@core/application/useCases/GetCurrentUserUseCase";
-import { errorAuthHandlerUseCase } from "@core/application/useCases/HandleErrorUseCase";
-import { ErrorHandlerAuthFirebaseAdapter } from "@core/adapters/auth/firebase/HandleAuthErrorFirebaseAdapter";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -46,16 +47,13 @@ const errorHandler = new ErrorHandlerAuthFirebaseAdapter();
 
 export const signInWithGoogle = signInWithGoogleUseCase(userAuthSignInProvider, authService);
 export const getCurrentUser = getCurrentUserUseCase(authService);
-export const signInWithEmailAndPassword = signInAuthUserWithEmailAndPasswordUseCase(
-  userAuthWithEmailAndPassword,
-  authService,
-);
+export const signInWithEmailAndPassword = signInWithEmailAndPasswordUseCase(userAuthWithEmailAndPassword, authService);
 export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseCase(
   userAuthWithEmailAndPassword,
   authService,
 );
 export const signOut = signOutUserUseCase(userAuthSignOut, authService);
-export const saveUserInRepository = saveAuthUserUseCase(userRepository);
+export const saveUserInRepository = saveUserAuthUseCase(userRepository);
 export const saveAllProducts = saveAllProductsUseCase(productRepository);
 export const getProducts = getProductsUseCase(productRepository);
 export const getCategories = getCategoriesUseCase(categoryRepository);

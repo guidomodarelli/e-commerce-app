@@ -1,4 +1,4 @@
-import { Category } from "@core/domain/entities";
+import { Category } from "@core/category/Domain";
 
 export const INITIAL_STATE = {
   categories: [] as Category[],

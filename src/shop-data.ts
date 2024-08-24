@@ -1,4 +1,4 @@
-import { Product } from "@core/domain/entities";
+import { Product } from "@core/product/Domain";
 
 export interface ShopData {
   title: Capitalize<string>;

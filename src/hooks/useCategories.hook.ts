@@ -1,4 +1,4 @@
-import { Category } from "@core/domain/entities";
+import { Category } from "@core/category/Domain";
 import { fetchCategoriesStart, selectCategories, selectCategoriesList, selectCategoriesMap } from "@store/categories";
 import { useAppDispatch, useAppSelector } from "@store/store";
 import { useEffectOnce } from "react-use";

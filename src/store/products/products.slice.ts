@@ -1,4 +1,4 @@
-import { Product } from "@core/domain/entities";
+import { Product } from "@core/product/Domain";
 import { createSlice } from "@reduxjs/toolkit";
 import { Payload } from "@store/utils/payload.utils";
 import { INITIAL_STATE } from "./products.state";
