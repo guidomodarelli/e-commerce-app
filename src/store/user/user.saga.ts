@@ -1,6 +1,6 @@
 import {
   getCurrentUser,
-  saveUserInRepository,
+  saveUser,
   signInWithEmailAndPassword,
   signInWithGoogle,
   signOut,
@@ -25,7 +25,7 @@ import {
 } from ".";
 
 export function* signInEffect(user: User) {
-  yield call(saveUserInRepository, user);
+  yield call(saveUser, user);
   yield put(signInSuccess(user));
 }
 

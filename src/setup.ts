@@ -1,6 +1,5 @@
 import {
   errorAuthHandlerUseCase,
-  saveUserAuthUseCase,
   signInWithEmailAndPasswordUseCase,
   signInWithGoogleUseCase,
   signOutUserUseCase,
@@ -20,7 +19,7 @@ import { getProductsUseCase, saveAllProductsUseCase } from "@core/product/Applic
 import { ProductRepository } from "@core/product/Domain";
 import { ProductRepositoryDrizzleAdapter } from "@core/product/Infrastructure";
 import { schema } from "@core/common/Infrastructure/drizzle";
-import { getCurrentUserUseCase } from "@core/user/Application";
+import { getCurrentUserUseCase, saveUserUseCase } from "@core/user/Application";
 import { UserRepository } from "@core/user/Domain";
 import { UserRepositoryDrizzleAdapter } from "@core/user/Infrastructure";
 import { createClient } from "@libsql/client";
@@ -53,7 +52,7 @@ export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseC
   authService,
 );
 export const signOut = signOutUserUseCase(userAuthSignOut, authService);
-export const saveUserInRepository = saveUserAuthUseCase(userRepository);
+export const saveUser = saveUserUseCase(userRepository);
 export const saveAllProducts = saveAllProductsUseCase(productRepository);
 export const getProducts = getProductsUseCase(productRepository);
 export const getCategories = getCategoriesUseCase(categoryRepository);
