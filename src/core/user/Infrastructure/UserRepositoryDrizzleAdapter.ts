@@ -1,4 +1,4 @@
-import { User } from "@core/common/Domain";
+import { User, UserEntity } from "@core/common/Domain";
 import * as schema from "@core/common/Infrastructure/drizzle/schema";
 import { UserRepository } from "@core/user/Domain";
 import { LibSQLDatabase } from "drizzle-orm/libsql";
@@ -18,9 +18,13 @@ export class UserRepositoryDrizzleAdapter implements UserRepository {
     }
   }
 
-  findByEmail(email: string): Promise<User | undefined> {
-    return this.db.query.users.findFirst({
+  async findByEmail(email: string): Promise<User | undefined> {
+    const user = await this.db.query.users.findFirst({
       where: (users, { eq }) => eq(users.email, email),
     });
+    if (user) {
+      return UserEntity.create(user).toPrimitives();
+    }
+    return undefined;
   }
 }

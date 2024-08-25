@@ -1,4 +1,4 @@
-import { Factory, User } from "@core/common/Domain";
+import { Factory, User, UserEntity } from "@core/common/Domain";
 import { UserInfo } from "firebase/auth";
 
 export const UserFirebaseFactory: Factory<UserInfo, User> = {
@@ -6,6 +6,6 @@ export const UserFirebaseFactory: Factory<UserInfo, User> = {
     const id = user.uid;
     const email = user.email ?? "";
     const displayName = user.displayName ?? "";
-    return User.create({ id, email, displayName });
+    return UserEntity.create({ id, email, displayName }).toPrimitives();
   },
 };
