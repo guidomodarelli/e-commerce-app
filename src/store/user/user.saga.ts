@@ -70,10 +70,7 @@ export function* signOutEffect() {
 export function* isUserAuthenticatedEffect() {
   try {
     const user = (yield call(getCurrentUser)) as User;
-    if (!user) {
-      yield put(signOutSuccess());
-    }
-    yield call(signInEffect, user);
+    yield user ? call(signInEffect, user) : put(signOutSuccess());
   } catch (error) {
     yield put(signInFailed(error as Error));
   }
