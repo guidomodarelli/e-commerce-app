@@ -1,6 +1,6 @@
 import { UserAuthSignInWithEmailAndPassword, UserAuthSignUpWithEmailAndPassword } from "@core/auth/Domain";
 import { User } from "@core/common/Domain";
-import { UserFactory } from "@core/user/Domain";
+import { UserFirebaseFactory } from "@core/user/Infrastructure";
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 export class UserAuthWithEmailAndPasswordFirebaseAdapter
@@ -10,11 +10,11 @@ export class UserAuthWithEmailAndPasswordFirebaseAdapter
 
   async signUp(email: string, password: string, displayName: string): Promise<User> {
     const { user } = await createUserWithEmailAndPassword(this.auth, email, password);
-    return UserFactory.create({ ...user, displayName });
+    return UserFirebaseFactory.create({ ...user, displayName });
   }
 
   async signIn(email: string, password: string): Promise<User> {
     const { user } = await signInWithEmailAndPassword(this.auth, email, password);
-    return UserFactory.create({ ...user });
+    return UserFirebaseFactory.create({ ...user });
   }
 }

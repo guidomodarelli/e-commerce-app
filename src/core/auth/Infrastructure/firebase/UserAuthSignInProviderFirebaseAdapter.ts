@@ -1,6 +1,6 @@
 import { UserAuthSignInProvider } from "@core/auth/Domain";
 import { User } from "@core/common/Domain";
-import { UserFactory } from "@core/user/Domain";
+import { UserFirebaseFactory } from "@core/user/Infrastructure";
 import { Auth, AuthProvider, signInWithPopup } from "firebase/auth";
 
 export class UserAuthSignInProviderFirebaseAdapter implements UserAuthSignInProvider {
@@ -11,6 +11,6 @@ export class UserAuthSignInProviderFirebaseAdapter implements UserAuthSignInProv
 
   async signIn(): Promise<User> {
     const { user } = await signInWithPopup(this.auth, this.provider);
-    return UserFactory.create(user);
+    return UserFirebaseFactory.create(user);
   }
 }
