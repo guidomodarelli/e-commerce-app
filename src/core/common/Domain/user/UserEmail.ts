@@ -9,11 +9,11 @@ export class UserEmail extends ValueObject<string> {
     }
   }
 
-  public static isValid(email: string) {
+  public static isValid(email: string): boolean {
     return z.string().email().safeParse(email).success;
   }
 
-  public static invalidMessage(email: string) {
+  public static invalidMessage(email: string): string {
     return `The email ${email} is not valid.`;
   }
 }

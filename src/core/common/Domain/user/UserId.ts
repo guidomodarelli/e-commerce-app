@@ -10,7 +10,7 @@ export class UserId extends ValueObject<string> {
   }
 
   public static isValid(id: string): boolean {
-    return z.string().uuid().safeParse(id).success;
+    return z.string().safeParse(id).success;
   }
 
   public static invalidMessage(id: string): string {
