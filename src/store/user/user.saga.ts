@@ -23,6 +23,7 @@ import {
   signUpFailed,
   signUpSuccess,
 } from ".";
+import { UserAuth } from "@core/auth/Domain";
 
 export function* signInEffect(user: User) {
   yield call(saveUser, user);
@@ -38,7 +39,9 @@ export function* signInWithGoogleEffect() {
   }
 }
 
-export function* signInWithEmailEffect({ payload: { email, password } }: Payload<{ email: string; password: string }>) {
+export function* signInWithEmailEffect({
+  payload: { email, password },
+}: Payload<Pick<UserAuth, "email" | "password">>) {
   try {
     const user = (yield call(signInWithEmailAndPassword, email, password)) as User;
     yield call(signInEffect, user);
@@ -47,9 +50,7 @@ export function* signInWithEmailEffect({ payload: { email, password } }: Payload
   }
 }
 
-export function* signUpWithEmailEffect({
-  payload: { email, password, displayName },
-}: Payload<{ email: string; password: string; displayName: string }>) {
+export function* signUpWithEmailEffect({ payload: { email, password, displayName } }: Payload<UserAuth>) {
   try {
     const user = (yield call(signUpWithEmailAndPassword, email, password, displayName)) as User;
     yield put(signUpSuccess(user));
