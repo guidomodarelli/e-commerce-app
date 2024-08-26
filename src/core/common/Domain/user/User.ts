@@ -1,7 +1,8 @@
-import { Aggregate } from "../Aggregate";
+import { UserCreatedEvent } from "@core/user/Domain/UserCreatedEvent";
 import { UserDisplayName } from "./UserDisplayName";
 import { UserEmail } from "./UserEmail";
 import { UserId } from "./UserId";
+import { AggregateRoot } from "../AggregateRoot";
 
 export interface User {
   id: string;
@@ -9,12 +10,14 @@ export interface User {
   displayName: string;
 }
 
-export class UserEntity implements Aggregate<User> {
+export class UserEntity extends AggregateRoot {
   private constructor(
     private readonly _id: UserId,
     private readonly _email: UserEmail,
     private readonly _displayName: UserDisplayName,
-  ) {}
+  ) {
+    super();
+  }
 
   public static create({ id, email, displayName }: User) {
     return new UserEntity(new UserId(id), new UserEmail(email), new UserDisplayName(displayName));
@@ -38,5 +41,14 @@ export class UserEntity implements Aggregate<User> {
       email: this.emailValue,
       displayName: this.displayNameValue,
     };
+  }
+
+  public static publish(id: UserId, email: UserEmail, displayName: UserDisplayName): UserEntity {
+    const user = new UserEntity(id, email, displayName);
+    const userCreatedEvent = new UserCreatedEvent(id.value, email.value, displayName.value);
+
+    user.record(userCreatedEvent);
+
+    return user;
   }
 }
