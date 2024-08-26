@@ -15,7 +15,7 @@ export class ObserverEventBus implements EventBus {
     };
   }
 
-  publish(events: DomainEvent[]): void {
+  publish(...events: DomainEvent[]): void {
     for (const event of events) {
       const listeners = this.subscribers.get(event);
       if (listeners && listeners.length > 0) {

@@ -4,5 +4,5 @@ export type Listener = (event: DomainEvent) => void;
 
 export interface EventBus {
   subscribe(event: DomainEvent, listener: Listener): () => void;
-  publish(events: DomainEvent[]): void;
+  publish(...events: DomainEvent[]): void;
 }
