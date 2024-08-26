@@ -9,5 +9,5 @@ export const UserPublisherUseCase =
 
     const user = UserEntity.publish(id, email, displayName);
 
-    eventBus.publish(user.pullDomainEvents());
+    eventBus.publish(...user.pullDomainEvents());
   };
