@@ -10,7 +10,7 @@ export class ObserverEventBus implements EventBus {
     this.subscribers.set(event, listeners);
 
     return () => {
-      listeners = listeners.filter((listener) => listener === newListener);
+      listeners = listeners.filter((listener) => listener !== newListener);
       this.subscribers.set(event, listeners);
     };
   }
