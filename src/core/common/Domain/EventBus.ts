@@ -1,8 +1,10 @@
 import { DomainEvent } from "./DomainEvent";
 
-export type Listener = (event: DomainEvent) => void;
+export type EventHandler = (event: DomainEvent) => void;
 
 export interface EventBus {
-  subscribe(event: DomainEvent, listener: Listener): () => void;
+  subscribe(eventName: string, newHandler: EventHandler): () => void;
+  unsubscribe(eventName: string, oldHandler: EventHandler): void;
+  once(eventName: string, newHandler: EventHandler): void;
   publish(...events: DomainEvent[]): void;
 }
