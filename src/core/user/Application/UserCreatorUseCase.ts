@@ -1,4 +1,4 @@
-import { UserDisplayName, UserEmail, UserEntity, UserId } from "@core/common/Domain";
+import { UserDisplayName, UserEmail, User, UserId } from "@core/common/Domain";
 import { EventBus } from "@core/common/Domain/EventBus";
 
 export const UserCreatorUseCase = (eventBus: EventBus) => (rawId: string, rawEmail: string, rawDisplayName: string) => {
@@ -6,7 +6,7 @@ export const UserCreatorUseCase = (eventBus: EventBus) => (rawId: string, rawEma
   const email = new UserEmail(rawEmail);
   const displayName = new UserDisplayName(rawDisplayName);
 
-  const user = UserEntity.publish(id, email, displayName);
+  const user = User.publish(id, email, displayName);
 
   eventBus.publish(...user.pullDomainEvents());
 };
