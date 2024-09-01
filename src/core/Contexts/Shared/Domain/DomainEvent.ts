@@ -2,12 +2,6 @@ import { UUID } from "@core/Contexts/Shared/Domain";
 
 export abstract class DomainEvent {
   static EVENT_NAME: string;
-  static fromPrimitives: (parameters: {
-    aggregateId: string;
-    eventId: string;
-    occurredOn: Date;
-    attributes: DomainEventAttributes;
-  }) => DomainEvent;
 
   readonly aggregateId: string;
   readonly eventId: string;
@@ -23,6 +17,13 @@ export abstract class DomainEvent {
   }
 
   abstract toPrimitives(): DomainEventAttributes;
+
+  static fromPrimitives: (parameters: {
+    aggregateId: string;
+    eventId: string;
+    occurredOn: Date;
+    attributes: DomainEventAttributes;
+  }) => DomainEvent;
 }
 
 export interface DomainEventClass {
