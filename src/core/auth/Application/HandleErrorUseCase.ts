@@ -1,4 +1,4 @@
-import { ErrorHandler } from "@core/common/Domain";
+import { ErrorHandler } from "@core/Contexts/Shared/Domain";
 
 export const errorAuthHandlerUseCase =
   <T extends string>(errorHandler: ErrorHandler<T>) =>

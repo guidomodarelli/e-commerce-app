@@ -1,5 +1,5 @@
-import { User } from "@core/common/Domain";
 import * as schema from "@core/common/Infrastructure/drizzle/schema";
+import { User } from "@core/Contexts/Ecommerce/User/User";
 import { UserRepository } from "@core/user/Domain";
 import { LibSQLDatabase } from "drizzle-orm/libsql";
 

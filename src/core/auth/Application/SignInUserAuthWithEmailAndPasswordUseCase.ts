@@ -1,5 +1,5 @@
 import { UserAuthSignInWithEmailAndPassword } from "@core/auth/Domain";
-import { AuthService } from "@core/common/Domain";
+import { AuthService } from "@core/Contexts/Ecommerce/Auth/AuthService";
 
 export const signInWithEmailAndPasswordUseCase =
   (userAuth: UserAuthSignInWithEmailAndPassword, authService: AuthService) =>

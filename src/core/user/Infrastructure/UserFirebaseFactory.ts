@@ -1,4 +1,4 @@
-import { User } from "@core/common/Domain";
+import { User } from "@core/Contexts/Ecommerce/User/User";
 import { UserInfo } from "firebase/auth";
 
 export const UserFirebaseFactory = {

@@ -1,5 +1,5 @@
 import { UserAuthSignInWithEmailAndPassword, UserAuthSignUpWithEmailAndPassword } from "@core/auth/Domain";
-import { User } from "@core/common/Domain";
+import { User } from "@core/Contexts/Ecommerce/User/User";
 import { UserFirebaseFactory } from "@core/user/Infrastructure";
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 

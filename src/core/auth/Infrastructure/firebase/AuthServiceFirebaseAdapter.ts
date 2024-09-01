@@ -1,4 +1,5 @@
-import { AuthService, User } from "@core/common/Domain";
+import { AuthService } from "@core/Contexts/Ecommerce/Auth/AuthService";
+import { User } from "@core/Contexts/Ecommerce/User/User";
 import { UserRepository } from "@core/user/Domain";
 import { UserFirebaseFactory } from "@core/user/Infrastructure";
 import { Auth, onAuthStateChanged } from "firebase/auth";

@@ -1,4 +1,4 @@
-import { User } from "@core/common/Domain";
+import { User } from "@core/Contexts/Ecommerce/User/User";
 import { UserRepository } from "@core/user/Domain";
 import { Client } from "@libsql/client";
 
@@ -16,7 +16,8 @@ export class UserRepositoryTursoAdapter implements UserRepository {
     }
   }
 
-  findByEmail(email: string): Promise<User | undefined> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  findByEmail(_email: string): Promise<User | undefined> {
     // TODO: Method not implemented.
     throw new Error("Method not implemented.");
   }
