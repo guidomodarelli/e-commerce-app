@@ -1,27 +1,38 @@
 import { DomainEvent } from "@core/common/Domain/DomainEvent";
 
-export class UserCreatedEvent implements DomainEvent {
-  public static readonly FULL_QUALIFIED_EVENT_NAME: string = "user.created";
+interface UserCreatedDomainEventAttributes {
+  readonly email: string;
+  readonly displayName: string;
+}
 
-  constructor(
-    private readonly _id: string,
-    private readonly _email: string,
-    private readonly _displayName: string,
-  ) {}
+export class UserCreatedEvent extends DomainEvent implements UserCreatedDomainEventAttributes {
+  public static readonly EVENT_NAME: string = "user.created";
 
-  fullQualifiedEventName(): string {
-    return UserCreatedEvent.FULL_QUALIFIED_EVENT_NAME;
+  readonly email: string;
+  readonly displayName: string;
+
+  constructor({
+    aggregateId,
+    email,
+    displayName,
+    eventId,
+    occurredOn,
+  }: {
+    aggregateId: string;
+    eventId?: string;
+    displayName: string;
+    email: string;
+    occurredOn?: Date;
+  }) {
+    super({ eventName: UserCreatedEvent.EVENT_NAME, aggregateId, eventId, occurredOn });
+    this.displayName = displayName;
+    this.email = email;
   }
 
-  public get id(): string {
-    return this._id;
-  }
-
-  public get email(): string {
-    return this._email;
-  }
-
-  public get displayName(): string {
-    return this._displayName;
+  toPrimitives(): UserCreatedDomainEventAttributes {
+    return {
+      email: this.email,
+      displayName: this.displayName,
+    };
   }
 }
