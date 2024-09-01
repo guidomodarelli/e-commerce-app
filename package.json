@@ -34,6 +34,7 @@
     "rxjs": "7.8.1",
     "sonner": "1.5.0",
     "ulid": "2.3.0",
+    "uuid": "10.0.0",
     "zod": "3.23.8"
   },
   "devDependencies": {
@@ -41,6 +42,8 @@
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@types/redux-logger": "3.0.13",
+    "@types/uuid": "10.0.0",
+    "@types/uuid-validate": "0.0.3",
     "@typescript-eslint/eslint-plugin": "7.16.1",
     "@typescript-eslint/parser": "7.16.1",
     "@vitejs/plugin-react-swc": "3.7.0",
