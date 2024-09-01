@@ -6,12 +6,15 @@ export class UserRepositoryFirestoreAdapter implements UserRepository {
   constructor(private readonly database: Firestore) {}
 
   async save(user: User): Promise<void> {
-    const userDocumentReference = doc(this.database, "users", user.id);
+    const userDocumentReference = doc(this.database, "users", user.id.value);
 
     const userSnapshot = await getDoc(userDocumentReference);
 
     if (!userSnapshot.exists()) {
-      const { displayName, email } = user;
+      const {
+        displayName: { value: displayName },
+        email: { value: email },
+      } = user;
       const createdAt = new Date();
       try {
         await setDoc(userDocumentReference, {

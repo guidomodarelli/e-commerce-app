@@ -43,7 +43,7 @@ export function* signInWithEmailEffect({
   payload: { email, password },
 }: Payload<Pick<UserAuth, "email" | "password">>) {
   try {
-    const user = (yield call(signInWithEmailAndPassword, email, password)) as User;
+    const user = (yield call(signInWithEmailAndPassword, email.value, password)) as User;
     yield call(signInEffect, user);
   } catch (error) {
     yield put(signInFailed(error as Error));
@@ -52,7 +52,7 @@ export function* signInWithEmailEffect({
 
 export function* signUpWithEmailEffect({ payload: { email, password, displayName } }: Payload<UserAuth>) {
   try {
-    const user = (yield call(signUpWithEmailAndPassword, email, password, displayName)) as User;
+    const user = (yield call(signUpWithEmailAndPassword, email.value, password, displayName.value)) as User;
     yield put(signUpSuccess(user));
   } catch (error) {
     yield put(signUpFailed(error as Error));

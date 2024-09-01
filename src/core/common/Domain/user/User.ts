@@ -4,48 +4,40 @@ import { UserEmail } from "./UserEmail";
 import { UserId } from "./UserId";
 import { AggregateRoot } from "../AggregateRoot";
 
-export interface User {
+interface UserType {
   id: string;
   email: string;
   displayName: string;
 }
 
-export class UserEntity extends AggregateRoot {
+export class User extends AggregateRoot {
   private constructor(
-    private readonly _id: UserId,
-    private readonly _email: UserEmail,
-    private readonly _displayName: UserDisplayName,
+    readonly id: UserId,
+    readonly email: UserEmail,
+    readonly displayName: UserDisplayName,
   ) {
     super();
   }
 
-  public static create({ id, email, displayName }: User) {
-    return new UserEntity(new UserId(id), new UserEmail(email), new UserDisplayName(displayName));
+  public static create({ id, email, displayName }: UserType) {
+    return new User(new UserId(id), new UserEmail(email), new UserDisplayName(displayName));
   }
 
-  public get idValue(): string {
-    return this._id.value;
-  }
-
-  public get emailValue(): string {
-    return this._email.value;
-  }
-
-  public get displayNameValue(): string {
-    return this._displayName.value;
-  }
-
-  public toPrimitives(): User {
+  public toPrimitives(): UserType {
     return {
-      id: this.idValue,
-      email: this.emailValue,
-      displayName: this.displayNameValue,
+      id: this.id.value,
+      email: this.email.value,
+      displayName: this.displayName.value,
     };
   }
 
-  public static publish(id: UserId, email: UserEmail, displayName: UserDisplayName): UserEntity {
-    const user = new UserEntity(id, email, displayName);
-    const userCreatedEvent = new UserCreatedEvent(id.value, email.value, displayName.value);
+  public static publish(id: UserId, email: UserEmail, displayName: UserDisplayName): User {
+    const user = new User(id, email, displayName);
+    const userCreatedEvent = new UserCreatedEvent({
+      aggregateId: id.value,
+      email: email.value,
+      displayName: displayName.value,
+    });
 
     user.record(userCreatedEvent);
 

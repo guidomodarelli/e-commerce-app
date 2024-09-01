@@ -1,4 +1,4 @@
-import { User, UserEntity } from "@core/common/Domain";
+import { User } from "@core/common/Domain";
 import * as schema from "@core/common/Infrastructure/drizzle/schema";
 import { UserRepository } from "@core/user/Domain";
 import { LibSQLDatabase } from "drizzle-orm/libsql";
@@ -9,9 +9,9 @@ export class UserRepositoryDrizzleAdapter implements UserRepository {
   async save(user: User): Promise<void> {
     try {
       await this.db.insert(schema.users).values({
-        id: user.id,
-        email: user.email,
-        displayName: user.displayName,
+        id: user.id.value,
+        email: user.email.value,
+        displayName: user.displayName.value,
       });
     } catch (error) {
       console.error(error);
@@ -23,7 +23,7 @@ export class UserRepositoryDrizzleAdapter implements UserRepository {
       where: (users, { eq }) => eq(users.email, email),
     });
     if (user) {
-      return UserEntity.create(user).toPrimitives();
+      return User.create(user);
     }
     return undefined;
   }

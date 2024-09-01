@@ -9,7 +9,7 @@ export class UserRepositoryTursoAdapter implements UserRepository {
     try {
       await this.turso.execute({
         sql: "INSERT INTO users (id, email, displayName) VALUES (?, ?, ?)",
-        args: [user.id, user.email, user.displayName],
+        args: [user.id.value, user.email.value, user.displayName.value],
       });
     } catch (error) {
       console.error(error);
