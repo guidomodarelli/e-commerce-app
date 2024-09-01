@@ -2,9 +2,9 @@ import { UserCreatedEvent } from "@core/user/Domain/UserCreatedEvent";
 import { UserDisplayName } from "./UserDisplayName";
 import { UserEmail } from "./UserEmail";
 import { UserId } from "./UserId";
-import { AggregateRoot } from "../AggregateRoot";
+import { AggregateRoot } from "@core/Contexts/Shared/Domain/AggregateRoot";
 
-interface UserType {
+interface UserPrimitives {
   id: string;
   email: string;
   displayName: string;
@@ -19,11 +19,11 @@ export class User extends AggregateRoot {
     super();
   }
 
-  public static create({ id, email, displayName }: UserType) {
+  public static create({ id, email, displayName }: UserPrimitives) {
     return new User(new UserId(id), new UserEmail(email), new UserDisplayName(displayName));
   }
 
-  public toPrimitives(): UserType {
+  public toPrimitives(): UserPrimitives {
     return {
       id: this.id.value,
       email: this.email.value,
