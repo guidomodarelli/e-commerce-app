@@ -9,7 +9,7 @@ import { useHeaderNav } from "@/contexts/HeaderNav.context";
 import NavItem from "./NavItem.component";
 import NavItemUserSignIn from "./NavItemUserSignIn.component";
 import NavItemsContainer from "./NavItemsContainer.component";
-import { ulid } from "ulid";
+import { UUID } from "@core/Contexts/Shared/Domain/ValueObject/UUID";
 
 interface NavigationProps {}
 
@@ -17,11 +17,11 @@ function Navigation({}: NavigationProps) {
   const { isHeaderNavOpen, closeHeaderNav, openHeaderNav } = useHeaderNav();
 
   const navItems = [
-    <NavItem key={ulid()} to="/shop">
+    <NavItem key={UUID.random().value} to="/shop">
       SHOP
     </NavItem>,
-    <NavItemUserSignIn key={ulid()} />,
-    <NavItem key={ulid()}>
+    <NavItemUserSignIn key={UUID.random().value} />,
+    <NavItem key={UUID.random().value}>
       <CartIcon />
     </NavItem>,
   ];
