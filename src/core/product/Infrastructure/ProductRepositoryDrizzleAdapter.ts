@@ -5,7 +5,7 @@ import { category as categorySchema, products as productsSchema } from "@core/co
 import { eq } from "drizzle-orm";
 import { BatchItem } from "drizzle-orm/batch";
 import { LibSQLDatabase } from "drizzle-orm/libsql";
-import { ulid } from "ulid";
+import { ULID } from "@core/Contexts/Shared/Domain/ValueObject/ULID";
 
 export class ProductRepositoryDrizzleAdapter implements ProductRepository {
   constructor(private readonly db: LibSQLDatabase<typeof schema>) {}
@@ -20,7 +20,7 @@ export class ProductRepositoryDrizzleAdapter implements ProductRepository {
       const category = await this.db.query.category.findFirst({
         where: eq(categorySchema.title, title.toLowerCase()),
       });
-      const categoryId: string = category?.id ?? ulid();
+      const categoryId: string = category?.id ?? ULID.random().value;
       if (!category) {
         await this.db.insert(categorySchema).values({
           id: categoryId,
