@@ -1,7 +1,7 @@
-import { Factory, User } from "@core/common/Domain";
+import { User } from "@core/common/Domain";
 import { UserInfo } from "firebase/auth";
 
-export const UserFirebaseFactory: Factory<UserInfo, User> = {
+export const UserFirebaseFactory = {
   create(user: UserInfo): User {
     const id = user.uid;
     const email = user.email ?? "";
