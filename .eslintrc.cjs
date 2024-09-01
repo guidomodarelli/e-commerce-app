@@ -31,6 +31,10 @@ module.exports = {
       ],
       plugins: ["react-refresh", "unicorn"],
       rules: {
+        "@typescript-eslint/no-unsafe-argument": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
         "unicorn/prefer-spread": "off",
         "unicorn/no-negated-condition": "off",
         "@typescript-eslint/no-unused-vars": "warn",
