@@ -1,4 +1,4 @@
-import { User } from "@core/common/Domain";
+import { User } from "../User/User";
 
 export interface AuthService {
   loggedIn(user: User): Promise<void>;
