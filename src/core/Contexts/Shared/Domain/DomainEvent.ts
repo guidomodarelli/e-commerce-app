@@ -1,4 +1,4 @@
-import { UUID } from "@core/Contexts/Shared/Domain/ValueObject/UUID";
+import { UUID } from "@core/Contexts/Shared/Domain";
 
 export abstract class DomainEvent {
   static EVENT_NAME: string;
