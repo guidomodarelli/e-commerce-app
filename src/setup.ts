@@ -21,7 +21,7 @@ import { drizzle } from "drizzle-orm/libsql";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig, tursoConfig } from "./config";
-import { getProductsUseCase, saveAllProductsUseCase } from "@core/Contexts/Shop/Product/Application";
+import { getProductsUseCase } from "@core/Contexts/Shop/Product/Application";
 import { getCategoriesUseCase } from "@core/Contexts/Shop/Category/Application";
 import { ProductRepositoryDrizzleAdapter } from "@core/Contexts/Shop/Product/Infrastructure";
 import { CategoryRepositoryDrizzleAdapter } from "@core/Contexts/Shop/Category/Infrastructure";
@@ -53,7 +53,6 @@ export const signUpWithEmailAndPassword = signUpAuthUserWithEmailAndPasswordUseC
 );
 export const signOut = signOutUserUseCase(userAuthSignOut, authService);
 export const saveUser = saveUserUseCase(userRepository);
-export const saveAllProducts = saveAllProductsUseCase(productRepository);
 export const getProducts = getProductsUseCase(productRepository);
 export const getCategories = getCategoriesUseCase(categoryRepository);
 export const errorAuthHandler = errorAuthHandlerUseCase(errorHandler);

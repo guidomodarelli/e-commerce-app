@@ -13,7 +13,11 @@ import { Product, ProductRepository } from "../Domain";
 export class ProductRepositoryDrizzleAdapter implements ProductRepository {
   constructor(private readonly db: LibSQLDatabase<typeof schema>) {}
 
-  async saveAll(shopData: ShopData[]): Promise<void> {
+  saveAll(products: Product[]): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
+
+  async saveAllShopData(shopData: ShopData[]): Promise<void> {
     if (shopData.length === 0) return;
 
     const batchItems: BatchItem<"sqlite">[] = [];
