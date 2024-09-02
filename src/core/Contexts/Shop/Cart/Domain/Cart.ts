@@ -1,6 +1,7 @@
+import { OmitStrict } from "@core/Contexts/Shared/Domain/OmitStrict";
 import { CartItem } from "./CartItem";
 
-type CartItemRequest = Omit<CartItem, "quantity">;
+type CartItemRequest = OmitStrict<CartItem, "quantity">;
 
 export class Cart {
   static add(cart: CartItem[], productToAdd: CartItemRequest): CartItem[] {
