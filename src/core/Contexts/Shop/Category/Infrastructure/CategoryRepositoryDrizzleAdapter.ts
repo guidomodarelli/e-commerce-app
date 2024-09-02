@@ -1,5 +1,5 @@
 import { LibSQLDatabase } from "drizzle-orm/libsql";
-import * as schema from "@core/Contexts/Shared/Infrastructure/drizzle/schema";
+import * as schema from "@core/Contexts/Shop/Shared/Infrastructure/drizzle/schema";
 import { Category, CategoryRepository } from "../Domain";
 
 export class CategoryRepositoryDrizzleAdapter implements CategoryRepository {

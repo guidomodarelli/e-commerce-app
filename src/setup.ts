@@ -12,7 +12,7 @@ import {
   UserAuthSignOutFirebaseAdapter,
   UserAuthWithEmailAndPasswordFirebaseAdapter,
 } from "@core/Contexts/Shop/Auth/Infrastructure/firebase";
-import { schema } from "@core/Contexts/Shared/Infrastructure/drizzle";
+import { schema } from "@core/Contexts/Shop/Shared/Infrastructure/drizzle";
 import { getCurrentUserUseCase, saveUserUseCase } from "@core/Contexts/Shop/User/Application";
 import { UserRepository } from "@core/Contexts/Shop/User/Domain";
 import { UserRepositoryDrizzleAdapter } from "@core/Contexts/Shop/User/Infrastructure";
