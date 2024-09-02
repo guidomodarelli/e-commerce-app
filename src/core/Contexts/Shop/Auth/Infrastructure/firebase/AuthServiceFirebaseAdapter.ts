@@ -1,7 +1,7 @@
 import { AuthService } from "@core/Contexts/Shop/Auth/Domain/AuthService";
 import { User } from "@core/Contexts/Shop/User/Domain/User";
 import { UserRepository } from "@core/Contexts/Shop/User/Domain";
-import { UserFirebaseFactory } from "@core/Contexts/Shop/User/Infrastructure";
+import { UserFromFirebaseFactory } from "@core/Contexts/Shop/User/Infrastructure";
 import { Auth, onAuthStateChanged } from "firebase/auth";
 import { debounceTime, Subject } from "rxjs";
 
@@ -14,7 +14,7 @@ export class AuthServiceFirebaseAdapter implements AuthService {
   ) {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        await this.loggedIn(UserFirebaseFactory.create(user));
+        await this.loggedIn(UserFromFirebaseFactory.create(user));
       } else {
         this.loggedOut();
       }

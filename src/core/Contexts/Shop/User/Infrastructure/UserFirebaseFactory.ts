@@ -1,7 +1,7 @@
 import { UserInfo } from "firebase/auth";
 import { User } from "../Domain/User";
 
-export const UserFirebaseFactory = {
+export const UserFromFirebaseFactory = {
   create(user: UserInfo): User {
     const id = user.uid;
     const email = user.email ?? "";
