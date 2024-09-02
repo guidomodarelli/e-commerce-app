@@ -1,5 +1,5 @@
-import { User } from "@core/Contexts/Shop/User/Domain/User";
 import { UserInfo } from "firebase/auth";
+import { User } from "../Domain/User";
 
 export const UserFirebaseFactory = {
   create(user: UserInfo): User {

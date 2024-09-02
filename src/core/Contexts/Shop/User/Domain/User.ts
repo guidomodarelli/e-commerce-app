@@ -1,8 +1,8 @@
 import { AggregateRoot } from "@core/Contexts/Shared/Domain/AggregateRoot";
-import { UserCreatedEvent } from "@core/Contexts/Shop/User/Domain/UserCreatedEvent";
 import { UserDisplayName } from "./UserDisplayName";
 import { UserEmail } from "./UserEmail";
 import { UserId } from "./UserId";
+import { UserCreatedEvent } from "./UserCreatedEvent";
 
 interface UserPrimitives {
   id: string;

@@ -1,5 +1,5 @@
-import { AuthService } from "@core/Contexts/Shop/Auth/Domain/AuthService";
-import { User } from "@core/Contexts/Shop/User/Domain/User";
+import { AuthService } from "../../Auth/Domain/AuthService";
+import { User } from "../Domain/User";
 
 export const getCurrentUserUseCase = (authService: AuthService) => () =>
   new Promise<User | null>((resolve) => {

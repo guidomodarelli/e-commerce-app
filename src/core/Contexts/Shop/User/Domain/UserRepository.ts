@@ -1,4 +1,4 @@
-import { User } from "@core/Contexts/Shop/User/Domain/User";
+import { User } from "./User";
 
 export interface UserRepository {
   save(user: User): Promise<void>;

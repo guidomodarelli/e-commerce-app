@@ -1,6 +1,6 @@
-import { User } from "@core/Contexts/Shop/User/Domain/User";
-import { UserRepository } from "@core/Contexts/Shop/User/Domain";
 import { Client } from "@libsql/client";
+import { UserRepository } from "../Domain";
+import { User } from "../Domain/User";
 
 export class UserRepositoryTursoAdapter implements UserRepository {
   constructor(private readonly turso: Client) {}

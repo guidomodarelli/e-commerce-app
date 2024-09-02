@@ -1,7 +1,7 @@
 import * as schema from "@core/Contexts/Shared/Infrastructure/drizzle/schema";
-import { User } from "@core/Contexts/Shop/User/Domain/User";
-import { UserRepository } from "@core/Contexts/Shop/User/Domain";
 import { LibSQLDatabase } from "drizzle-orm/libsql";
+import { UserRepository } from "../Domain";
+import { User } from "../Domain/User";
 
 export class UserRepositoryDrizzleAdapter implements UserRepository {
   constructor(private readonly db: LibSQLDatabase<typeof schema>) {}

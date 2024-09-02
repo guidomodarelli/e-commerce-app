@@ -1,6 +1,6 @@
 import { User } from "@core/Contexts/Shop/User/Domain/User";
-import { UserRepository } from "@core/Contexts/Shop/User/Domain";
 import { doc, Firestore, getDoc, setDoc } from "firebase/firestore";
+import { UserRepository } from "../Domain";
 
 export class UserRepositoryFirestoreAdapter implements UserRepository {
   constructor(private readonly database: Firestore) {}
