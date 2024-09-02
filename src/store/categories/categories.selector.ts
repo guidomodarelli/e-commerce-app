@@ -1,7 +1,7 @@
 import { AppRootState } from "../store";
-import { Product } from "@core/product/Domain";
 import { createSelector } from "reselect";
 import { selectProductsList } from "@store/products";
+import { Product } from "@core/Contexts/Shop/Product/Domain";
 
 export const selectCategories = (state: AppRootState) => state.categories;
 

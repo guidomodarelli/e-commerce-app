@@ -1,7 +1,7 @@
-import { Product } from "@core/product/Domain";
 import { createSlice } from "@reduxjs/toolkit";
 import { Payload } from "@store/utils/payload.utils";
 import { INITIAL_STATE } from "./products.state";
+import { Product } from "@core/Contexts/Shop/Product/Domain";
 
 export const productSlice = createSlice({
   name: "product",

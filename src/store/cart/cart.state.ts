@@ -1,4 +1,4 @@
-import { CartItem } from "@core/cart/Domain";
+import { CartItem } from "@core/Contexts/Shop/Cart/Domain";
 
 export type CartMap = Record<string, CartItem | undefined>;
 

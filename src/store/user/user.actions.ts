@@ -1,4 +1,4 @@
-import { User } from "@core/common/Domain";
+import { User } from "@core/Contexts/Shop/User/Domain/User";
 import {
   CHECK_USER_SESSION,
   EMAIL_SIGN_IN_START,

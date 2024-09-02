@@ -1,5 +1,5 @@
 import { getProducts } from "@/setup";
-import { Product } from "@core/product/Domain";
+import { Product } from "@core/Contexts/Shop/Product/Domain";
 import { selectProducts, setProducts } from "@store/products";
 import { useAppDispatch, useAppSelector } from "@store/store";
 import { useQuery } from "@tanstack/react-query";

@@ -6,7 +6,6 @@ import {
   signOut,
   signUpWithEmailAndPassword,
 } from "@/setup";
-import { User } from "@core/common/Domain";
 import { Payload } from "@store/utils/payload.utils";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import {
@@ -23,7 +22,8 @@ import {
   signUpFailed,
   signUpSuccess,
 } from ".";
-import { UserAuth } from "@core/auth/Domain";
+import { UserAuth } from "@core/Contexts/Shop/Auth/Domain";
+import { User } from "@core/Contexts/Shop/User/Domain/User";
 
 export function* signInEffect(user: User) {
   yield call(saveUser, user);

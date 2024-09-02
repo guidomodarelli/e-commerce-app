@@ -4,29 +4,29 @@ import {
   signInWithGoogleUseCase,
   signOutUserUseCase,
   signUpAuthUserWithEmailAndPasswordUseCase,
-} from "@core/auth/Application";
+} from "@core/Contexts/Shop/Auth/Application";
 import {
   AuthServiceFirebaseAdapter,
   ErrorHandlerAuthFirebaseAdapter,
   UserAuthSignInProviderFirebaseAdapter,
   UserAuthSignOutFirebaseAdapter,
   UserAuthWithEmailAndPasswordFirebaseAdapter,
-} from "@core/auth/Infrastructure/firebase";
-import { getCategoriesUseCase } from "@core/category/Application";
-import { CategoryRepository } from "@core/category/Domain";
-import { CategoryRepositoryDrizzleAdapter } from "@core/category/Infrastructure";
-import { getProductsUseCase, saveAllProductsUseCase } from "@core/product/Application";
-import { ProductRepository } from "@core/product/Domain";
-import { ProductRepositoryDrizzleAdapter } from "@core/product/Infrastructure";
-import { schema } from "@core/common/Infrastructure/drizzle";
-import { getCurrentUserUseCase, saveUserUseCase } from "@core/user/Application";
-import { UserRepository } from "@core/user/Domain";
-import { UserRepositoryDrizzleAdapter } from "@core/user/Infrastructure";
+} from "@core/Contexts/Shop/Auth/Infrastructure/firebase";
+import { schema } from "@core/Contexts/Shared/Infrastructure/drizzle";
+import { getCurrentUserUseCase, saveUserUseCase } from "@core/Contexts/Shop/User/Application";
+import { UserRepository } from "@core/Contexts/Shop/User/Domain";
+import { UserRepositoryDrizzleAdapter } from "@core/Contexts/Shop/User/Infrastructure";
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig, tursoConfig } from "./config";
+import { getProductsUseCase, saveAllProductsUseCase } from "@core/Contexts/Shop/Product/Application";
+import { getCategoriesUseCase } from "@core/Contexts/Shop/Category/Application";
+import { ProductRepositoryDrizzleAdapter } from "@core/Contexts/Shop/Product/Infrastructure";
+import { CategoryRepositoryDrizzleAdapter } from "@core/Contexts/Shop/Category/Infrastructure";
+import { ProductRepository } from "@core/Contexts/Shop/Product/Domain";
+import { CategoryRepository } from "@core/Contexts/Shop/Category/Domain";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();

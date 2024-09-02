@@ -1,4 +1,4 @@
-import { User } from "@core/Contexts/Ecommerce/User/User";
+import { User } from "@core/Contexts/Shop/User/Domain/User";
 
 export const INITIAL_STATE = {
   currentUser: undefined as User | null | undefined,

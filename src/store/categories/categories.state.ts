@@ -1,4 +1,4 @@
-import { Category } from "@core/category/Domain";
+import { Category } from "@core/Contexts/Shop/Category/Domain";
 
 export const INITIAL_STATE = {
   categories: [] as Category[],

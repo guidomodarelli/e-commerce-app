@@ -1,4 +1,4 @@
-import { Cart, CartItem } from "@core/cart/Domain";
+import { Cart, CartItem } from "@core/Contexts/Shop/Cart/Domain";
 import { createSelector } from "reselect";
 import { AppRootState } from "../store";
 

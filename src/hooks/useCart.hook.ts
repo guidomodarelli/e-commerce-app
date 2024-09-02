@@ -1,4 +1,4 @@
-import { Product } from "@core/product/Domain";
+import { Product } from "@core/Contexts/Shop/Product/Domain";
 import {
   addItemToCart,
   closeCart,
