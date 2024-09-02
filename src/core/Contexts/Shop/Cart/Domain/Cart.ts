@@ -1,8 +1,9 @@
-import { CartState } from "@store/cart";
-import { Product } from "../../Product/Domain";
+import { CartItem } from "./CartItem";
+
+type CartItemRequest = Omit<CartItem, "quantity">;
 
 export class Cart {
-  static add(cart: CartState["cart"], productToAdd: Product): CartState["cart"] {
+  static add(cart: CartItem[], productToAdd: CartItemRequest): CartItem[] {
     let cartItem = cart.find((item) => item.id === productToAdd.id);
 
     if (cartItem) {
@@ -19,7 +20,7 @@ export class Cart {
     return [...cart, cartItem];
   }
 
-  static remove(cart: CartState["cart"], cartItemToUpdate: Product): CartState["cart"] {
+  static remove(cart: CartItem[], cartItemToUpdate: CartItemRequest): CartItem[] {
     const cartItem = cart.find((item) => item.id === cartItemToUpdate.id);
 
     if (cartItem) {
@@ -33,15 +34,15 @@ export class Cart {
     return [...cart];
   }
 
-  static drop(cart: CartState["cart"], cartItemToRemove: Product): CartState["cart"] {
+  static drop(cart: CartItem[], cartItemToRemove: CartItemRequest): CartItem[] {
     return cart.filter((item) => item.id !== cartItemToRemove.id);
   }
 
-  static getTotalItems(cart: CartState["cart"]) {
+  static getTotalItems(cart: CartItem[]) {
     return cart.reduce((previous, current) => previous + current.quantity, 0);
   }
 
-  static getTotalPrice(cart: CartState["cart"]) {
+  static getTotalPrice(cart: CartItem[]) {
     return cart.reduce((previous, current) => previous + current.price * current.quantity, 0);
   }
 }
