@@ -1,4 +1,4 @@
-import { DomainEvent } from "@core/Contexts/Shared/Domain/DomainEvent";
+import { DomainEvent } from "@core/Contexts/Shared/Domain/DomainEvent/DomainEvent";
 
 interface UserCreatedDomainEventAttributes {
   readonly email: string;

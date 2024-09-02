@@ -1,4 +1,5 @@
-import { DomainEvent, DomainEventClass } from "./DomainEvent";
+import { DomainEvent } from "./DomainEvent";
+import { DomainEventClass } from "./DomainEventClass";
 
 export interface DomainEventSubscriber<T extends DomainEvent> {
   subscribedTo(): DomainEventClass[];

@@ -1,5 +1,6 @@
 import { ContainerBuilder, Definition } from "node-dependency-injection";
-import { DomainEvent, DomainEventSubscriber } from "../Domain";
+import { DomainEventSubscriber } from "../Domain/DomainEvent/DomainEventSubscriber";
+import { DomainEvent } from "../Domain/DomainEvent/DomainEvent";
 
 export class DomainEventSubscribers {
   constructor(public items: DomainEventSubscriber<DomainEvent>[]) {}
