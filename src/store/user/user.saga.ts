@@ -15,13 +15,15 @@ import {
   SIGN_OUT_START,
   SIGN_UP_START,
   SIGN_UP_SUCCESS,
+} from "./user.types.ts";
+import {
   signInFailed,
   signInSuccess,
   signOutFailed,
   signOutSuccess,
   signUpFailed,
   signUpSuccess,
-} from ".";
+} from "./user.actions.ts";
 import { UserAuth } from "@core/Contexts/Shop/Auth/Domain";
 import { User } from "@core/Contexts/Shop/User/Domain/User";
 

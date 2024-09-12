@@ -1,6 +1,6 @@
 import { getCategories } from "@/setup";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchCategoriesFailure, fetchCategoriesStart, fetchCategoriesSuccess } from ".";
+import { fetchCategoriesFailure, fetchCategoriesStart, fetchCategoriesSuccess } from "./categories.slice";
 import { Category } from "@core/Contexts/Shop/Category/Domain";
 
 export function* fetchCategories() {
