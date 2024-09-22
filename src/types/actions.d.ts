@@ -1,4 +1,4 @@
-type Payload<T> = T extends void ? void : { payload: T };
+type Payload<T> = T extends void ? object : { payload: T };
 
 type ActionType<T extends string> = { type: T };
 

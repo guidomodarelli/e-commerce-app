@@ -1,4 +1,4 @@
-import { Category } from "@core/category/Domain";
+import { Category } from "@core/Contexts/Shop/Category/Domain/Category";
 import { FETCH_CATEGORIES_FAILED, FETCH_CATEGORIES_START, FETCH_CATEGORIES_SUCCESS } from "./categories.types";
 import { createAction } from "@store/utils/reducer.utils";
 
