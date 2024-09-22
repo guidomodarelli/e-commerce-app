@@ -9,7 +9,14 @@ import { Actions } from "./types";
 import { logger } from "redux-logger";
 import { configureStore } from "@reduxjs/toolkit";
 
-const persistConfig: PersistConfig<AppRootState> = {
+export type AppRootState = ReturnType<typeof rootReducer>;
+
+type ExtendedRootState = PersistConfig<AppRootState> & {
+  whitelist?: (keyof AppRootState)[];
+  blacklist?: (keyof AppRootState)[];
+};
+
+const persistConfig: ExtendedRootState = {
   key: "root",
   storage,
   whitelist: ["cart"],
@@ -40,7 +47,6 @@ export const store = configureStore({
 
 sagaMiddleware.run(rootSaga);
 
-export type AppRootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
 export type AppStore = typeof store;
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
