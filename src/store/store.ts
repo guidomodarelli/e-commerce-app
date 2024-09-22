@@ -11,12 +11,12 @@ import { configureStore } from "@reduxjs/toolkit";
 
 export type AppRootState = ReturnType<typeof rootReducer>;
 
-type ExtendedRootState = PersistConfig<AppRootState> & {
+type ExtendedPersistConfig = PersistConfig<AppRootState> & {
   whitelist?: (keyof AppRootState)[];
   blacklist?: (keyof AppRootState)[];
 };
 
-const persistConfig: ExtendedRootState = {
+const persistConfig: ExtendedPersistConfig = {
   key: "root",
   storage,
   whitelist: ["cart"],
