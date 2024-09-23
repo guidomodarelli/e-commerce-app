@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { INITIAL_STATE } from "./cart.state";
-import { Payload } from "@store/utils/payload.utils";
 import { Cart } from "@core/Contexts/Shop/Cart/Domain";
 import { Product } from "@core/Contexts/Shop/Product/Domain";
 
