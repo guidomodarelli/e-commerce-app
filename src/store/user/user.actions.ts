@@ -30,12 +30,19 @@ export const signOutSuccess = () => createAction(UserActionType.SIGN_OUT_SUCCESS
 
 export const signOutFailed = (error: Error) => createAction(UserActionType.SIGN_OUT_FAILED, error);
 
+export type SignInWithEmail = Action<typeof UserActionType.EMAIL_SIGN_IN_START, { email: string; password: string }>;
+export type SignUpWithEmail = Action<
+  typeof UserActionType.SIGN_UP_START,
+  { email: string; password: string; displayName: string }
+>;
+export type SignUpSuccess = Action<typeof UserActionType.SIGN_UP_SUCCESS, User>;
+
 export type UserAction =
   | Action<typeof UserActionType.CHECK_USER_SESSION>
-  | Action<typeof UserActionType.SIGN_UP_START, { email: string; password: string; displayName: string }>
+  | SignUpWithEmail
   | Action<typeof UserActionType.SIGN_UP_SUCCESS, User>
   | Action<typeof UserActionType.GOOGLE_SIGN_IN_START>
-  | Action<typeof UserActionType.EMAIL_SIGN_IN_START, { email: string; password: string }>
+  | SignInWithEmail
   | Action<typeof UserActionType.SIGN_IN_SUCCESS, User>
   | Action<typeof UserActionType.SIGN_IN_FAILED, Error>
   | Action<typeof UserActionType.SIGN_UP_FAILED, Error>
