@@ -4,7 +4,7 @@ import { UserEmail } from "./UserEmail";
 import { UserId } from "./UserId";
 import { UserCreatedEvent } from "./UserCreatedEvent";
 
-interface UserPrimitives {
+export interface UserPrimitives {
   id: string;
   email: string;
   displayName: string;
