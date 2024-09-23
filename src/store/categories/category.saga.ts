@@ -1,5 +1,5 @@
 import { getCategories } from "@/setup";
-import { all, call, put, takeLatest } from "typed-redux-saga/macro";
+import { all, call, put, takeLatest } from "typed-redux-saga";
 import { fetchCategoriesFailure, fetchCategoriesStart, fetchCategoriesSuccess } from "./categories.slice";
 
 export function* fetchCategories() {
