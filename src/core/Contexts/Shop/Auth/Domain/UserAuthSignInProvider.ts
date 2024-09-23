@@ -1,5 +1,5 @@
-import { User } from "@core/Contexts/Shop/User/Domain/User";
+import { UserPrimitives } from "@core/Contexts/Shop/User/Domain/User";
 
 export interface UserAuthSignInProvider {
-  signIn(): Promise<User>;
+  signIn(): Promise<UserPrimitives>;
 }

@@ -6,7 +6,7 @@ import {
   signOut,
   signUpWithEmailAndPassword,
 } from "@/setup";
-import { User } from "@core/Contexts/Shop/User/Domain/User";
+import { UserPrimitives } from "@core/Contexts/Shop/User/Domain/User";
 import { all, call, put, takeLatest } from "typed-redux-saga";
 import {
   signInFailed,
@@ -21,7 +21,7 @@ import {
 } from "./user.actions.ts";
 import { UserActionType } from "./user.types.ts";
 
-export function* signInEffect(user: User) {
+export function* signInEffect(user: UserPrimitives) {
   yield* call(saveUser, user);
   yield* put(signInSuccess(user));
 }

@@ -1,11 +1,11 @@
 import { UserInfo } from "firebase/auth";
-import { User } from "../Domain/User";
+import { UserPrimitives } from "../Domain/User";
 
 export const UserFromFirebaseFactory = {
-  create(user: UserInfo): User {
+  create(user: UserInfo): UserPrimitives {
     const id = user.uid;
     const email = user.email ?? "";
     const displayName = user.displayName ?? "";
-    return User.create({ id, email, displayName });
+    return { id, email, displayName };
   },
 };

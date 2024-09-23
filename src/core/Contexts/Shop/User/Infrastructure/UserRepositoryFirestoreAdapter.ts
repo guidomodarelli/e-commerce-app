@@ -1,20 +1,17 @@
-import { User } from "@core/Contexts/Shop/User/Domain/User";
+import { UserPrimitives } from "@core/Contexts/Shop/User/Domain/User";
 import { doc, Firestore, getDoc, setDoc } from "firebase/firestore";
 import { UserRepository } from "../Domain";
 
 export class UserRepositoryFirestoreAdapter implements UserRepository {
   constructor(private readonly database: Firestore) {}
 
-  async save(user: User): Promise<void> {
-    const userDocumentReference = doc(this.database, "users", user.id.value);
+  async save(user: UserPrimitives): Promise<void> {
+    const userDocumentReference = doc(this.database, "users", user.id);
 
     const userSnapshot = await getDoc(userDocumentReference);
 
     if (!userSnapshot.exists()) {
-      const {
-        displayName: { value: displayName },
-        email: { value: email },
-      } = user;
+      const { displayName, email } = user;
       const createdAt = new Date();
       try {
         await setDoc(userDocumentReference, {
@@ -30,7 +27,7 @@ export class UserRepositoryFirestoreAdapter implements UserRepository {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  findByEmail(_email: string): Promise<User | undefined> {
+  findByEmail(_email: string): Promise<UserPrimitives | undefined> {
     // TODO: Method not implemented.
     throw new Error("Method not implemented.");
   }

@@ -1,7 +1,7 @@
-import { User } from "@core/Contexts/Shop/User/Domain/User";
+import { UserPrimitives } from "@core/Contexts/Shop/User/Domain/User";
 
 export const INITIAL_STATE = {
-  currentUser: undefined as User | null | undefined,
+  currentUser: undefined as UserPrimitives | null | undefined,
   error: null as Error | null,
 };
 
