@@ -6,16 +6,8 @@ import {
   signOut,
   signUpWithEmailAndPassword,
 } from "@/setup";
-import { Payload } from "@store/utils/payload.utils";
-import { all, call, put, takeLatest } from "redux-saga/effects";
-import {
-  CHECK_USER_SESSION,
-  EMAIL_SIGN_IN_START,
-  GOOGLE_SIGN_IN_START,
-  SIGN_OUT_START,
-  SIGN_UP_START,
-  SIGN_UP_SUCCESS,
-} from "./user.types.ts";
+import { all, call, put, takeLatest } from "typed-redux-saga/macro";
+import { UserActionType } from "./user.types.ts";
 import {
   signInFailed,
   signInSuccess,
@@ -28,16 +20,16 @@ import { UserAuth } from "@core/Contexts/Shop/Auth/Domain";
 import { User } from "@core/Contexts/Shop/User/Domain/User";
 
 export function* signInEffect(user: User) {
-  yield call(saveUser, user);
-  yield put(signInSuccess(user));
+  yield* call(saveUser, user);
+  yield* put(signInSuccess(user));
 }
 
 export function* signInWithGoogleEffect() {
   try {
-    const user = (yield call(signInWithGoogle)) as User;
-    yield call(signInEffect, user);
+    const user = yield* call(signInWithGoogle);
+    yield* call(signInEffect, user);
   } catch (error) {
-    yield put(signInFailed(error as Error));
+    yield* put(signInFailed(error as Error));
   }
 }
 
@@ -45,76 +37,73 @@ export function* signInWithEmailEffect({
   payload: { email, password },
 }: Payload<Pick<UserAuth, "email" | "password">>) {
   try {
-    const user = (yield call(signInWithEmailAndPassword, email.value, password)) as User;
-    yield call(signInEffect, user);
+    const user = yield* call(signInWithEmailAndPassword, email.value, password);
+    yield* call(signInEffect, user);
   } catch (error) {
-    yield put(signInFailed(error as Error));
+    yield* put(signInFailed(error as Error));
   }
 }
 
 export function* signUpWithEmailEffect({ payload: { email, password, displayName } }: Payload<UserAuth>) {
   try {
-    const user = (yield call(signUpWithEmailAndPassword, email.value, password, displayName.value)) as User;
-    yield put(signUpSuccess(user));
+    const user = yield* call(signUpWithEmailAndPassword, email.value, password, displayName.value);
+    yield* put(signUpSuccess(user));
   } catch (error) {
-    yield put(signUpFailed(error as Error));
+    yield* put(signUpFailed(error as Error));
   }
 }
 
 export function* signOutEffect() {
   try {
-    yield call(signOut);
-    yield put(signOutSuccess());
+    yield* call(signOut);
+    yield* put(signOutSuccess());
   } catch (error) {
-    yield put(signOutFailed(error as Error));
+    yield* put(signOutFailed(error as Error));
   }
 }
 
 export function* isUserAuthenticatedEffect() {
   try {
-    const user = (yield call(getCurrentUser)) as User;
-    yield user ? call(signInEffect, user) : put(signOutSuccess());
+    const user = yield* call(getCurrentUser);
+    yield* user ? call(signInEffect, user) : put(signOutSuccess());
   } catch (error) {
-    yield put(signInFailed(error as Error));
+    yield* put(signInFailed(error as Error));
   }
 }
 
 export function* signInAfterSignUpEffect({ payload: user }: Payload<User>) {
-  yield call(signInEffect, user);
+  yield* call(signInEffect, user);
 }
 
 export function* onCheckUserSession() {
-  yield takeLatest(CHECK_USER_SESSION, isUserAuthenticatedEffect);
+  yield* takeLatest(UserActionType.CHECK_USER_SESSION, isUserAuthenticatedEffect);
 }
 
 export function* onGoogleSignInStart() {
-  yield takeLatest(GOOGLE_SIGN_IN_START, signInWithGoogleEffect);
+  yield* takeLatest(UserActionType.GOOGLE_SIGN_IN_START, signInWithGoogleEffect);
 }
 
 export function* onEmailSignInStart() {
-  // FIX
   // @ts-expect-error No overload matches this call
-  yield takeLatest(EMAIL_SIGN_IN_START, signInWithEmailEffect);
+  yield* takeLatest(UserActionType.EMAIL_SIGN_IN_START, signInWithEmailEffect);
 }
 
 export function* onSignUpStart() {
-  // FIX
   // @ts-expect-error No overload matches this call
-  yield takeLatest(SIGN_UP_START, signUpWithEmailEffect);
+  yield* takeLatest(UserActionType.SIGN_UP_START, signUpWithEmailEffect);
 }
 
 export function* onSignUpSuccess() {
-  // FIX
   // @ts-expect-error No overload matches this call
-  yield takeLatest(SIGN_UP_SUCCESS, signInAfterSignUpEffect);
+  yield* takeLatest(UserActionType.SIGN_UP_SUCCESS, signInAfterSignUpEffect);
 }
 
 export function* onSignOutStart() {
-  yield takeLatest(SIGN_OUT_START, signOutEffect);
+  yield* takeLatest(UserActionType.SIGN_OUT_START, signOutEffect);
 }
 
 export function* userSaga() {
-  yield all([
+  yield* all([
     call(onCheckUserSession),
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
